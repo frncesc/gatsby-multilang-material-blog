@@ -10,7 +10,7 @@ import Box from '@material-ui/core/Box';
 const Info = () => {
   const data = useStaticQuery(graphql`
     query InfoQuery {
-      logo: file(absolutePath: { regex: "/park.png/" }) {
+      logo: file(absolutePath: { regex: "/moto.png/" }) {
         childImageSharp {
           fixed(width: 50, height: 50) {
             ...GatsbyImageSharpFixed
