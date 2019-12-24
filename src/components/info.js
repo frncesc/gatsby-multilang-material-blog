@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, withPrefix } from 'gatsby';
 import Image from 'gatsby-image';
 import Box from '@material-ui/core/Box';
 
@@ -34,7 +34,7 @@ const Info = () => {
         alt={author}
       />
       <p>{description}</p>
-      <img src="/img/park.png" />
+      <img src={withPrefix('/img/park.png')} alt="A bank on the park"/>
     </Box>
   );
 };
