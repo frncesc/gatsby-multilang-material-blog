@@ -6,7 +6,7 @@ require('dotenv').config({
 });
 
 // Read environment variables
-const BASE_URL = process.env.BASE_URL || 'https://frncesc.github.io/blog-template/';
+const BASE_URL = process.env.BASE_URL || 'https://frncesc.github.io/gatsby-multilang-material-blog/';
 const ANALYTICS_UA = process.env.ANALYTICS_UA || '';
 const OFFLINE_PWA = 'true' === process.env.OFFLINE_PWA;
 
@@ -28,7 +28,7 @@ const siteUrl = BASE_URL;
 
 // Gatsby config options
 const config = {
-  pathPrefix: '/web',
+  pathPrefix: '/gatsby-multilang-material-blog',
   siteMetadata: {
     title,
     author: 'Francesc',
