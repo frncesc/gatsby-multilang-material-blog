@@ -75,7 +75,9 @@ const config = {
       options: {
         extensions: ['.mdx', '.md'],
         gatsbyRemarkPlugins: [
+          'gatsby-remark-attr',
           'gatsby-remark-embedder',
+          'gatsby-remark-responsive-iframe',
           {
             resolve: 'gatsby-remark-images',
             options: {
