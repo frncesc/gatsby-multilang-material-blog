@@ -3,13 +3,25 @@ title: Testing styles
 date: '2015-05-28T22:40:32.169Z'
 description: This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter.
 ---
+import Button from '@material-ui/core/Button'
 
 # Main title (h1)
+
+This is MDX so we have access to `props.pageContext` with information like `frontmatter`. So, the title of this page is:
+<strong>{props.frontmatter.title}</strong>.
+
+And the site title is:
+<strong>{props.intl.messages['site-title']}</strong>
 
 Far far away, behind the word mountains, far from the countries Vokalia and
 Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
 right at the coast of the Semantics, a large language ocean. A small river named
 Duden flows by their place and supplies it with the necessary regelialia.
+
+
+<Button variant="contained" color="primary">
+  Hello!
+</Button>
 
 ## On deer horse aboard tritely yikes and much (h2)
 

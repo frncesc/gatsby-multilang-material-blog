@@ -5,7 +5,7 @@ const { siteMetadata: { defaultLanguage } } = require('./gatsby-config')
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
-  if (node.internal.type === 'MarkdownRemark') {
+  if (node.internal.type === 'Mdx') {
     const path = createFilePath({ node, getNode });
     let slug = path;
     let lang = defaultLanguage;
@@ -32,7 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     query {
-      allMarkdownRemark(filter: {fields: {lang: {eq: "${defaultLanguage}"}}}, sort: {fields: frontmatter___date, order: DESC}) {
+      allMdx(filter: {fields: {lang: {eq: "${defaultLanguage}"}}}, sort: {fields: frontmatter___date, order: DESC}) {
         edges {
           node {
             parent {
@@ -59,7 +59,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Create info pages.
   const pageTemplate = path.resolve('./src/templates/static-page.js');
-  const pages = result.data.allMarkdownRemark.edges.filter(post => post.node.parent.sourceInstanceName === 'static');
+  const pages = result.data.allMdx.edges.filter(post => post.node.parent.sourceInstanceName === 'static');
   pages.forEach(({ node: { fields: { slug } } }) => {
     createPage({
       path: slug,
@@ -72,7 +72,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Create blog posts.
   const blogPostTemplate = path.resolve('./src/templates/blog-post.js');
-  const posts = result.data.allMarkdownRemark.edges.filter(post => post.node.parent.sourceInstanceName === 'blog');
+  const posts = result.data.allMdx.edges.filter(post => post.node.parent.sourceInstanceName === 'blog');
   posts.forEach(({ node: { fields: { slug } } }, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node;
     const next = index === 0 ? null : posts[index - 1].node;

@@ -71,9 +71,10 @@ const config = {
     //
     // Transform MarkDown files
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: 'gatsby-plugin-mdx',
       options: {
-        plugins: [
+        extensions: ['.mdx', '.md'],
+        gatsbyRemarkPlugins: [
           'gatsby-remark-embedder',
           {
             resolve: 'gatsby-remark-images',
@@ -111,7 +112,7 @@ const config = {
     },
     // Generate feeds
     {
-      resolve: 'gatsby-plugin-feed',
+      resolve: 'gatsby-plugin-feed-mdx',
       options: {
         // this base query will be merged with any queries in each feed
         query: `
@@ -128,13 +129,13 @@ const config = {
         feeds: supportedLanguages.map(lang => {
           return {
             query: `{
-              allMarkdownRemark(filter: {fields: {lang: {eq: "${lang}"}}}, sort: {fields: frontmatter___date, order: DESC}) {
+              allMdx(filter: {fields: {lang: {eq: "${lang}"}}}, sort: {fields: frontmatter___date, order: DESC}) {
                 edges {
                   node {
                     fields {
                       slug
                     }
-                    html
+                    body
                     excerpt
                     frontmatter {
                       date
@@ -145,8 +146,8 @@ const config = {
                 }
               }
             }`,
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map(({ node: { fields: { slug }, frontmatter, excerpt, html } }) => {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(({ node: { fields: { slug }, frontmatter, excerpt, body } }) => {
                 const url = `${site.siteMetadata.siteUrl}/${lang}${slug}`;
                 return Object.assign(
                   {},
@@ -156,7 +157,7 @@ const config = {
                     url,
                     guid: url,
                     // Provide full content:
-                    // custom_elements: [{ 'content:encoded': html }]
+                    // custom_elements: [{ 'content:encoded': body }]
                   });
               });
             },
@@ -193,7 +194,7 @@ const config = {
         // redirect disabled because of erroneus redirections with `static` folder
         redirect: false,
       },
-    },    
+    },
   ],
 };
 

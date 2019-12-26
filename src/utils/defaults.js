@@ -1,6 +1,6 @@
 
 export const emptyPage = {
-  html: '<p>unknown content</p>',
+  body: '<p>unknown content</p>',
   frontmatter: {
     description: '',
     title: 'unknown content',

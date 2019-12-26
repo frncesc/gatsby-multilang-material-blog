@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Link, useIntl } from "gatsby-plugin-intl"
 import Info from '../components/info';
 import Layout from '../components/layout';
@@ -12,7 +13,8 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
   const intl = useIntl();
   const { messages, formatDate } = intl;
   const siteTitle = messages['site-title'];
-  const { frontmatter: { title, description, date }, excerpt, html } = getResolvedVersionForLanguage(data, intl);
+  const { frontmatter, excerpt, body } = getResolvedVersionForLanguage(data, intl);
+  const { title, description, date } = frontmatter;
   const { previous, next } = pageContext;
 
   return (
@@ -31,7 +33,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
             {formatDate(date, dateFormat)}
           </p>
         </header>
-        <section dangerouslySetInnerHTML={{ __html: html }} />
+        <MDXRenderer {...{ frontmatter, intl }}>{body}</MDXRenderer>
         <hr />
         <footer>
           <Info />
@@ -64,11 +66,11 @@ export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query PostsBySlug($slug: String!) {
-    allMarkdownRemark(filter: {fields: {slug: {eq: $slug}}}) {
+    allMdx(filter: {fields: {slug: {eq: $slug}}}) {
       edges {
         node {
           id
-          html
+          body
           fields {
             lang
             slug
@@ -78,7 +80,7 @@ export const pageQuery = graphql`
             description
             title
           }
-          excerpt(format: PLAIN, pruneLength: 160, truncate: false)
+          excerpt(pruneLength: 160)
         }
       }
     }

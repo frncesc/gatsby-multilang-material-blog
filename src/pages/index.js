@@ -53,7 +53,7 @@ export const pageQuery = graphql`
         supportedLanguages
       }
     }
-    allMarkdownRemark(sort: {fields: frontmatter___date, order: DESC}) {
+    allMdx(sort: {fields: frontmatter___date, order: DESC}) {
       edges {
         node {
           excerpt
