@@ -65,11 +65,16 @@ const config = {
         name: 'assets',
       },
     },
+    //
+    // Add Twitter scripts when needed
+    // 'gatsby-plugin-twitter',
+    //
     // Transform MarkDown files
     {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
+          'gatsby-remark-embedder',
           {
             resolve: 'gatsby-remark-images',
             options: {
@@ -188,7 +193,7 @@ const config = {
         // redirect disabled because of erroneus redirections with `static` folder
         redirect: false,
       },
-    },
+    },    
   ],
 };
 

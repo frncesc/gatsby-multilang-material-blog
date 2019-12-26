@@ -122,4 +122,17 @@ for their projects again and again.
 
 </div>
 
+## Testing with embedded content
+
+With [gatsby-remark-embedder](https://www.gatsbyjs.org/packages/gatsby-remark-embedder/) external content can be shown inside any markdown document.
+
+Here should appear a YouTube video:
+
+https://www.youtube.com/watch?v=bocDpFVhyDw
+
+
+This is from slides.com:
+
+https://slides.com/cassiecodes/deck-4-5#/
+
 
