@@ -65,10 +65,6 @@ const config = {
         name: 'assets',
       },
     },
-    //
-    // Add Twitter scripts when needed
-    // 'gatsby-plugin-twitter',
-    //
     // Transform MarkDown files
     {
       resolve: 'gatsby-plugin-mdx',
@@ -76,7 +72,6 @@ const config = {
         extensions: ['.mdx', '.md'],
         gatsbyRemarkPlugins: [
           'gatsby-remark-attr',
-          'gatsby-remark-embedder',
           'gatsby-remark-responsive-iframe',
           {
             resolve: 'gatsby-remark-images',
