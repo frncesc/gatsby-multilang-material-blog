@@ -1,12 +1,13 @@
 
-const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development";
-console.log(`Using environment config: '${activeEnv}'`)
+const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
+console.log(`Using environment config: "${activeEnv}"`)
 require('dotenv').config({
   path: `.env.${activeEnv}`,
 });
 
 // Read environment variables
-const BASE_URL = process.env.BASE_URL || 'https://frncesc.github.io/gatsby-multilang-material-blog/';
+const PATH_PREFIX = process.env.PATH_PREFIX || '';
+const BASE_URL = process.env.BASE_URL || 'https://localhost:9000/';
 const ANALYTICS_UA = process.env.ANALYTICS_UA || '';
 const OFFLINE_PWA = 'true' === process.env.OFFLINE_PWA;
 
@@ -28,10 +29,10 @@ const siteUrl = BASE_URL;
 
 // Gatsby config options
 const config = {
-  pathPrefix: '/gatsby-multilang-material-blog',
+  pathPrefix: PATH_PREFIX,
   siteMetadata: {
     title,
-    author: 'Francesc',
+    author: 'Mr. Gatsby',
     description: 'Gatsby multi-lingual blog template, made with Material Design',
     siteUrl,
     social: {
@@ -207,8 +208,10 @@ if (ANALYTICS_UA) {
   );
 }
 
-// Set up service worker
+// Set-up the service worker
 if (OFFLINE_PWA)
   config.plugins.push('gatsby-plugin-offline');
 
+// Export the resulting object
 module.exports = config;
+
