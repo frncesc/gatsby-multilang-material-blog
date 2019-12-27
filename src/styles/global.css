@@ -15,3 +15,7 @@ html {
 .reddie {
   color: red;
 }
+
+.top-bar-title {
+  flex-grow: 1;
+}
