@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import SelectLanguage from './SelectLanguage';
 
 function HideOnScroll(props) {
   const { children } = props;
@@ -43,7 +44,7 @@ export default function (props) {
             <Typography variant="h6" className={'top-bar-title'}>
               {title}
             </Typography>
-            <Button color="inherit">Language selector</Button>
+            <SelectLanguage />
           </Toolbar>
         </AppBar>
       </HideOnScroll>

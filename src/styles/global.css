@@ -19,3 +19,12 @@ html {
 .top-bar-title {
   flex-grow: 1;
 }
+
+.select-language .MuiSelect-root {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
+.select-language .MuiSelect-root, .MuiSelect-icon {
+  color: white;
+}

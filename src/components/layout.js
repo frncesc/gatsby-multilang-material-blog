@@ -3,16 +3,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 // import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import SelectLanguage from './select-language';
-// import { Link } from 'gatsby-theme-material-ui';
-import { FormattedMessage, Link, useIntl } from 'gatsby-plugin-intl';
+import { Link } from 'gatsby-plugin-intl';
 import TopBar from './TopBar';
 
+export default function({ location, title, children }) {
 
-const Layout = (props) => {
-
-  const { location, title, children } = props;
-  const { messages, locale } = useIntl();
   const rootPath = `${__PATH_PREFIX__}/`;
 
   return (
@@ -27,11 +22,6 @@ const Layout = (props) => {
             </Link>
           </Typography>
         </header>
-        <p>
-          {messages[locale]}<br />
-          <FormattedMessage id="change-language" />
-        </p>
-        <SelectLanguage />
         <main>{children}</main>
         <footer>
         </footer>
@@ -39,5 +29,3 @@ const Layout = (props) => {
     </>
   );
 }
-
-export default Layout;
