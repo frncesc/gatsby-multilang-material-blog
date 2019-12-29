@@ -1,4 +1,5 @@
 
+import { graphql, useStaticQuery } from 'gatsby';
 import { emptyNode } from './defaults';
 
 /**
@@ -57,3 +58,4 @@ export const getAllVersions = (data, location, current = null) => {
     .filter(({ lang }) => lang !== current)
     .map(({ node: { fields: { lang, slug } } }) => ({ lang, href: `${location.origin}${__PATH_PREFIX__}/${lang}${slug}` }));
 }
+

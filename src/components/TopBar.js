@@ -28,7 +28,7 @@ HideOnScroll.propTypes = {
 };
 
 
-export default function TopBar(props) {
+export default function (props) {
 
   const { title } = props;
 
@@ -47,7 +47,7 @@ export default function TopBar(props) {
           </Toolbar>
         </AppBar>
       </HideOnScroll>
-        <Toolbar />
+      <Toolbar />
     </div>
   );
 }
