@@ -42,11 +42,11 @@ export default function ({ slug, intl }) {
         const title = getSlugTitle(subSlug);
         if (n < cmp.length - 1) {
           // Parent path
-          return <Link to={subSlug}>{title}</Link>
+          return <Link to={subSlug} key={n}>{title}</Link>
         }
         else
           // Current page
-          return <Typography color="textPrimary">{title}</Typography>
+          return <Typography color="textPrimary" key={n}>{title}</Typography>
       })}
     </Breadcrumbs>
   );

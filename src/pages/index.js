@@ -11,7 +11,6 @@ const BlogIndex = ({ data, location }) => {
 
   const intl = useIntl();
   const { messages } = intl;
-  const siteTitle = messages['site-title'];
   const items = getAllResolvedVersionsForLanguage(data, intl);
   const pages = items.filter(node => node.parent.sourceInstanceName === 'static');
   const posts = items.filter(node => node.parent.sourceInstanceName === 'blog');
@@ -23,7 +22,7 @@ const BlogIndex = ({ data, location }) => {
     }));
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout {...{intl}}>
       <SEO
         title="All posts"
         description=""

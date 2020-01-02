@@ -11,14 +11,13 @@ import { getResolvedVersionForLanguage, getAllVersions } from '../utils/node';
 const BlogPostTemplate = ({ data, pageContext, location }) => {
 
   const intl = useIntl();
-  const { messages, formatDate } = intl;
-  const siteTitle = messages['site-title'];
+  const { formatDate } = intl;
   const { frontmatter, excerpt, body } = getResolvedVersionForLanguage(data, intl);
   const { title, description, date } = frontmatter;
   const { previous, next } = pageContext;
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout {...{ intl }}>
       <SEO
         title={title}
         description={description || excerpt}

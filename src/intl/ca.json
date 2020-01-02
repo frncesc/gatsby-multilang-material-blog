@@ -5,5 +5,8 @@
   "site-title": "Plantilla de Blog",
   "change-language": "Canviar idioma",
   "posts": "Articles",
-  "pages": "Pàgines"
+  "pages": "Pàgines",
+  "search": "Cerca...",
+  "404-not-found": "Pàgina no trobada",
+  "not-found": "La pàgina que demaneu nos'ha pogut trobar. Comproveu que l'adreça sigui correcta."
 }

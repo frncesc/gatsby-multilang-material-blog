@@ -5,6 +5,8 @@
   "site-title": "Plantilla de Blog",
   "change-language": "Cambiar idioma",
   "posts": "Artículos",
-  "pages": "Páginas"  
-
+  "pages": "Páginas",
+  "search": "Buscar...",
+  "404-not-found": "Página no encontrada",
+  "not-found": "La página solicitada no se ha podido encontrar. Compruebe que la dirección sea correcta."
 }

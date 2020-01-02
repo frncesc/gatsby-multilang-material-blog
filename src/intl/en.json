@@ -5,5 +5,8 @@
   "site-title": "Blog Template",
   "change-language": "Change language",
   "posts": "Posts",
-  "pages": "Pages"
+  "pages": "Pages",
+  "search": "Search...",
+  "404-not-found": "Page not found",
+  "not-found": "The requested page could not be found."
 }

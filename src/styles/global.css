@@ -1,6 +1,40 @@
-html {
-  background-color: lavenderblush;
+/* === CSS variables === */
+
+:root {
+  --theme-spacing-unit: 10pt;
+  --theme-spacing-unit-x2: 20pt;
+  --theme-palette-background-paper: #fff;
+  --footer-height: 250px;
+  --topbar-background-color: #556cd6;
+  --topbar-color: #fff;
 }
+
+html {
+  background-color: var(--theme-palette-background-paper);
+}
+
+/* === Top bar components === */
+
+.top-bar-title {
+  flex-grow: 1;
+}
+
+.top-bar-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.select-language .MuiSelect-root {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
+.select-language .MuiSelect-root, .MuiSelect-icon {
+  color: var(--topbar-color);
+}
+
+
+/* === Accidental styles used in some markdown files === */
 
 .small-flags img {
   width: 3rem;
@@ -16,15 +50,3 @@ html {
   color: red;
 }
 
-.top-bar-title {
-  flex-grow: 1;
-}
-
-.select-language .MuiSelect-root {
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
-}
-
-.select-language .MuiSelect-root, .MuiSelect-icon {
-  color: white;
-}

@@ -12,13 +12,12 @@ import { getResolvedVersionForLanguage, getAllVersions } from '../utils/node';
 export default function ({ data, location }) {
 
   const intl = useIntl();
-  const { messages, formatDate } = intl;
-  const siteTitle = messages['site-title'];
+  const { formatDate } = intl;
   const { frontmatter, fields: { slug }, excerpt, body } = getResolvedVersionForLanguage(data, intl);
   const { title, description, date } = frontmatter;
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout {...{ intl }}>
       <SEO
         title={title}
         description={description || excerpt}
