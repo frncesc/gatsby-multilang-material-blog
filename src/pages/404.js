@@ -1,10 +1,10 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { useIntl } from 'gatsby-plugin-intl';
-import Layout from '../components/layout';
-import SEO from '../components/seo';
+import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 
-const NotFoundPage = ({ data, location }) => {
+export default function NotFoundPage({ data, location }) {
 
   const intl = useIntl();
   return (
@@ -15,8 +15,6 @@ const NotFoundPage = ({ data, location }) => {
     </Layout>
   );
 }
-
-export default NotFoundPage;
 
 export const pageQuery = graphql`
   query {

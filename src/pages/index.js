@@ -1,13 +1,13 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { useIntl } from 'gatsby-plugin-intl';
-import Info from '../components/info';
-import Layout from '../components/layout';
-import SEO from '../components/seo';
-import FrontItem from '../components/front-item';
+import Info from '../components/Info';
+import Layout from '../components/Layout';
+import SEO from '../components/SEO';
+import FrontItem from '../components/FrontItem';
 import { getAllResolvedVersionsForLanguage } from '../utils/node';
 
-const BlogIndex = ({ data, location }) => {
+export default function Index({ data, location }) {
 
   const intl = useIntl();
   const { messages } = intl;
@@ -22,7 +22,7 @@ const BlogIndex = ({ data, location }) => {
     }));
 
   return (
-    <Layout {...{intl}}>
+    <Layout {...{ intl }}>
       <SEO
         title="All posts"
         description=""
@@ -41,8 +41,6 @@ const BlogIndex = ({ data, location }) => {
     </Layout>
   );
 }
-
-export default BlogIndex;
 
 export const pageQuery = graphql`
   query {

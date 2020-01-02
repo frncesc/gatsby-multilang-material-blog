@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
+import { useIntl, navigate } from 'gatsby-plugin-intl';
 
 const useStyles = makeStyles(theme => ({
   search: {
@@ -41,12 +42,25 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ({ intl }) {
+export default function () {
+
   const classes = useStyles();
+  const intl = useIntl();
+  const [query, setQuery] = React.useState('');
+  const handleChange = ev => {
+    setQuery(ev.target.value);
+  };
+
+  const search = ev => {
+    ev.preventDefault();
+    navigate(`/search/?query=${query}`);
+    setQuery('');
+  }
+
   return (
-    <div className={classes.search}>
+    <form className={classes.search} onSubmit={search}>
       <div className={classes.searchIcon}>
-        <SearchIcon />
+        <SearchIcon onClick={search} />
       </div>
       <InputBase
         placeholder={intl.messages['search']}
@@ -55,7 +69,9 @@ export default function ({ intl }) {
           input: classes.inputInput,
         }}
         inputProps={{ 'aria-label': 'search' }}
+        value={query}
+        onChange={handleChange}
       />
-    </div>
+    </form>
   );
 }

@@ -7,6 +7,8 @@
   "posts": "Artículos",
   "pages": "Páginas",
   "search": "Buscar...",
+  "/search/": "Buscar",
+  "search-results": "Resultados de la búsqueda \"{query}\"",
   "404-not-found": "Página no encontrada",
   "not-found": "La página solicitada no se ha podido encontrar. Compruebe que la dirección sea correcta."
 }

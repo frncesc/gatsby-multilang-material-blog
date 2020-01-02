@@ -58,7 +58,7 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Create info pages.
-  const pageTemplate = path.resolve('./src/templates/static-page.js');
+  const pageTemplate = path.resolve('./src/templates/StaticPage.js');
   const pages = result.data.allMdx.edges.filter(post => post.node.parent.sourceInstanceName === 'static');
   pages.forEach(({ node: { fields: { slug } } }) => {
     createPage({
@@ -71,7 +71,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   // Create blog posts.
-  const blogPostTemplate = path.resolve('./src/templates/blog-post.js');
+  const blogPostTemplate = path.resolve('./src/templates/BlogPost.js');
   const posts = result.data.allMdx.edges.filter(post => post.node.parent.sourceInstanceName === 'blog');
   posts.forEach(({ node: { fields: { slug } } }, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node;

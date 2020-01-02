@@ -43,7 +43,7 @@ export default function ({ intl, children }) {
             <Typography variant="h6" className={'top-bar-title'}>
               <Link to='/'>{intl.messages['site-title']}</Link>
             </Typography>
-            <SearchBox {...{ intl }} />
+            <SearchBox />
             <SelectLanguage />
           </Toolbar>
         </AppBar>

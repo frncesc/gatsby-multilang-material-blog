@@ -12,7 +12,7 @@ Aquí hi va un paràgraf de text. Per provar la versió completa de la pàgina, 
 
 Aquí hi va inserida una activitat JClic, que hauria de ser responsiva:
 
-<iframe width="800" height="600" frameborder="0" allowFullScreen="true" src="https://clic.xtec.cat/projects/stem_en_femeni/jclic.js/index.html"></iframe>
+<iframe width="800" height="600" frameborder="0" allowFullScreen src="https://clic.xtec.cat/projects/stem_en_femeni/jclic.js/index.html"></iframe>
 
 ... i aquí continua el document en format _Markdown_.
 

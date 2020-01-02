@@ -40,6 +40,7 @@ const config = {
     },
     defaultLanguage,
     supportedLanguages,
+    specialPages: ['/search/'],
   },
   plugins: [
     // Static pages

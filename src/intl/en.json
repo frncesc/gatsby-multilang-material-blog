@@ -7,6 +7,8 @@
   "posts": "Posts",
   "pages": "Pages",
   "search": "Search...",
+  "/search/": "Search",
+  "search-results": "Search results for \"{query}\"",
   "404-not-found": "Page not found",
   "not-found": "The requested page could not be found."
 }

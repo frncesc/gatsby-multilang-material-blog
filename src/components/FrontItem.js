@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useIntl } from 'gatsby-plugin-intl';
 import { dateFormat } from '../utils/defaults';
 
-const FrontItem = ({ node: { frontmatter: { title, date, description }, fields: { slug }, excerpt } }) => {
+export default function FrontItem({ node: { frontmatter: { title, date, description }, fields: { slug }, excerpt } }) {
   const { formatDate } = useIntl();
   const itemTitle = title || slug;
   return (
@@ -23,5 +23,3 @@ const FrontItem = ({ node: { frontmatter: { title, date, description }, fields: 
     </article>
   );
 }
-
-export default FrontItem;

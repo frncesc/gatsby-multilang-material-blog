@@ -7,7 +7,7 @@ import { useStaticQuery, graphql, withPrefix } from 'gatsby';
 import Image from 'gatsby-image';
 import Box from '@material-ui/core/Box';
 
-const Info = () => {
+export default function Info() {
   const data = useStaticQuery(graphql`
     query InfoQuery {
       logo: file(absolutePath: { regex: "/moto.png/" }) {
@@ -34,9 +34,7 @@ const Info = () => {
         alt={author}
       />
       <p>{description}</p>
-      <img src={withPrefix('/img/park.png')} alt="A bank on the park"/>
+      <img src={withPrefix('/img/park.png')} alt="A bank on the park" />
     </Box>
   );
 };
-
-export default Info;
