@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Link, useIntl } from "gatsby-plugin-intl"
+import Breadcrumbs from '../components/Breadcrumbs';
 import Info from '../components/Info';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
@@ -12,7 +13,7 @@ export default function BlogPostTemplate({ data, pageContext, location }) {
 
   const intl = useIntl();
   const { formatDate } = intl;
-  const { frontmatter, excerpt, body } = getResolvedVersionForLanguage(data, intl);
+  const { frontmatter, excerpt, body, fields: { slug } } = getResolvedVersionForLanguage(data, intl);
   const { title, description, date } = frontmatter;
   const { previous, next } = pageContext;
 
@@ -32,6 +33,7 @@ export default function BlogPostTemplate({ data, pageContext, location }) {
             {formatDate(date, dateFormat)}
           </p>
         </header>
+        <Breadcrumbs {...{ slug, intl }} />
         <MDXRenderer {...{ frontmatter, intl }}>{body}</MDXRenderer>
         <hr />
         <footer>

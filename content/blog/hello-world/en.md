@@ -1,7 +1,8 @@
 ---
 title: Hello World
-date: '2015-05-01T22:12:03.284Z'
-description: 'Hello World'
+date: 2020-01-03T16:59:54+01:00
+description: Hello World
+keywords: blog, sample, romanesque art
 ---
 
 This is the first post in English!

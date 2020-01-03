@@ -1,33 +1,32 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { useIntl, Link } from 'gatsby-plugin-intl';
+import { useIntl } from 'gatsby-plugin-intl';
 import Info from '../components/Info';
+import Breadcrumbs from '../components/Breadcrumbs';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import FrontItem from '../components/FrontItem';
 import { getAllResolvedVersionsForLanguage, getAllVariants } from '../utils/node';
 
-export default function Index({ data, location }) {
+export default function Blog({ data, location }) {
 
   const intl = useIntl();
-  const { messages } = intl;
-  const slug = '/';
-  const pages = getAllResolvedVersionsForLanguage(data, intl);
+  const slug = '/blog/';
+  const title = intl.messages['blog-index-title'];
+  const posts = getAllResolvedVersionsForLanguage(data, intl);
 
   return (
     <Layout {...{ intl }}>
       <SEO
-        title={messages['site-title']}
-        description={messages['site-description']}
+        title={title}
         alt={getAllVariants(slug, location, intl.locale)}
       />
       <Info />
-      <h2>{messages['pages']}</h2>
-      {pages.map((node) => (
+      <h2>{title}</h2>
+      <Breadcrumbs {...{ slug, intl }} />
+      {posts.map((node) => (
         <FrontItem node={node} key={node.fields.slug} />
       ))}
-      <hr />
-      <h2><Link to="/blog/">Blog</Link></h2>
     </Layout>
   );
 }
@@ -36,10 +35,11 @@ export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
+        title
         supportedLanguages
       }
     }
-    allMdx(filter: {fields: {slug: {regex: "/^(?!\\/blog\\/)/"}}}, sort: {fields: frontmatter___date, order: DESC}) {
+    allMdx(filter: {fields: {slug: {regex: "/^\\/blog\\//"}}}, sort: {fields: frontmatter___date, order: DESC}) {
       edges {
         node {
           excerpt

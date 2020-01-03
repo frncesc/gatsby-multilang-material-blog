@@ -14,6 +14,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       lang = matches[1];
       slug = slug.substr(0, slug.length - lang.length - 1);
     }
+    if (/\/content\/blog\//.test(node.fileAbsolutePath))
+      slug = `/blog${slug}`;
     createNodeField({
       name: 'slug',
       node,

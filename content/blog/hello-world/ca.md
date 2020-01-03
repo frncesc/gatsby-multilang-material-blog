@@ -1,7 +1,8 @@
 ---
 title: Hola Món
-date: '2015-05-01T22:12:03.284Z'
-description: 'Hola Món'
+date: 2020-01-03T16:59:54+01:00
+description: Hola Món
+keywords: blog, mostra, art romànic
 ---
 
 Aquest és el primer post en català!

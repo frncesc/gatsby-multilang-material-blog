@@ -15,9 +15,9 @@ const OFFLINE_PWA = 'true' === process.env.OFFLINE_PWA;
 const supportedLanguages = ['en', 'ca', 'es'];
 const defaultLanguage = 'en';
 const localizedTitles = {
-  ca: 'Plantilla de Blog',
-  es: 'Plantilla de Blog',
-  en: 'Blog Template',
+  ca: 'Plantilla de lloc amb blog',
+  es: 'Plantilla de sitio con blog',
+  en: 'Template of site with blog',
 };
 const title = localizedTitles[defaultLanguage];
 const langNames = {
@@ -40,7 +40,7 @@ const config = {
     },
     defaultLanguage,
     supportedLanguages,
-    specialPages: ['/search/'],
+    specialPages: ['/search/', '/blog/'],
   },
   plugins: [
     // Static pages
