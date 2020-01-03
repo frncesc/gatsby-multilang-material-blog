@@ -21,8 +21,8 @@ const localizedTitles = {
 };
 const title = localizedTitles[defaultLanguage];
 const langNames = {
-  ca: 'català',
-  es: 'español',
+  ca: 'Català',
+  es: 'Español',
   en: 'English',
 }
 const siteUrl = BASE_URL;
@@ -40,6 +40,7 @@ const config = {
     },
     defaultLanguage,
     supportedLanguages,
+    langNames,
     specialPages: ['/search/', '/blog/'],
   },
   plugins: [
