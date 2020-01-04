@@ -41,10 +41,11 @@ export default function Search({ location, data }) {
     const fuse = new Fuse(
       data.allMdx.nodes
         .filter(({ fields: { lang } }) => lang === locale)
-        .map(({ fields: { slug }, frontmatter: { title, description, keywords }, excerpt }) => ({
+        .map(({ fields: { slug, tokens }, frontmatter: { title, description}}) => ({
           title,
+	  description,
           url: slug,
-          text: `${title} ${description || ''} ${keywords || ''} ${excerpt}`,
+          text: tokens,
         })),
       { ...FUSE_OPTIONS, keys: ['text'] }
     );
@@ -89,13 +90,12 @@ export const pageQuery = graphql`
         fields {
           lang
           slug
+	  tokens
         }
         frontmatter {
           title
           description
-          keywords
         }
-        excerpt(pruneLength: 100000)
       }
     }
   }

@@ -2,8 +2,20 @@ const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const { siteMetadata: { defaultLanguage } } = require('./gatsby-config')
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
+function getTextTokens(text, lang) {
+  // Remove URLS
+  text = text.replace(/https?:[-/.\w?=#&%@]+/g, '');
+  // Remove ISO dates
+  text = text.replace(/\d{4}-\d{2}-\d{2}T[\w+:.-]+/g, '');
+  // Convert symbols to separators
+  text = text.replace(/[-_\s(){}[\]#*<>,.;:¿?/'@~=+\\|¡!"£$€^&`]+/g, ' ');
+  // Convert text to array of unique lowercase words
+  const tokens = Array.from(new Set(text.toLowerCase().split(' '))).sort();
+  // Todo: remove stopwords for `lang`
+  return tokens.join(' ').trim();
+}
+
+exports.onCreateNode = ({ node, getNode, actions: { createNodeField } }) => {
 
   if (node.internal.type === 'Mdx') {
     const path = createFilePath({ node, getNode });
@@ -16,6 +28,10 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     }
     if (/\/content\/blog\//.test(node.fileAbsolutePath))
       slug = `/blog${slug}`;
+
+    const tokens = getTextTokens(node.rawBody);
+
+    // Create node fields
     createNodeField({
       name: 'slug',
       node,
@@ -26,19 +42,15 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       value: lang,
     });
-    // TODO: Store page content for full text search
-    /*
     createNodeField({
-      name: 'text',
+      name: 'tokens',
       node,
-      value: node.rawBody,
+      value: tokens,
     });
-    */
   }
 };
 
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
+exports.createPages = async ({ graphql, actions: { createPage } }) => {
 
   const result = await graphql(`
     query {
@@ -99,8 +111,8 @@ exports.createPages = async ({ graphql, actions }) => {
 };
 
 // See: https://github.com/gatsbyjs/gatsby/issues/564#issuecomment-527891177
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
+exports.onCreateWebpackConfig = ({ actions: { setWebpackConfig } }) => {
+  setWebpackConfig({
     node: {
       fs: 'empty',
       net: 'empty',
