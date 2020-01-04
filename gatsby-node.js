@@ -1,17 +1,32 @@
 const path = require('path');
+const fs = require('fs');
 const { createFilePath } = require('gatsby-source-filesystem');
-const { siteMetadata: { defaultLanguage } } = require('./gatsby-config')
+const { siteMetadata: { defaultLanguage, supportedLanguages } } = require('./gatsby-config')
+
+const STOP_WORDS = {};
+supportedLanguages.forEach(lang => {
+  const fName = path.join(__dirname, `src/intl/stopwords-${lang}.json`);
+  STOP_WORDS[lang] = fs.existsSync(fName) ? require(fName) : [];
+});
 
 function getTextTokens(text, lang) {
-  // Remove URLS
-  text = text.replace(/https?:[-/.\w?=#&%@]+/g, '');
-  // Remove ISO dates
-  text = text.replace(/\d{4}-\d{2}-\d{2}T[\w+:.-]+/g, '');
-  // Convert symbols to separators
-  text = text.replace(/[-_\s(){}[\]#*<>,.;:¿?/'@~=+\\|¡!"£$€^&`]+/g, ' ');
-  // Convert text to array of unique lowercase words
-  const tokens = Array.from(new Set(text.toLowerCase().split(' '))).sort();
-  // Todo: remove stopwords for `lang`
+  text = text
+    // Remove URLS
+    .replace(/https?:[-/.\w?=#&%@]+/g, '')
+    // Remove ISO dates
+    .replace(/\d{4}-\d{2}-\d{2}T[-\w.:]+/g, '')
+    // Take symbols as separators
+    .replace(/[-_\s(){}[\]#*<>,.;:¿?/'@~=+\\|¡!"£$€^&`´]+/g, ' ')
+    // Convert all to lower case
+    .toLowerCase();
+
+  // Convert text to an array of unique words
+  const tokens = Array.from(new Set(text.split(' ')))
+    // Exclude stopwords
+    .filter(token => !STOP_WORDS[lang].includes(token))
+    // Sort list
+    .sort();
+
   return tokens.join(' ').trim();
 }
 
@@ -29,8 +44,6 @@ exports.onCreateNode = ({ node, getNode, actions: { createNodeField } }) => {
     if (/\/content\/blog\//.test(node.fileAbsolutePath))
       slug = `/blog${slug}`;
 
-    const tokens = getTextTokens(node.rawBody);
-
     // Create node fields
     createNodeField({
       name: 'slug',
@@ -45,7 +58,7 @@ exports.onCreateNode = ({ node, getNode, actions: { createNodeField } }) => {
     createNodeField({
       name: 'tokens',
       node,
-      value: tokens,
+      value: getTextTokens(node.rawBody, lang),
     });
   }
 };

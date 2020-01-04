@@ -30,29 +30,30 @@ const FUSE_OPTIONS = {
 
 export default function Search({ location, data }) {
   const intl = useIntl();
-  const { formatMessage, locale } = intl;
+  const { messages } = intl;
   const [results, setResults] = useState([]);
   const [waiting, setWaiting] = useState(true);
-  const [title, setTitle] = useState(formatMessage({ id: 'search-results' }, { query: '' }));
+  const [title, setTitle] = useState('');
+  const query = queryString.parse(location.search)['query'] || '';
 
   useEffect(() => {
-    const query = queryString.parse(location.search)['query'] || '';
-    // Todo: pre-process and clean text
+    console.log('in effect!')
+    const { formatMessage, locale } = intl;
     const fuse = new Fuse(
       data.allMdx.nodes
         .filter(({ fields: { lang } }) => lang === locale)
-        .map(({ fields: { slug, tokens }, frontmatter: { title, description}}) => ({
+        .map(({ fields: { slug, tokens }, frontmatter: { title, description } }) => ({
           title,
-	  description,
+          description,
           url: slug,
-          text: tokens,
+          tokens,
         })),
-      { ...FUSE_OPTIONS, keys: ['text'] }
+      { ...FUSE_OPTIONS, keys: ['tokens'] }
     );
     setResults(fuse.search(query));
     setTitle(formatMessage({ id: 'search-results' }, { query }));
     setWaiting(false);
-  }, [location.search, data.allMdx.nodes, formatMessage, locale]);
+  }, [intl, data.allMdx.nodes, query]);
 
   return (
     <Layout {...{ intl }}>
@@ -68,10 +69,15 @@ export default function Search({ location, data }) {
         </header>
         <Breadcrumbs {...{ slug: SLUG, intl }} />
         <hr />
-        {(waiting && <CircularProgress />) ||
+        {
+          (waiting && <CircularProgress />) ||
+          (results.length === 0 && <h2>{messages['no-results']}</h2>) ||
           <ul>
-            {results.map(({ url, title }) => (
-              <li><Link key={url} to={url}>{title}</Link></li>
+            {results.map(({ url, title, description }) => (
+              <li key={url}>
+                <Link to={url}>{title}</Link><br />
+                <span>{description || ''}</span>
+              </li>
             ))}
           </ul>
         }
@@ -90,7 +96,7 @@ export const pageQuery = graphql`
         fields {
           lang
           slug
-	  tokens
+          tokens
         }
         frontmatter {
           title

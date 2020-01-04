@@ -12,6 +12,7 @@
   "/search/": "Cerca",
   "/blog/": "Blog",
   "search-results": "Resultats de la cerca \"{query}\"",
+  "no-results": "No s'ha trobat cap resultat",
   "404-not-found": "Pàgina no trobada",
   "not-found": "La pàgina que demaneu nos'ha pogut trobar. Comproveu que l'adreça sigui correcta."
 }

@@ -12,6 +12,7 @@
   "/search/": "Search",
   "/blog/": "Blog",
   "search-results": "Search results for \"{query}\"",
+  "no-results": "No results found",
   "404-not-found": "Page not found",
   "not-found": "The requested page could not be found."
 }
