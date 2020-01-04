@@ -18,6 +18,8 @@ This is just a template for a [Gatsby](https://gatsbyjs.org) blog integrating so
 
 - Use of [MDX](https://github.com/mdx-js/mdx) instead of plain Markdown, with [gatsby-plugin-mdx](https://www.gatsbyjs.org/packages/gatsby-plugin-mdx/)
 
+- Use of [Fuse.js](https://fusejs.io/) for full-text search
+
 - Integration of useful Gatsby remark add-ons like:
   - [gatsby-remark-attr](https://www.gatsbyjs.org/packages/gatsby-remark-attr/)
   - [gatsby-remark-prismjs](https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/)

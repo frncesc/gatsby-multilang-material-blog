@@ -26,6 +26,14 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       value: lang,
     });
+    // TODO: Store page content for full text search
+    /*
+    createNodeField({
+      name: 'text',
+      node,
+      value: node.rawBody,
+    });
+    */
   }
 };
 

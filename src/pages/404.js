@@ -1,11 +1,9 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import { useIntl } from 'gatsby-plugin-intl';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
-export default function NotFoundPage({ data, location }) {
-
+export default function NotFoundPage() {
   const intl = useIntl();
   return (
     <Layout {...{ intl }}>
@@ -15,13 +13,3 @@ export default function NotFoundPage({ data, location }) {
     </Layout>
   );
 }
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;

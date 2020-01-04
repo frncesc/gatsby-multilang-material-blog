@@ -7,11 +7,12 @@ import SEO from '../components/SEO';
 import FrontItem from '../components/FrontItem';
 import { getAllResolvedVersionsForLanguage, getAllVariants } from '../utils/node';
 
+const SLUG = '/';
+
 export default function Index({ data, location }) {
 
   const intl = useIntl();
   const { messages } = intl;
-  const slug = '/';
   const pages = getAllResolvedVersionsForLanguage(data, intl);
 
   return (
@@ -19,11 +20,11 @@ export default function Index({ data, location }) {
       <SEO
         title={messages['site-title']}
         description={messages['site-description']}
-        alt={getAllVariants(slug, location, intl.locale)}
+        alt={getAllVariants(SLUG, location, intl.locale)}
       />
       <Info />
       <h2>{messages['pages']}</h2>
-      {pages.map((node) => (
+      {pages.map(node => (
         <FrontItem node={node} key={node.fields.slug} />
       ))}
       <hr />
@@ -55,4 +56,5 @@ export const pageQuery = graphql`
         }
       }
     }
-  }`;
+  }
+`;

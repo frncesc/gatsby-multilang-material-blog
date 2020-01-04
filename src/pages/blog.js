@@ -8,10 +8,11 @@ import SEO from '../components/SEO';
 import FrontItem from '../components/FrontItem';
 import { getAllResolvedVersionsForLanguage, getAllVariants } from '../utils/node';
 
+const SLUG = '/blog/';
+
 export default function Blog({ data, location }) {
 
   const intl = useIntl();
-  const slug = '/blog/';
   const title = intl.messages['blog-index-title'];
   const posts = getAllResolvedVersionsForLanguage(data, intl);
 
@@ -19,11 +20,11 @@ export default function Blog({ data, location }) {
     <Layout {...{ intl }}>
       <SEO
         title={title}
-        alt={getAllVariants(slug, location, intl.locale)}
+        alt={getAllVariants(SLUG, location, intl.locale)}
       />
       <Info />
       <h2>{title}</h2>
-      <Breadcrumbs {...{ slug, intl }} />
+      <Breadcrumbs {...{ slug: SLUG, intl }} />
       {posts.map((node) => (
         <FrontItem node={node} key={node.fields.slug} />
       ))}
@@ -55,4 +56,5 @@ export const pageQuery = graphql`
         }
       }
     }
-  }`;
+  }
+`;
