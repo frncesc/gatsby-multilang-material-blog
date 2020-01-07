@@ -22,8 +22,8 @@ function getTextTokens(text, lang) {
 
   // Convert text to an array of unique words
   const tokens = Array.from(new Set(text.split(' ')))
-    // Exclude stopwords
-    .filter(token => !STOP_WORDS[lang].includes(token))
+    // Exclude stopwords and single chars
+    .filter(token => token.length > 1 && !STOP_WORDS[lang].includes(token))
     // Sort list
     .sort();
 

@@ -13,10 +13,30 @@ html {
   background-color: var(--theme-palette-background-paper);
 }
 
+article img {
+  max-width: 100%;  
+}
+
+article figcaption {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+article blockquote {
+  font-style: italic;
+  margin-left: 0;
+  padding-left: 0.5rem;
+  border-left: 1px solid;
+}
+
 /* === Top bar components === */
 
 .top-bar-title {
   flex-grow: 1;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .top-bar-title a {

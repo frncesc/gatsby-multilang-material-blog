@@ -79,7 +79,29 @@ const config = {
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 1024,
+              maxWidth: 650,
+              // maxHeight: 600,
+              // fit: 'contain',
+              // background: 'white',
+              linkImagesToOriginal: true,
+              showCaptions: ['title'],
+              markdownCaptions: false,
+              sizeByPixelDensity: false,
+              backgroundColor: 'white',
+              quality: 50,
+              withWebp: {
+                quality: 80,
+              },
+              tracedSVG: false,
+              loading: 'lazy',
+              disableBgImageOnAlpha: false,
+              disableBgImage: false,
+              /**
+               *  wrapperStyle: ({aspectRatio, sizes, originalImg, originalName, density, presentationWidth, presentationHeight}) => {
+               *    // Function should return a string with CSS attributes
+               *    return `max-height:300px;`
+               *  },
+               */
             },
           },
           {
@@ -192,7 +214,7 @@ const config = {
         languages: supportedLanguages,
         defaultLanguage,
         // redirect disabled because of erroneus redirections with `static` folder
-        redirect: false,
+        redirect: true,
       },
     },
   ],

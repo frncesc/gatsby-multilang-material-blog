@@ -3,10 +3,11 @@ title: Provant estils
 date: '2015-05-28T22:40:32.169Z'
 description: La pàgina en català és més senzilla
 ---
+import { changeLocale } from 'gatsby-plugin-intl'
 
 # Títol principal (h1)
 
-Aquí hi va un paràgraf de text. Per provar la versió completa de la pàgina, vegeu-la en [idioma anglès](../../en/testing-styles/).
+Aquí hi va un paràgraf de text. Per provar la versió completa de la pàgina, vegeu-la en <a href="#" onClick={ev => {ev.preventDefault(); changeLocale('en');}}>idioma anglès</a>.
 
 ## Una activitat JClic
 
