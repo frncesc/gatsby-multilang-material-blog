@@ -11,7 +11,7 @@ Els __elements químics__ són substàncies pures que no es poden descompondre e
 
 Es coneixen 118 elements químics diferents, dels quals 90 són naturals, i la resta generats artificialment. Cada element es representa per un símbol d'una o dues lletres, segons la proposta de Berzelius. Els elements químics se solen classificar mitjançant la taula periòdica.
 
-És interessant també consultar la pàgina sobre els [radioisòtops](./radionuclide)
+És interessant també consultar la pàgina sobre els [radioisòtops](./radionuclides)
 
 Els àtoms d'un element químic es poden combinar amb si mateixos per formar una molècula, i en funció del nombre d'àtoms que es combinen es poden classificar en:
 
