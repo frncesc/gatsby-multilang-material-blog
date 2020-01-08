@@ -13,7 +13,7 @@ One hundred eighteen elements have been identified: the first 94 occur naturally
 
 Chemical elements constitute all of the ordinary matter of the universe. However astronomical observations suggest that ordinary observable matter makes up only about 15% of the matter in the universe. The remainder is dark matter; the composition of this is unknown, but it is not composed of chemical elements.[^Oerter, Robert (2006). The Theory of Almost Everything: The Standard Model, the Unsung Triumph of Modern Physics. Penguin. p. 223. ISBN 978-0-452-28786-0.] The two lightest elements, hydrogen and helium, were mostly formed in the Big Bang and are the most common elements in the universe. The next three elements (lithium, beryllium and boron) were formed mostly by cosmic ray spallation, and are thus rarer than heavier elements. Formation of elements with from 6 to 26 protons occurs in main sequence stars via stellar nucleosynthesis. The high abundance of oxygen, silicon, and iron on Earth reflects their common production in such stars. Elements with greater than 26 protons are formed by supernova nucleosynthesis in supernovae, which, when they explode, blast these elements as supernova remnants far into space, where they may become incorporated into planets when they are formed.
 
-![Abundance of chemical elements on the solar system](./solar-system-abundances.png "Abundance of chemical elements on the solar system")
+![Abundance of chemical elements on the solar system](solar-system-abundances.png "Abundance of chemical elements on the solar system")
 
 The term "element" is used for atoms with a given number of protons (regardless of whether or not they are ionized or chemically bonded, e.g. hydrogen in water) as well as for a pure chemical substance consisting of a single element (e.g. hydrogen gas).[^1] For the second meaning, the terms "elementary substance" and "simple substance" have been suggested, but they have not gained much acceptance in English chemical literature, whereas in some other languages their equivalent is widely used (e.g. French _corps simple_, Russian _простое вещество_). A single element can form multiple substances differing in their structure; they are called allotropes of the element.
 
@@ -37,7 +37,7 @@ Main articles: [Isotope](https://en.wikipedia.org/wiki/Isotope)
 
 Isotopes are atoms of the same element (that is, with the same number of protons in their atomic nucleus), but having different numbers of neutrons. Thus, for example, there are three main isotopes of carbon. All carbon atoms have 6 protons in the nucleus, but they can have either 6, 7, or 8 neutrons. Since the mass numbers of these are 12, 13 and 14 respectively, the three isotopes of carbon are known as carbon-12, carbon-13, and carbon-14, often abbreviated to 12C, 13C, and 14C. Carbon in everyday life and in chemistry is a mixture of 12C (about 98.9%), 13C (about 1.1%) and about 1 atom per trillion of 14C.
 
-![Nuclear reaction](./nuclear-reaction.svg)
+![Nuclear reaction](nuclear-reaction.svg)
 
 Most (66 of 94) naturally occurring elements have more than one stable isotope. Except for the isotopes of hydrogen (which differ greatly from each other in relative mass—enough to cause chemical effects), the isotopes of a given element are chemically nearly indistinguishable.
 

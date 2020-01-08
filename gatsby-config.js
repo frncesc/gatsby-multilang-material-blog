@@ -33,7 +33,7 @@ const config = {
   siteMetadata: {
     title,
     author: 'Mr. Gatsby',
-    description: 'Gatsby multi-lingual blog template, made with Material Design',
+    description: 'Gatsby multi-language blog template made with Material Design',
     siteUrl,
     social: {
       twitter: 'test',

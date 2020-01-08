@@ -11,13 +11,15 @@ Els __elements químics__ són substàncies pures que no es poden descompondre e
 
 Es coneixen 118 elements químics diferents, dels quals 90 són naturals, i la resta generats artificialment. Cada element es representa per un símbol d'una o dues lletres, segons la proposta de Berzelius. Els elements químics se solen classificar mitjançant la taula periòdica.
 
+És interessant també consultar la pàgina sobre els [radioisòtops](./radionuclide)
+
 Els àtoms d'un element químic es poden combinar amb si mateixos per formar una molècula, i en funció del nombre d'àtoms que es combinen es poden classificar en:
 
 - __Monoatòmics__: presenten un únic àtom, és a dir, la fórmula coincideix amb el símbol que els representa. Únicament hi ha els gasos nobles: He, Ne, Ar, Kr, Xe i Rn.
 - __Diatòmics__: la molècula està formada per dos àtoms. És el cas de la majoria dels elements situats a la dreta de la taula com ara el clor, Cl2, el fluor, F2, el nitrogen, N2, l'oxigen, O2,...
 - __Poliatòmics__: les molècules estan formades per més de dos àtoms, per exemple el fòsfor, P4, el sofre, S8, o bé formen una xarxa metàl·lica tridimensional (és el cas del coure, l'or o el sodi).
 
-![Abundance of chemical elements on the solar system](./solar-system-abundances.png "Abundance of chemical elements on the solar system")
+![Abundance of chemical elements on the solar system](solar-system-abundances.png "Abundance of chemical elements on the solar system")
 
 ## Història
 
@@ -48,4 +50,4 @@ El químic rus [Dmitri Mendeléiev](../mendeleev) aconseguí classificar els ele
 ### El nombre atòmic
 El nombre atòmic fou inicialment el número d'ordre que corresponia a cada element en col·locar-los a la taula periòdica, de manera que tenia un caràcter convencional. Però el 1913, amb els treballs experimentals de Henry Moseley sobre espectres de raigs X, el nombre atòmic adquirí un significat físic. Moseley descobrí que existeix una relació lineal entre l'arrel quadrada de la freqüència, ν, i el nombre atòmic, Z (K i k són dues constants).
 
-![Nuclear reaction](./nuclear-reaction.svg)
+![Nuclear reaction](nuclear-reaction.svg)

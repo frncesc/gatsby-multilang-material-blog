@@ -7,10 +7,10 @@ import { useStaticQuery, graphql, withPrefix } from 'gatsby';
 import Image from 'gatsby-image';
 import Box from '@material-ui/core/Box';
 
-export default function Info() {
+export default function Info({ intl: { messages } }) {
   const data = useStaticQuery(graphql`
     query InfoQuery {
-      logo: file(absolutePath: { regex: "/moto.png/" }) {
+      logo: file(absolutePath: { regex: "/mendeleev-2\\.jpg/" }) {
         childImageSharp {
           fixed(width: 50, height: 50) {
             ...GatsbyImageSharpFixed
@@ -26,15 +26,18 @@ export default function Info() {
     }
   `);
 
-  const { author, description } = data.site.siteMetadata;
   return (
-    <Box>
-      <Image
-        fixed={data.logo.childImageSharp.fixed}
-        alt={author}
-      />
-      <p>{description}</p>
-      <img src={withPrefix('/img/park.png')} alt="A bank on the park" />
+    <Box marginTop={6}>
+      <hr />
+      <Box display="flex" flexDirection="row">
+        <Image
+          fixed={data.logo.childImageSharp.fixed}
+          alt="Dmitri Mendeleev"
+          title="Dmitri Mendeleev"
+        />
+        <Box flexGrow={1} alignSelf="center" p={1} textAlign="center" color="secondary.main" fontStyle="italic">{messages['site-description']}</Box>
+        <div><img src={withPrefix('/img/lavoisier.jpg')} alt="Antoine de Lavoisier" title="Antoine de Lavoisier" /></div>
+      </Box>
     </Box>
   );
 };

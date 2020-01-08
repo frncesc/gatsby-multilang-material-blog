@@ -2,22 +2,18 @@
 title: Testing styles
 date: '2015-05-28T22:40:32.169Z'
 description: This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter.
+keywords: testing, gatsby, react
 ---
 import Button from '@material-ui/core/Button'
 
 # Main title (h1)
 
 This is MDX so we have access to `props.pageContext` with information like `frontmatter`. So, the title of this page is:
-<strong>{props.frontmatter.title}</strong>.
+<strong> "{props.frontmatter.title}"</strong> (<span>{(props.frontmatter.title).length}</span> characters)
+and the site title is: 
+<strong> "{props.intl.messages['site-title']}"</strong>
 
-And the site title is:
-<strong>{props.intl.messages['site-title']}</strong>
-
-Far far away, behind the word mountains, far from the countries Vokalia and
-Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-right at the coast of the Semantics, a large language ocean. A small river named
-Duden flows by their place and supplies it with the necessary regelialia.
-
+This is just a [Material-UI](https://material-ui.com/) button:
 
 <Button variant="contained" color="primary">
   Hello!
@@ -122,8 +118,12 @@ didn’t take long until a few insidious Copy Writers ambushed her, made her dru
 with Longe and Parole and dragged her into their agency, where they abused her
 for their projects again and again.
 
-## Testing with tables
+## Title in red
 {class="reddie"}
+
+This title has the "reddie" class assigned by the [gatsby-remark-attr](https://www.gatsbyjs.org/packages/gatsby-remark-attr/) plugin.
+
+## Testing with tables
 
 <div class="small-flags">
 
@@ -133,5 +133,43 @@ for their projects again and again.
 | USA     | Washington D.C. | ![flag of USA](usa.svg)         |   327.17 M | 9,833,520 km2 |   $62,869 |
 | Senegal | Dakar           | ![flag of Senegal](senegal.svg) |    15,85 M |   196,712 km2 |    $3,675 |
 
-
 </div>
+
+This table lives inside a _div_ with the "small-flags" class assigned.
+
+## Testing with source code
+
+This is javascript:
+
+```javascript
+/**
+ * Info component
+ */
+
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import Image from 'gatsby-image';
+
+```
+
+This is bash:
+
+```bash
+$ ls -la $home
+$ cp $home/.bashrc /temp
+```
+
+... and this is just Markdown:
+
+```Markdown
+### Testing with tables
+
+This is a table:
+
+| Country | Capital         | Flag                            | Population |       Surface | GDP (PPP) |
+|---------|-----------------|:-------------------------------:|-----------:|--------------:|----------:|
+| France  | Paris           | ![flag of France](france.svg)   |    66.99 M |   640,679 km2 |   $47,223 |
+| USA     | Washington D.C. | ![flag of USA](usa.svg)         |   327.17 M | 9,833,520 km2 |   $62,869 |
+| Senegal | Dakar           | ![flag of Senegal](senegal.svg) |    15,85 M |   196,712 km2 |    $3,675 |
+
+```

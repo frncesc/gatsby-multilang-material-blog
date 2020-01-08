@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { useIntl, Link } from 'gatsby-plugin-intl';
-import Info from '../components/Info';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import FrontItem from '../components/FrontItem';
@@ -22,7 +21,6 @@ export default function Index({ data, location }) {
         description={messages['site-description']}
         alt={getAllVariants(SLUG, location, intl.locale)}
       />
-      <Info />
       <h2>{messages['pages']}</h2>
       {pages.map(node => (
         <FrontItem node={node} key={node.fields.slug} />

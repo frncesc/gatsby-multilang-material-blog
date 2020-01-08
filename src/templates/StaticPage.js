@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { useIntl } from "gatsby-plugin-intl"
-import Info from '../components/Info';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -34,10 +33,6 @@ export default function StaticPageTemplate({ data, location }) {
         </header>
         <Breadcrumbs {...{ slug, intl }} />
         <MDXRenderer {...{ frontmatter, intl }}>{body}</MDXRenderer>
-        <hr />
-        <footer>
-          <Info />
-        </footer>
       </article>
     </Layout>
   );

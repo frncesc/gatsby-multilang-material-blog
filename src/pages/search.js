@@ -4,7 +4,6 @@ import Fuse from 'fuse.js';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import Breadcrumbs from '../components/Breadcrumbs';
-import Info from '../components/Info';
 import { useIntl, Link } from 'gatsby-plugin-intl';
 import { getAllVariants } from '../utils/node';
 import queryString from 'query-string';
@@ -81,9 +80,6 @@ export default function Search({ location, data }) {
             ))}
           </ul>
         }
-        <footer>
-          <Info />
-        </footer>
       </article>
     </Layout>
   );

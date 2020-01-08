@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { useIntl } from 'gatsby-plugin-intl';
-import Info from '../components/Info';
 import Breadcrumbs from '../components/Breadcrumbs';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
@@ -22,7 +21,6 @@ export default function Blog({ data, location }) {
         title={title}
         alt={getAllVariants(SLUG, location, intl.locale)}
       />
-      <Info />
       <h2>{title}</h2>
       <Breadcrumbs {...{ slug: SLUG, intl }} />
       {posts.map((node) => (

@@ -3,7 +3,6 @@ import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Link, useIntl } from "gatsby-plugin-intl"
 import Breadcrumbs from '../components/Breadcrumbs';
-import Info from '../components/Info';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { dateFormat } from '../utils/defaults';
@@ -35,28 +34,26 @@ export default function BlogPostTemplate({ data, pageContext, location }) {
         </header>
         <Breadcrumbs {...{ slug, intl }} />
         <MDXRenderer {...{ frontmatter, intl }}>{body}</MDXRenderer>
-        <hr />
-        <footer>
-          <Info />
-        </footer>
       </article>
+
+      <hr />
 
       <nav>
         <ul>
-          <li>
-            {previous && (
+          {previous && (
+            <li>
               <Link to={previous.fields.slug} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
-            )}
-          </li>
-          <li>
-            {next && (
+            </li>
+          )}
+          {next && (
+            <li>
               <Link to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →
                 </Link>
-            )}
-          </li>
+            </li>
+          )}
         </ul>
       </nav>
     </Layout>
