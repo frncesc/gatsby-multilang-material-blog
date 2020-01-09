@@ -21,6 +21,7 @@ export default function Info({ intl: { messages } }) {
         siteMetadata {
           author
           description
+          version
         }
       }
     }
@@ -35,7 +36,10 @@ export default function Info({ intl: { messages } }) {
           alt="Dmitri Mendeleev"
           title="Dmitri Mendeleev"
         />
-        <Box flexGrow={1} alignSelf="center" p={1} textAlign="center" color="secondary.main" fontStyle="italic">{messages['site-description']}</Box>
+        <Box flexGrow={1} alignSelf="center" p={1} textAlign="center" color="secondary.main" fontStyle="italic">
+          {messages['site-description']}<br />
+          v. {data.site.siteMetadata.version}
+        </Box>
         <div><img src={withPrefix('/img/lavoisier.jpg')} alt="Antoine de Lavoisier" title="Antoine de Lavoisier" /></div>
       </Box>
     </Box>

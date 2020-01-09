@@ -1,6 +1,8 @@
 # Gatsby multi-language material blog
 
-Demo site: https://frncesc.github.io/gatsby-multilang-material-blog/
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5253768b-a7bd-41d7-a27f-4f06b74adcba/deploy-status)](https://app.netlify.com/sites/laughing-ride-3c9534/deploys)
+
+Demo site: https://gatsby-template.saltamarges.org/web/
 
 This is just a template for a [Gatsby](https://gatsbyjs.org) blog integrating some advanced features:
 

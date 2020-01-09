@@ -1,7 +1,14 @@
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
+const ch = require('chalk');
 const { createFilePath } = require('gatsby-source-filesystem');
 const { siteMetadata: { defaultLanguage, supportedLanguages } } = require('./gatsby-config')
+
+const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
+require('dotenv').config({
+  path: `.env.${activeEnv}`,
+});
+const PATH_PREFIX = process.env.PATH_PREFIX || '';
 
 const STOP_WORDS = {};
 supportedLanguages.forEach(lang => {
@@ -131,4 +138,22 @@ exports.onCreateWebpackConfig = ({ actions: { setWebpackConfig } }) => {
       net: 'empty',
     }
   })
+}
+
+// Move build files into the prefixed path, if defined
+exports.onPostBuild = async function onPostBuild() {
+  if (PATH_PREFIX && PATH_PREFIX.startsWith('/')) {
+    const buildDirName = 'public';
+    const buildDir = path.resolve(__dirname, buildDirName);
+    const prefix = `.${PATH_PREFIX}`;
+    const prefixedDir = path.resolve(__dirname, prefix);
+    if (fs.existsSync(prefixedDir)) {
+      console.log(`${ch.bold.red('error:')} directory "${prefixedDir}" alredy exists. Unable to move build files to "${PATH_PREFIX}"`);
+      return;
+    }
+    const destDir = path.resolve(__dirname, buildDirName, prefix);
+    fs.renameSync(buildDir, prefixedDir);
+    fs.moveSync(prefixedDir, destDir);
+    console.log(`${ch.bold.green('info:')} Build files moved to "${destDir}"`);
+  }
 }
