@@ -1,11 +1,11 @@
 {
   "name": "gatsby-multilang-material-blog",
-  "title": "Blog template",
-  "version": "0.1.4",
+  "title": "Gatsby site template",
+  "version": "0.1.5",
   "description": "Multi-language blog template made with Gatsby and Material UI",
   "author": "Francesc Busquets <francesc@gmail.com>",
   "private": true,
-  "homepage": "https://frncesc.github.io/gatsby-multilang-material-blog",
+  "homepage": "https://frncesc.github.io/gatsby-multilang-material-blog/web",
   "repository": {
     "type": "git",
     "url": "https://github.com/frncesc/gatsby-multilang-material-blog"
@@ -55,9 +55,12 @@
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
+    "chalk": "^3.0.0",
+    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "eslint-config-react-app": "^5.1.0",
     "gh-pages": "^2.2.0",
+    "node-fetch": "^2.6.0",
     "prettier": "^1.19.1"
   },
   "scripts": {
@@ -68,6 +71,7 @@
     "serve": "gatsby serve --prefix-paths --host 0.0.0.0",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "deploy": "npm run build && gh-pages -d public"
+    "deploy": "npm run build && node utils/deploy-gh-pages.js",
+    "first-deploy": "npm run build && node utils/deploy-gh-pages.js --force"
   }
 }

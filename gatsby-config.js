@@ -5,6 +5,9 @@ require('dotenv').config({
   path: `.env.${activeEnv}`,
 });
 
+// Read package.json settings
+const { version } = require('./package.json');
+
 // Read environment variables
 const PATH_PREFIX = process.env.PATH_PREFIX || '';
 const BASE_URL = process.env.BASE_URL || 'https://localhost:9000/';
@@ -20,12 +23,26 @@ const localizedTitles = {
   en: 'Template of site with blog',
 };
 const title = localizedTitles[defaultLanguage];
+const localizedShortTitles = {
+  ca: 'Gatsby Blog',
+  es: 'Gatsby Blog',
+  en: 'Gatsby Blog',
+};
+const shortTitle = localizedShortTitles[defaultLanguage];
+const localizedDescriptions = {
+  ca: 'Plantilla de lloc web Gatsby multi-idioma fet amb Material Design',
+  es: 'Plantilla de sitio web multi-idioma construido con Material Design',
+  en: 'Gatsby multi-language blog template made with Material Design',
+};
+const description = localizedDescriptions[defaultLanguage];
 const langNames = {
   ca: 'Català',
   es: 'Español',
   en: 'English',
 }
 const siteUrl = BASE_URL;
+const themeColor = '#663399';
+const themeBackground = '#ffffff';
 
 // Gatsby config options
 const config = {
@@ -33,8 +50,9 @@ const config = {
   siteMetadata: {
     title,
     author: 'Mr. Gatsby',
-    description: 'Gatsby multi-language blog template made with Material Design',
+    description,
     siteUrl,
+    version,
     social: {
       twitter: 'test',
     },
@@ -123,13 +141,21 @@ const config = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Gatsby Multi-Lingual Blog',
-        short_name: 'BlogTemplate',
-        start_url: '/',
-        background_color: '#ffffff',
-        theme_color: '#663399',
-        display: 'minimal-ui',
+        name: title,
+        short_name: shortTitle,
+        description: `${description} (${version})`,
+        start_url: `${PATH_PREFIX}/`,
+        background_color: themeBackground,
+        theme_color: themeColor,
+        display: 'standalone',
         icon: 'content/assets/icons/logo.svg',
+        localize: supportedLanguages.map(lang => ({
+          lang,
+          start_url: `${PATH_PREFIX}/${lang}/`,
+          name: localizedTitles[lang],
+          short_name: localizedShortTitles[lang],
+          description: localizedDescriptions[lang],
+        })),
       },
     },
     // Generate feeds
