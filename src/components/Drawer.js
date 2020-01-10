@@ -61,8 +61,8 @@ export default function ({ intl, drawerOpen, setDrawerOpen }) {
       }}
     >
       <div className={classes.toolbar}>
-        <IconButton onClick={() => setDrawerOpen(false)}>
-          {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+        <IconButton onClick={() => setDrawerOpen(!drawerOpen)}>
+          {theme.direction === 'rtl' ? (drawerOpen ? <ChevronRightIcon /> : <ChevronLeftIcon />) : (drawerOpen ? <ChevronLeftIcon /> : <ChevronRightIcon />)}
         </IconButton>
       </div>
       <Divider />

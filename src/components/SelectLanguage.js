@@ -10,12 +10,13 @@ const { supportedLanguages, langNames } = siteMetadata;
 
 const useStyles = makeStyles(theme => ({
   select: {
-    paddingTop: '0.6rem',
-    paddingBottom: '0.6rem',
-    color: 'var(--topbar-color)',
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    color: theme.palette.primary.contrastText,
   },
   icon: {
-    color: 'var(--topbar-color)',
+    color: theme.palette.primary.contrastText,
+    borderColor: theme.palette.primary.contrastText,
   },
 }));
 
