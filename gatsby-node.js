@@ -9,6 +9,7 @@ require('dotenv').config({
   path: `.env.${activeEnv}`,
 });
 const PATH_PREFIX = process.env.PATH_PREFIX || '';
+// const PATH_PREFIX = `${__PATH_PREFIX__}/`;
 
 const STOP_WORDS = {};
 supportedLanguages.forEach(lang => {

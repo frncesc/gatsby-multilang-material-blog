@@ -1,4 +1,6 @@
 import React from 'react';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby-plugin-intl';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
@@ -11,11 +13,49 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SelectLanguage from './SelectLanguage';
 import SearchBox from './SearchBox';
 
+// TODO: Remove duplicate definition of drawerWidth
+const drawerWidth = 240;
+
+const useStyles = makeStyles(theme => ({
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginRight: 36,
+  },
+  hide: {
+    display: 'none',
+  },
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: theme.spacing(0, 1),
+    ...theme.mixins.toolbar,
+  },
+  title: {
+    flexGrow: 1,
+    '& a': {
+      color: 'inherit',
+      textDecoration: 'none',
+    },
+  },
+}));
+
 function HideOnScroll(props) {
   const { children } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger();
 
   return (
@@ -30,21 +70,36 @@ HideOnScroll.propTypes = {
 };
 
 
-export default function ({ intl, children }) {
+export default function ({ intl, drawerOpen, setDrawerOpen, children }) {
+
+  const classes = useStyles();
 
   return (
     <div className={'top-bar-root'}>
       <HideOnScroll {...{ children }}>
-        <AppBar>
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: drawerOpen,
+          })}
+        >
           <Toolbar>
-            <IconButton edge="start" className={'top-bar-menu-button'} color="inherit" aria-label="menu">
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={() => setDrawerOpen(true)}
+              edge="start"
+              className={clsx(classes.menuButton, {
+                [classes.hide]: drawerOpen,
+              })}
+            >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" className={'top-bar-title'}>
+            <Typography variant="h6" noWrap className={classes.title}>
               <Link to='/'>{intl.messages['site-title']}</Link>
             </Typography>
-            <SearchBox />
-            <SelectLanguage />
+            <SearchBox {...{ intl }} />
+            <SelectLanguage {...{ intl }} />
           </Toolbar>
         </AppBar>
       </HideOnScroll>
