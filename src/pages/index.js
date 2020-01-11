@@ -38,7 +38,7 @@ export const pageQuery = graphql`
         supportedLanguages
       }
     }
-    allMdx(filter: {fields: {slug: {regex: "/^(?!\\/blog\\/)/"}}}, sort: {fields: frontmatter___date, order: DESC}) {
+    allMdx(filter: {fields: {slug: {regex: "/^(?!\\/blog\\/)/"}}}, sort: {fields: frontmatter___order, order: ASC}) {
       edges {
         node {
           excerpt
@@ -47,8 +47,9 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
-            date
             title
+            order
+            date
             description
           }
         }

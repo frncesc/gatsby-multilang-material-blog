@@ -1,8 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
+import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby-plugin-intl';
+import { Link, navigate } from 'gatsby-plugin-intl';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,6 +11,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
 import SelectLanguage from './SelectLanguage';
 import SearchBox from './SearchBox';
 
@@ -70,7 +72,7 @@ HideOnScroll.propTypes = {
 };
 
 
-export default function ({ intl, drawerOpen, setDrawerOpen, children }) {
+function TopBar({ intl, drawerOpen, setDrawerOpen, children }) {
 
   const classes = useStyles();
 
@@ -98,7 +100,14 @@ export default function ({ intl, drawerOpen, setDrawerOpen, children }) {
             <Typography variant="h6" noWrap className={classes.title}>
               <Link to='/'>{intl.messages['site-title']}</Link>
             </Typography>
-            <SearchBox {...{ intl }} />
+            <Hidden implementation="css" smDown>
+              <SearchBox {...{ intl }} />
+            </Hidden>
+            <Hidden implementation="css" mdUp>
+              <IconButton aria-label="search" color="inherit" onClick={()=>navigate(`/search/`)}>
+                <SearchIcon />
+              </IconButton>
+            </Hidden>
             <SelectLanguage {...{ intl }} />
           </Toolbar>
         </AppBar>
@@ -107,3 +116,5 @@ export default function ({ intl, drawerOpen, setDrawerOpen, children }) {
     </div>
   );
 }
+
+export default TopBar;

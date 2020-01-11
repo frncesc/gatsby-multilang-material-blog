@@ -1,5 +1,6 @@
 ---
 title: Radionuclides
+order: 110
 date: '2020-01-07T16:05+01:00'
 description: A radionuclide is an atom that has excess nuclear energy, making it unstable
 keywords: chemistry, physics, atom, radiation

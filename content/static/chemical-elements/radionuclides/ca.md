@@ -1,5 +1,6 @@
 ---
 title: Radioisòtop
+order: 110
 date: '2020-01-07T16:05+01:00'
 description: Tipus d'isòtop que es caracteritza per tenir un nucli atòmic inestable
 keywords: química, física, àtom, radiació
