@@ -28,7 +28,7 @@ export default function Layout({ intl, children }) {
       <CssBaseline />
       <TopBar {...{ intl, drawerOpen, setDrawerOpen }} />
       <Drawer {...{ intl, drawerOpen, setDrawerOpen }} />
-      <Fade in timeout={600}>
+      <Fade in timeout={400}>
         <Container
           className={classes.content}
           maxWidth="md"

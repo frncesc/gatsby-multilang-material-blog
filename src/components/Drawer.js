@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useStaticQuery, graphql } from 'gatsby';
+import { navigate } from 'gatsby-plugin-intl';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
@@ -97,23 +98,14 @@ export default function ({ intl, drawerOpen, setDrawerOpen }) {
       <Divider />
       <List>
         {pages.map(node => (
-          <ListItem button key={node.fields.slug}>
+          <ListItem button key={node.fields.slug} onClick={() => navigate(node.fields.slug)}>
             <ListItemIcon><InboxIcon /></ListItemIcon>
             <ListItemText primary={node.frontmatter.title} />
           </ListItem>
         ))}
       </List>
       <Divider />
-      <List>
-        {pages.map(node => (
-          <ListItem button key={node.fields.slug}>
-            <ListItemIcon><InboxIcon /></ListItemIcon>
-            <ListItemText primary={node.frontmatter.title} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <ListItem button >
+      <ListItem button onClick={() => navigate('/blog/')}>
         <ListItemIcon><InboxIcon /></ListItemIcon>
         <ListItemText primary="Blog" />
       </ListItem>

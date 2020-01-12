@@ -38,7 +38,6 @@ export default function StaticPageTemplate({ data, location }) {
   );
 }
 
-// Todo: add a global query for parent page titles from slug and language
 export const pageQuery = graphql`
   query StaticPagesBySlug($slug: String!) {
     allMdx(filter: {fields: {slug: {eq: $slug}}}) {

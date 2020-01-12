@@ -74,6 +74,7 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "deploy": "npm run build && node utils/deploy-gh-pages.js",
-    "first-deploy": "npm run build && node utils/deploy-gh-pages.js --force"
+    "first-deploy": "npm run build && node utils/deploy-gh-pages.js --force",
+    "lint": "eslint --ext .js,.jsx --ignore-pattern public ."
   }
 }
