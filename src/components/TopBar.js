@@ -15,9 +15,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import SelectLanguage from './SelectLanguage';
 import SearchBox from './SearchBox';
 
-// TODO: Remove duplicate definition of drawerWidth
-const drawerWidth = 240;
-
 const useStyles = makeStyles(theme => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -25,17 +22,15 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${theme.drawerWidth}px)`,
+      marginLeft: theme.drawerWidth,
+    },
   },
   menuButton: {
-    marginRight: 36,
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
   },
   hide: {
     display: 'none',
@@ -56,10 +51,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function HideOnScroll(props) {
-  const { children } = props;
+function HideOnScroll({ children }) {
   const trigger = useScrollTrigger();
-
   return (
     <Slide appear={false} direction="down" in={!trigger}>
       {children}
@@ -72,48 +65,43 @@ HideOnScroll.propTypes = {
 };
 
 
-function TopBar({ intl, drawerOpen, setDrawerOpen, children }) {
+function TopBar({ intl, drawerOpen, handleDrawerToggle, children }) {
 
   const classes = useStyles();
 
   return (
-    <div className={'top-bar-root'}>
-      <HideOnScroll {...{ children }}>
-        <AppBar
-          position="fixed"
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: drawerOpen,
-          })}
-        >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={() => setDrawerOpen(true)}
-              edge="start"
-              className={clsx(classes.menuButton, {
-                [classes.hide]: drawerOpen,
-              })}
-            >
-              <MenuIcon />
+    <HideOnScroll {...{ children }}>
+      <AppBar
+        position="fixed"
+        className={classes.appBar}
+      >
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerToggle}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: drawerOpen,
+            })}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap className={classes.title}>
+            <Link to='/'>{intl.messages['site-title']}</Link>
+          </Typography>
+          <Hidden implementation="css" smDown>
+            <SearchBox {...{ intl }} />
+          </Hidden>
+          <Hidden implementation="css" mdUp>
+            <IconButton aria-label="search" color="inherit" onClick={() => navigate(`/search/`)}>
+              <SearchIcon />
             </IconButton>
-            <Typography variant="h6" noWrap className={classes.title}>
-              <Link to='/'>{intl.messages['site-title']}</Link>
-            </Typography>
-            <Hidden implementation="css" smDown>
-              <SearchBox {...{ intl }} />
-            </Hidden>
-            <Hidden implementation="css" mdUp>
-              <IconButton aria-label="search" color="inherit" onClick={()=>navigate(`/search/`)}>
-                <SearchIcon />
-              </IconButton>
-            </Hidden>
-            <SelectLanguage {...{ intl }} />
-          </Toolbar>
-        </AppBar>
-      </HideOnScroll>
-      <Toolbar />
-    </div>
+          </Hidden>
+          <SelectLanguage {...{ intl }} />
+        </Toolbar>
+      </AppBar>
+    </HideOnScroll>
   );
 }
 

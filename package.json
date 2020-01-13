@@ -1,7 +1,7 @@
 {
   "name": "gatsby-multilang-material-blog",
   "title": "Gatsby site template",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Multi-language blog template made with Gatsby and Material UI",
   "author": "Francesc Busquets <francesc@gmail.com>",
   "private": true,
@@ -49,7 +49,7 @@
     "gatsby-source-filesystem": "^2.1.46",
     "gatsby-theme-material-ui": "^1.0.6",
     "gatsby-transformer-sharp": "^2.3.12",
-    "prismjs": "^1.18.0",
+    "prismjs": "^1.19.0",
     "query-string": "^6.9.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

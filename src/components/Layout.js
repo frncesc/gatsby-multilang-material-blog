@@ -1,10 +1,13 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Hidden from '@material-ui/core/Hidden';
 import Container from '@material-ui/core/Container';
+import Drawer from '@material-ui/core/Drawer';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Fade from '@material-ui/core/Fade';
 import TopBar from './TopBar';
-import Drawer from './Drawer';
+import DrawerPanel from './DrawerPanel';
 import Info from './Info';
 
 const useStyles = makeStyles(theme => ({
@@ -16,18 +19,64 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
     marginTop: theme.mixins.toolbar.minHeight,
   },
+  drawer: {
+    [theme.breakpoints.up('sm')]: {
+      width: theme.drawerWidth,
+      flexShrink: 0,
+      whiteSpace: 'nowrap',
+    }
+  },
+  topBar: {
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${theme.drawerWidth}px)`,
+      marginLeft: theme.drawerWidth,
+    }
+  },
+  drawerPaper: {
+    width: theme.drawerWidth,
+  }
 }));
 
 export default function Layout({ intl, children }) {
 
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const handleDrawerToggle = () => { setDrawerOpen(!drawerOpen); }
+  const theme = useTheme();
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <TopBar {...{ intl, drawerOpen, setDrawerOpen }} />
-      <Drawer {...{ intl, drawerOpen, setDrawerOpen }} />
+      <TopBar className={classes.topBar} {...{ intl, drawerOpen, handleDrawerToggle }} />
+      <nav className={classes.drawer} aria-label="main sections">
+        <Hidden smUp implementation="css">
+          <SwipeableDrawer
+            variant="temporary"
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            open={drawerOpen}
+            onClose={handleDrawerToggle}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+          >
+            <DrawerPanel {...{ intl }} />
+          </SwipeableDrawer>
+        </Hidden>
+        <Hidden xsDown implementation="css">
+          <Drawer
+            variant="permanent"
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            open
+          >
+            <DrawerPanel {...{ intl }} />
+          </Drawer>
+        </Hidden>
+      </nav>
       <Fade in timeout={400}>
         <Container
           className={classes.content}

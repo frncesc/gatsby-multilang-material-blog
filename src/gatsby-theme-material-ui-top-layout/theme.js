@@ -22,6 +22,7 @@ const theme = createMuiTheme({
       'sans-serif'
     ].join(','),
   },
+  drawerWidth: 240,
 });
 
 export default theme;
