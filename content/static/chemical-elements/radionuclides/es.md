@@ -3,6 +3,7 @@ title: Radioisótopo
 order: 110
 date: '2020-01-07T16:05+01:00'
 description: Átomo que tiene un exceso de energía nuclear , lo que lo hace inestable
+icon: radiation
 keywords: química, física, átomo, radiación
 ---
 

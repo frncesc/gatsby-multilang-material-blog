@@ -16,11 +16,13 @@ This is just a template for a [Gatsby](https://gatsbyjs.org) blog integrating so
 
 - Multi-lingual suppport with [gatsby-plugin-intl](https://www.gatsbyjs.org/packages/gatsby-plugin-intl/), based on Ramesh Nair's [Hiddentao](https://hiddentao.com/archives/2019/05/07/building-a-multilingual-static-site-with-gatsby)
 
-- Use of [Material-UI](https://material-ui.com/) components with [gatsby-theme-material-ui](https://www.gatsbyjs.org/packages/gatsby-theme-material-ui/)
+- [Material-UI](https://material-ui.com/) components with [gatsby-theme-material-ui](https://www.gatsbyjs.org/packages/gatsby-theme-material-ui/)
 
-- Use of [MDX](https://github.com/mdx-js/mdx) instead of plain Markdown, with [gatsby-plugin-mdx](https://www.gatsbyjs.org/packages/gatsby-plugin-mdx/)
+- Create documents in [MDX](https://github.com/mdx-js/mdx) instead of plain Markdown, with [gatsby-plugin-mdx](https://www.gatsbyjs.org/packages/gatsby-plugin-mdx/)
 
-- Use of [Fuse.js](https://fusejs.io/) for full-text search
+- Full text search with [Fuse.js](https://fusejs.io/)
+
+- Use of [Font Awesome](https://fontawesome.com/) SVG icons (custom icon library built in `gatsby-browser.js`)
 
 - Integration of useful Gatsby remark add-ons like:
   - [gatsby-remark-attr](https://www.gatsbyjs.org/packages/gatsby-remark-attr/)

@@ -3,6 +3,7 @@ title: Dmitri Mendeleev
 order: 300
 date: '2020-01-07T12:45+01:00'
 description: Dmitri Mendeleev was a Russian chemist and inventor
+icon: brain
 keywords: chemistry, element, periodic table, physics
 ---
 

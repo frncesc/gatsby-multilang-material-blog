@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${theme.drawerWidth}px)`,
+      width: `calc(100% - ${theme.drawerWidth})`,
       marginLeft: theme.drawerWidth,
     },
   },

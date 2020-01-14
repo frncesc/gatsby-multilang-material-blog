@@ -10,6 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getAllResolvedVersionsForLanguage } from '../utils/node';
 
 const useStyles = makeStyles(theme => ({
@@ -24,7 +25,10 @@ const useStyles = makeStyles(theme => ({
   logo: {
     maxHeight: '32px',
     margin: theme.spacing(0, 1),
-  }
+  },
+  listItemIcon: {
+    minWidth: '2rem',
+  },
 }));
 
 export default function DrawerPanel({ intl }) {
@@ -49,6 +53,7 @@ export default function DrawerPanel({ intl }) {
               order
               date
               description
+              icon
             }
           }
         }
@@ -71,14 +76,14 @@ export default function DrawerPanel({ intl }) {
       <List>
         {pages.map(node => (
           <ListItem button key={node.fields.slug} onClick={() => navigate(node.fields.slug)}>
-            <ListItemIcon><InboxIcon /></ListItemIcon>
+            <ListItemIcon className={classes.listItemIcon}><FontAwesomeIcon icon={node.frontmatter.icon || 'sticky-note'} /></ListItemIcon>
             <ListItemText primary={node.frontmatter.title} />
           </ListItem>
         ))}
       </List>
       <Divider />
       <ListItem button onClick={() => navigate('/blog/')}>
-        <ListItemIcon><InboxIcon /></ListItemIcon>
+        <ListItemIcon className={classes.listItemIcon}><FontAwesomeIcon icon="blog" /></ListItemIcon>
         <ListItemText primary="Blog" />
       </ListItem>
     </div>

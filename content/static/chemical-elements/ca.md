@@ -3,6 +3,7 @@ title: Elements químics
 order: 100
 date: '2020-01-07T11:45+01:00'
 description: Els elements químics són substàncies pures que no es poden descompondre en cap altra substància pura més senzilla mitjançant mètodes químics
+icon: atom
 keywords: química, element
 ---
 

@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
   topBar: {
     [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${theme.drawerWidth}px)`,
+      width: `calc(100% - ${theme.drawerWidth})`,
       marginLeft: theme.drawerWidth,
     }
   },
