@@ -9,9 +9,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getAllResolvedVersionsForLanguage } from '../utils/node';
+import { FontAwIcon } from '../utils/FontAwIcon';
 
 const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
@@ -76,14 +75,14 @@ export default function DrawerPanel({ intl }) {
       <List>
         {pages.map(node => (
           <ListItem button key={node.fields.slug} onClick={() => navigate(node.fields.slug)}>
-            <ListItemIcon className={classes.listItemIcon}><FontAwesomeIcon icon={node.frontmatter.icon || 'sticky-note'} /></ListItemIcon>
+            <ListItemIcon className={classes.listItemIcon}><FontAwIcon icon={node.frontmatter.icon} /></ListItemIcon>
             <ListItemText primary={node.frontmatter.title} />
           </ListItem>
         ))}
       </List>
       <Divider />
       <ListItem button onClick={() => navigate('/blog/')}>
-        <ListItemIcon className={classes.listItemIcon}><FontAwesomeIcon icon="blog" /></ListItemIcon>
+        <ListItemIcon className={classes.listItemIcon}><FontAwIcon icon="fab|microblog" /></ListItemIcon>
         <ListItemText primary="Blog" />
       </ListItem>
     </div>
