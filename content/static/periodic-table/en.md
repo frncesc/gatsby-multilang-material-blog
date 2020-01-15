@@ -3,7 +3,7 @@ title: Periodic table
 order: 200
 date: '2020-01-07T12:27+01:00'
 description: Tabular arrangement of the chemical elements ordered by atomic number
-icon: table
+icon: th
 keywords: chemistry, physics
 ---
 

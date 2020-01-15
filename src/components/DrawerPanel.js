@@ -75,14 +75,14 @@ export default function DrawerPanel({ intl }) {
       <List>
         {pages.map(node => (
           <ListItem button key={node.fields.slug} onClick={() => navigate(node.fields.slug)}>
-            <ListItemIcon className={classes.listItemIcon}><FontAwIcon icon={node.frontmatter.icon} /></ListItemIcon>
+            <ListItemIcon className={classes.listItemIcon}><FontAwIcon icon={node.frontmatter.icon} size="lg" /></ListItemIcon>
             <ListItemText primary={node.frontmatter.title} />
           </ListItem>
         ))}
       </List>
       <Divider />
       <ListItem button onClick={() => navigate('/blog/')}>
-        <ListItemIcon className={classes.listItemIcon}><FontAwIcon icon="fab|microblog" /></ListItemIcon>
+        <ListItemIcon className={classes.listItemIcon}><FontAwIcon icon="rss-square" size="lg" /></ListItemIcon>
         <ListItemText primary="Blog" />
       </ListItem>
     </div>

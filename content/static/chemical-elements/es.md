@@ -3,7 +3,7 @@ title: Elemento químico
 order: 100
 date: '2020-01-08T19:45+01:00'
 description: Tipo de materia constituida por átomos de la misma clase
-icon: atom
+icon: flask
 keywords: química, elemento
 ---
 

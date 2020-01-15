@@ -4,12 +4,18 @@
 
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+// Brand icons. Use 'fab|name' (ex: 'fab|apple') as a descriptor
+import { faApple } from '@fortawesome/free-brands-svg-icons';
+
+// Regular icons:
+import { faBlog, faStickyNote, faFlask, faRadiationAlt, faUserTie, faTh, faRssSquare } from '@fortawesome/free-solid-svg-icons';
+
+// Build the icon library
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faMicroblog } from '@fortawesome/free-brands-svg-icons';
-import { faBlog, faStickyNote, faAtom, faRadiation, faBrain, faTable } from '@fortawesome/free-solid-svg-icons';
 library.add(
-  faMicroblog,
-  faBlog, faStickyNote, faAtom, faRadiation, faBrain, faTable
+  faApple,
+  faBlog, faStickyNote, faFlask, faRadiationAlt, faUserTie, faTh, faRssSquare
 );
 
 /**

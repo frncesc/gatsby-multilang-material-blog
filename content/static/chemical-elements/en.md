@@ -3,7 +3,7 @@ title: Chemical elements
 order: 100
 date: '2020-01-07T11:45+01:00'
 description: A species of atoms having the same number of protons in the atomic nucleus
-icon: atom
+icon: flask
 keywords: chemistry, element
 ---
 

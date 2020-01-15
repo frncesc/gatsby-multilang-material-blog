@@ -5,14 +5,19 @@ import Hidden from '@material-ui/core/Hidden';
 import Container from '@material-ui/core/Container';
 import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Fade from '@material-ui/core/Fade';
+// import Fade from '@material-ui/core/Fade';
 import TopBar from './TopBar';
 import DrawerPanel from './DrawerPanel';
-import Info from './Info';
+import Footer from './Footer';
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+  },
+  wrapper: {
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
   },
   content: {
     flexGrow: 1,
@@ -31,6 +36,9 @@ const useStyles = makeStyles(theme => ({
       width: `calc(100% - ${theme.drawerWidth})`,
       marginLeft: theme.drawerWidth,
     }
+  },
+  footer: {
+    width: '100%',
   },
   drawerPaper: {
     width: theme.drawerWidth,
@@ -77,7 +85,7 @@ export default function Layout({ intl, children }) {
           </Drawer>
         </Hidden>
       </nav>
-      <Fade in timeout={400}>
+      <div className={classes.wrapper}>
         <Container
           className={classes.content}
           maxWidth="md"
@@ -85,11 +93,9 @@ export default function Layout({ intl, children }) {
           <header>
           </header>
           <main>{children}</main>
-          <footer>
-            <Info {...{ intl }} />
-          </footer>
         </Container>
-      </Fade>
+        <Footer className={classes.footer} {...{ intl }} />
+      </div>
     </div>
   );
 }
