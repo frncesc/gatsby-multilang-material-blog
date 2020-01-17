@@ -5,7 +5,7 @@ description: Hydrogen is the chemical element with the symbol H and atomic numbe
 keywords: chemistry, physics, energy
 ---
 
-> From: https://en.wikipedia.org/wiki/Hydrogen
+> From [Wikipedia](https://en.wikipedia.org/wiki/Hydrogen)
 
 __Hydrogen__ is the chemical element with the symbol __H__ and atomic number 1. With a standard atomic weight of 1.008, hydrogen is the lightest element in the periodic table. Hydrogen is the most abundant chemical substance in the Universe, constituting roughly 75% of all baryonic mass.[^Boyd, Padi (19 July 2014). "What is the chemical composition of stars?". NASA. Archived from the original on 15 January 2015. Retrieved 5 February 2008.] Non-remnant stars are mainly composed of hydrogen in the plasma state. The most common isotope of hydrogen, termed _protium_ (name rarely used, symbol __¹H__), has one proton and no neutrons.
 

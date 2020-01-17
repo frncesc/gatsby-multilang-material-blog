@@ -7,7 +7,7 @@ icon: radiation-alt
 keywords: chemistry, physics, atom, radiation
 ---
 
-> From: https://en.wikipedia.org/wiki/Radionuclide
+> From [Wikipedia](https://en.wikipedia.org/wiki/Radionuclide)
 
 A __radionuclide__ (radioactive nuclide, radioisotope or radioactive isotope) is an atom that has excess nuclear energy, making it unstable. This excess energy can be used in one of three ways: emitted from the nucleus as gamma radiation; transferred to one of its electrons to release it as a conversion electron; or used to create and emit a new particle (alpha particle or beta particle) from the nucleus. During those processes, the radionuclide is said to undergo radioactive decay.[^R.H. Petrucci, W.S. Harwood and F.G. Herring, General Chemistry (8th ed., Prentice-Hall 2002), p.1025–26] These emissions are considered ionizing radiation because they are powerful enough to liberate an electron from another atom. The radioactive decay can produce a stable nuclide or will sometimes produce a new unstable radionuclide which may undergo further decay. Radioactive decay is a random process at the level of single atoms: it is impossible to predict when one particular atom will decay.[^Stabin, Michael G. (2007). "3". Radiation Protection and Dosimetry: An Introduction to Health Physics (Submitted manuscript). Springer. doi:10.1007/978-0-387-49983-3. ISBN 978-0387499826.] However, for a collection of atoms of a single element the decay rate, and thus the half-life (t1/2) for that collection can be calculated from their measured decay constants. The range of the half-lives of radioactive atoms have no known limits and span a time range of over 55 orders of magnitude.
 

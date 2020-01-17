@@ -7,7 +7,7 @@ icon: radiation-alt
 keywords: química, física, átomo, radiación
 ---
 
-> De: https://es.wikipedia.org/wiki/Radiois%C3%B3topo
+> De [Wikipedia](https://es.wikipedia.org/wiki/Radiois%C3%B3topo)
 
 Un __radioisótopo__ (__radionucleido__, __radionúclido__, __nucleido radioactivo__ o __isótopo radioactivo__) es un átomo que tiene un exceso de energía nuclear, lo que lo hace inestable. Este exceso de energía puede ser utilizado de tres maneras: emitida desde el núcleo como radiación gamma; transferida a uno de sus electrones para liberarlo como un electrón de conversión interna; o utilizada para crear y emitir una nueva partícula (partícula alfa o partícula beta) desde el núcleo. Durante esos procesos, se dice que el radioisótopo sufre una desintegración radiactiva.1​ Estas emisiones se consideran radiación ionizante porque son lo suficientemente potentes como para liberar un electrón de otro átomo. La desintegración radioactiva puede producir un isótopo estable o a veces produce un nuevo radioisótopo inestable que puede sufrir una mayor desintegración. La desintegración radiactiva es un proceso aleatorio a nivel de átomos individuales: es imposible predecir cuándo se desintegrará un átomo en particular.2​3​4​5​ Sin embargo, para una colección de átomos de un solo elemento, la tasa de desintegración, y por lo tanto la vida media. (t1/2) para esa colección puede calcularse a partir de sus constantes de decaimiento medidas. El rango de vida media de los átomos radiactivos no tiene límites conocidos y abarca un rango de tiempo de más de 55 órdenes de magnitud.
 

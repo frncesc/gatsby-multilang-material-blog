@@ -7,7 +7,7 @@ icon: user-tie
 keywords: chemistry, element, periodic table, physics
 ---
 
-> From: https://en.wikipedia.org/wiki/Dmitri_Mendeleev
+> From [Wikipedia](https://en.wikipedia.org/wiki/Dmitri_Mendeleev)
 
 Dmitri Ivanovich Mendeleev (often romanized as Mendeleyev or Mendeleef) (English: /ˌmɛndəlˈeɪəf/ MEN-dəl-AY-əf;[^"Mendeleev". Random House Webster's Unabridged Dictionary.] Russian: Дмитрий Иванович Менделеев,[^In Mendeleev's day, his name was written Дмитрій Ивановичъ Менделѣевъ.] tr. Dmítriy Ivánovich Mendeléyev, IPA: [ˈdmʲitrʲɪj ɪˈvanəvʲɪtɕ mʲɪnʲdʲɪˈlʲejɪf]; 8 February 1834 – 2 February 1907 [OS 27 January 1834 – 20 January 1907]) was a Russian chemist and inventor. He is best remembered for formulating the Periodic Law and creating a farsighted version of the [periodic table of elements](../periodic-table). He used the Periodic Law not only to correct the then-accepted properties of some known elements, such as the valence and atomic weight of uranium, but also to predict the properties of eight elements that were yet to be discovered.
 

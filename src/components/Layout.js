@@ -47,15 +47,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Layout({ intl, children }, ...props) {
+export default function Layout({ intl, children }) {
 
-  const classes = mergeClasses(props, useStyles());
+  const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const handleDrawerToggle = () => { setDrawerOpen(!drawerOpen); }
   const theme = useTheme();
 
   return (
-    <div {...props} className={classes.root}>
+    <div className={classes.root}>
       <CssBaseline />
       <header>
         <TopBar className={classes.topBar} {...{ intl, drawerOpen, handleDrawerToggle }} />
@@ -65,6 +65,7 @@ export default function Layout({ intl, children }, ...props) {
               variant="temporary"
               anchor={theme.direction === 'rtl' ? 'right' : 'left'}
               open={drawerOpen}
+              onOpen={() => { }}
               onClose={handleDrawerToggle}
               classes={{
                 paper: classes.drawerPaper,

@@ -7,7 +7,7 @@ icon: flask
 keywords: chemistry, element
 ---
 
-> From: https://en.wikipedia.org/wiki/Chemical_element
+> From [Wikipedia](https://en.wikipedia.org/wiki/Chemical_element)
 
 A __chemical element__ is a species of atom having the same number of protons in their atomic nuclei (that is, the same atomic number, or Z)[^ IUPAC, Compendium of Chemical Terminology, 2nd ed. (the "Gold Book") (1997). Online corrected version: (2006–) "chemical element". doi:10.1351/goldbook.C01022]. For example, the atomic number of oxygen is 8, so the element oxygen describes all atoms which have 8 protons.
 

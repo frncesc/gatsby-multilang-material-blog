@@ -5,7 +5,7 @@ description: Oxygen is the chemical element with the symbol O and atomic number 
 keywords: chemistry, physics, energy
 ---
 
-> From: https://en.wikipedia.org/wiki/Oxygen
+> From [Wikipedia](https://en.wikipedia.org/wiki/Oxygen)
 
 __Oxygen__ is the chemical element with the symbol __O__ and atomic number 8. It is a member of the chalcogen group in the periodic table, a highly reactive nonmetal, and an oxidizing agent that readily forms oxides with most elements as well as with other compounds. By mass, oxygen is the third-most abundant element in the universe, after hydrogen and helium. At standard temperature and pressure, two atoms of the element bind to form dioxygen, a colorless and odorless diatomic gas with the formula O<sup>2</sup>. Diatomic oxygen gas constitutes 20.8% of the Earth's atmosphere. As compounds including oxides, the element makes up almost half of the Earth's crust.
 

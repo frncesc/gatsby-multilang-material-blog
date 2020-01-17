@@ -7,7 +7,7 @@ icon: flask
 keywords: química, elemento
 ---
 
-> De: https://es.wikipedia.org/wiki/Elemento_qu%C3%ADmico
+> De [Wikipedia](https://es.wikipedia.org/wiki/Elemento_qu%C3%ADmico)
 
 Un __elemento químico__ es un tipo de materia constituida por átomos de la misma clase.[^Urdiales, Blanca Alma Valdivia; Granillo, María del Pilar; Dominguez, María del Socorro Villareal (2000). Biología General: Los sistemas vivientes. Grupo Editorial Patria. ISBN 9786077440604. Consultado el 9 de febrero de 2018.] En su forma más simple, posee un número determinado de protones en su núcleo, haciéndolo pertenecer a una categoría única clasificada con el número atómico, aun cuando este pueda desplegar [distintas masas atómicas](./radionuclides).
 

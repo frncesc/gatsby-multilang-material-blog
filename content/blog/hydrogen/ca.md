@@ -5,7 +5,7 @@ description: Element químic de símbol H i nombre atòmic 1
 keywords: química, física, energia
 ---
 
-> De: https://ca.wikipedia.org/wiki/Hidrogen
+> Extret de [Viquipèdia](https://ca.wikipedia.org/wiki/Hidrogen)
 
 L'__hidrogen__ és un element químic de símbol H i nombre atòmic 1. Té un pes atòmic mitjà d'1,00784 uma, la qual cosa el converteix en l'element més lleuger. En la seva forma monoatòmica (H) és la substància química més abundant: constitueix aproximadament el 75% de la massa bariònica de l'univers.[3] Les estrelles no romanents estan compostes principalment d'hidrogen en el seu estat de plasma.
 

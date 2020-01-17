@@ -7,7 +7,7 @@ icon: flask
 keywords: química, element
 ---
 
-> From: https://ca.wikipedia.org/wiki/Element_qu%C3%ADmic
+> Extret de [Viquipèdia](https://ca.wikipedia.org/wiki/Element_qu%C3%ADmic)
 
 Els __elements químics__ són substàncies pures que no es poden descompondre en cap altra substància pura més senzilla mitjançant mètodes químics. Des del punt de vista atòmic tots els àtoms d'un element tenen el mateix nombre de protons al seu nucli, podent variar el nombre de neutrons (isòtops). Aquest nombre es coneix com a nombre atòmic de l'element i se simbolitza per la lletra Z.
 

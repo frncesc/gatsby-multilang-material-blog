@@ -5,7 +5,7 @@ description: Elemento químico de número atómico 2, símbolo He y peso atómic
 keywords: química, física, energía
 ---
 
-> De: hhttps://es.wikipedia.org/wiki/Helio
+> De [Wikipedia](hhttps://es.wikipedia.org/wiki/Helio)
 
 El __helio__ (del griego: ἥλιος [hḗlios] ‘Sol’, por haberse inferido en 1868 su existencia en la atmósfera solar)2​ es un elemento químico de número atómico 2, símbolo He y peso atómico estándar de 4,0026. Pertenece al grupo 18 de la tabla periódica de los elementos, ya que al tener el nivel de energía completo presenta las propiedades de un gas noble. Es decir, es inerte (no reacciona) y al igual que estos, es un gas monoatómico incoloro e inodoro que cuenta con el menor punto de ebullición de todos los elementos químicos y solo puede ser licuado bajo presiones muy grandes y no puede ser congelado.
 

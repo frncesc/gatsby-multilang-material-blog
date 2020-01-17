@@ -7,7 +7,7 @@ icon: th
 keywords: chemistry, physics
 ---
 
-> From: https://en.wikipedia.org/wiki/Periodic_table
+> From [Wikipedia](https://en.wikipedia.org/wiki/Periodic_table)
 
 The __periodic table__, also known as the _periodic table of elements_, is a tabular display of the [chemical elements](../chemical-elements), which are arranged by atomic number, electron configuration, and recurring chemical properties. The structure of the table shows periodic trends. The seven rows of the table, called periods, generally have metals on the left and non-metals on the right. The columns, called groups, contain elements with similar chemical behaviours. Six groups have accepted names as well as assigned numbers: for example, group 17 elements are the halogens; and group 18 are the noble gases. Also displayed are four simple rectangular areas or blocks associated with the filling of different atomic orbitals.
 

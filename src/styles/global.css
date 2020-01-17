@@ -1,18 +1,5 @@
 /* === CSS variables === */
 
-:root {
-  --theme-spacing-unit: 10pt;
-  --theme-spacing-unit-x2: 20pt;
-  --theme-palette-background-paper: #fff;
-  --footer-height: 250px;
-  --topbar-background-color: #556cd6;
-  --topbar-color: #fff;
-}
-
-html {
-  background-color: var(--theme-palette-background-paper);
-}
-
 article img {
   max-width: 100%;  
 }
@@ -21,6 +8,7 @@ article figcaption {
   text-align: center;
   margin-top: 0.5rem;
   font-style: italic;
+  font-size: small;
 }
 
 article blockquote {
@@ -28,6 +16,13 @@ article blockquote {
   margin-left: 0;
   padding-left: 0.5rem;
   border-left: 1px solid;
+}
+
+@media (max-width: 960px){
+  .gatsby-resp-image-figure {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 

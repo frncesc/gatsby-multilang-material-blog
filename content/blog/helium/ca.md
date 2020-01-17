@@ -5,7 +5,7 @@ description: Element químic de nombre atòmic 2 i representat pel símbol He
 keywords: química, física, energia
 ---
 
-> De: https://ca.wikipedia.org/wiki/Heli
+> Extret de [Viquipèdia](https://ca.wikipedia.org/wiki/Heli)
 
 L'__heli__ és l'element químic de nombre atòmic 2 i representat pel símbol He. És un gas monoatòmic inert, no tòxic, incolor, inodor i insípid que encapçala el grup dels gasos nobles en la taula periòdica. Els seus punts d'ebullició i de fusió són uns dels més baixos de tots els elements, i només existeix en forma de gas, excepte en condicions extremes.
 

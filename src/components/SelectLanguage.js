@@ -10,6 +10,9 @@ import { mergeClasses } from '../utils/misc';
 const { supportedLanguages, langNames } = siteMetadata;
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    minWidth: '4rem',
+  },
   select: {
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(1),
@@ -29,6 +32,7 @@ export default function ({ intl: { locale, messages }, ...props }) {
   return (
     <FormControl
       {...props}
+      className={classes.root}
       variant="outlined"
       title={messages['change-language']}
     >
