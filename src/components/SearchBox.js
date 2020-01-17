@@ -3,6 +3,7 @@ import { makeStyles, fade } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { navigate } from 'gatsby-plugin-intl';
+import { mergeClasses } from '../utils/misc';
 
 const useStyles = makeStyles(theme => ({
   search: {
@@ -42,9 +43,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Search({ intl: { messages } }) {
+export default function Search({ intl: { messages }, ...props }) {
 
-  const classes = useStyles();
+  const classes = mergeClasses(props, useStyles());
   const [query, setQuery] = React.useState('');
   const handleChange = ev => {
     setQuery(ev.target.value);
@@ -57,7 +58,7 @@ export default function Search({ intl: { messages } }) {
   }
 
   return (
-    <form className={classes.search} onSubmit={search}>
+    <form {...props} className={classes.search} onSubmit={search}>
       <div className={classes.searchIcon}>
         <SearchIcon onClick={search} />
       </div>

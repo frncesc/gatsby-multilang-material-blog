@@ -14,6 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import SelectLanguage from './SelectLanguage';
 import SearchBox from './SearchBox';
+import { mergeClasses } from '../utils/misc';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -64,13 +65,12 @@ HideOnScroll.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
+function TopBar({ intl, drawerOpen, handleDrawerToggle, ...props }) {
 
-function TopBar({ intl, drawerOpen, handleDrawerToggle, children }) {
-
-  const classes = useStyles();
+  const classes = mergeClasses(props, useStyles());
 
   return (
-    <HideOnScroll {...{ children }}>
+    <HideOnScroll {...props}>
       <AppBar
         position="fixed"
         className={classes.appBar}

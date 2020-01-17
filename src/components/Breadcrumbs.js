@@ -7,7 +7,7 @@ import { siteMetadata } from '../../gatsby-config';
 
 const { specialPages } = siteMetadata;
 
-export default function Breadcrumbs({ slug, intl }) {
+export default function Breadcrumbs({ slug, intl, ...props }) {
 
   const { messages, locale, defaultLocale } = intl;
   const siteTitle = messages['site-title'];
@@ -41,7 +41,7 @@ export default function Breadcrumbs({ slug, intl }) {
   }
 
   return (
-    <MUIBreadcrumbs aria-label="breadcrumb">
+    <MUIBreadcrumbs {...props} aria-label="breadcrumb">
       <Link to="/">{siteTitle}</Link>
       {getFragments(slug).map((_fragment, n, cmp) => {
         const subSlug = `/${cmp.slice(0, n + 1).join('/')}/`;

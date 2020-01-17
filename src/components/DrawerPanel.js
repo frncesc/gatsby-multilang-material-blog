@@ -11,6 +11,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { getAllResolvedVersionsForLanguage } from '../utils/node';
 import { FontAwIcon } from '../utils/FontAwIcon';
+import { mergeClasses } from '../utils/misc';
 
 const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
@@ -30,41 +31,42 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function DrawerPanel({ intl }) {
-
-  const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          supportedLanguages
-        }
+const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        supportedLanguages
       }
-      allMdx(filter: {fields: {slug: {regex: "/^(?!\\/blog\\/)/"}}}, sort: {fields: frontmatter___order, order: ASC}) {
-        edges {
-          node {
-            excerpt
-            fields {
-              lang
-              slug
-            }
-            frontmatter {
-              title
-              order
-              date
-              description
-              icon
-            }
+    }
+    allMdx(filter: {fields: {slug: {regex: "/^(?!\\/blog\\/)/"}}}, sort: {fields: frontmatter___order, order: ASC}) {
+      edges {
+        node {
+          excerpt
+          fields {
+            lang
+            slug
+          }
+          frontmatter {
+            title
+            order
+            date
+            description
+            icon
           }
         }
       }
     }
-  `);
+  }
+`;
 
+export default function DrawerPanel({ intl, ...props }) {
+
+  const data = useStaticQuery(query);
   const pages = getAllResolvedVersionsForLanguage(data, intl);
-  const classes = useStyles();
+  const classes = mergeClasses(props, useStyles());
 
   return (
-    <div>
+    <div {...props}>
       <Toolbar className={classes.toolbar} disableGutters>
         <Link to='/'><img className={classes.logo} src={withPrefix('/icons/icon-48x48.png')} alt="logo" /></Link>
         <Typography variant="h6" noWrap className={classes.title}>

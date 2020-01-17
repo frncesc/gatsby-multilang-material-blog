@@ -227,6 +227,7 @@ const config = {
           fonts: {
             google: [
               { family: 'Roboto', variants: ['300', '400', '500'] },
+              // { family: 'Open Sans', variants: ['300', '400', '500'] },
             ],
           },
         },

@@ -5,6 +5,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { changeLocale } from 'gatsby-plugin-intl';
 import { siteMetadata } from '../../gatsby-config';
+import { mergeClasses } from '../utils/misc';
 
 const { supportedLanguages, langNames } = siteMetadata;
 
@@ -20,14 +21,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ({ intl: { locale, messages } }) {
+export default function ({ intl: { locale, messages }, ...props }) {
 
-  const classes = useStyles();
-
+  const classes = mergeClasses(props, useStyles());
   const handleChange = ev => changeLocale(ev.target.value);
 
   return (
     <FormControl
+      {...props}
       variant="outlined"
       title={messages['change-language']}
     >

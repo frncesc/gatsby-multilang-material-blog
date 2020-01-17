@@ -9,6 +9,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import TopBar from './TopBar';
 import DrawerPanel from './DrawerPanel';
 import Footer from './Footer';
+import { mergeClasses } from '../utils/misc';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,6 +19,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',
+    minHeight: '100vh',
   },
   content: {
     flexGrow: 1,
@@ -38,63 +40,62 @@ const useStyles = makeStyles(theme => ({
     }
   },
   footer: {
-    width: '100%',
+    marginTop: theme.spacing(8),
   },
   drawerPaper: {
     width: theme.drawerWidth,
   }
 }));
 
-export default function Layout({ intl, children }) {
+export default function Layout({ intl, children }, ...props) {
 
-  const classes = useStyles();
+  const classes = mergeClasses(props, useStyles());
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const handleDrawerToggle = () => { setDrawerOpen(!drawerOpen); }
   const theme = useTheme();
 
   return (
-    <div className={classes.root}>
+    <div {...props} className={classes.root}>
       <CssBaseline />
-      <TopBar className={classes.topBar} {...{ intl, drawerOpen, handleDrawerToggle }} />
-      <nav className={classes.drawer} aria-label="main sections">
-        <Hidden smUp implementation="css">
-          <SwipeableDrawer
-            variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={drawerOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-          >
-            <DrawerPanel {...{ intl }} />
-          </SwipeableDrawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            variant="permanent"
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            open
-          >
-            <DrawerPanel {...{ intl }} />
-          </Drawer>
-        </Hidden>
-      </nav>
+      <header>
+        <TopBar className={classes.topBar} {...{ intl, drawerOpen, handleDrawerToggle }} />
+        <nav className={classes.drawer} aria-label="main sections">
+          <Hidden smUp implementation="css">
+            <SwipeableDrawer
+              variant="temporary"
+              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+              open={drawerOpen}
+              onClose={handleDrawerToggle}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              ModalProps={{
+                keepMounted: true, // Better open performance on mobile.
+              }}
+            >
+              <DrawerPanel {...{ intl }} />
+            </SwipeableDrawer>
+          </Hidden>
+          <Hidden xsDown implementation="css">
+            <Drawer
+              variant="permanent"
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              open
+            >
+              <DrawerPanel {...{ intl }} />
+            </Drawer>
+          </Hidden>
+        </nav>
+      </header>
       <div className={classes.wrapper}>
-        <Container
-          className={classes.content}
-          maxWidth="md"
-        >
-          <header>
-          </header>
+        <Container className={classes.content} maxWidth="md">
           <main>{children}</main>
         </Container>
-        <Footer className={classes.footer} {...{ intl }} />
+        <footer>
+          <Footer className={classes.footer} {...{ intl }} />
+        </footer>
       </div>
     </div>
   );
