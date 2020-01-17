@@ -36,7 +36,6 @@ export default function Search({ location, data }) {
   const query = queryString.parse(location.search)['query'] || '';
 
   useEffect(() => {
-    console.log('in effect!')
     const { formatMessage, locale } = intl;
     const fuse = new Fuse(
       data.allMdx.nodes
@@ -62,11 +61,9 @@ export default function Search({ location, data }) {
       />
       <article>
         <header>
-          <h1>
-            {title}
-          </h1>
+          <Breadcrumbs {...{ slug: SLUG, intl }} />
+          <h1>{title}</h1>
         </header>
-        <Breadcrumbs {...{ slug: SLUG, intl }} />
         <hr />
         {
           (waiting && <CircularProgress />) ||

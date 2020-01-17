@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import PropTypes from 'prop-types';
-import { Link, navigate } from 'gatsby-plugin-intl';
+import { Link } from 'gatsby-plugin-intl';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
 import AppBar from '@material-ui/core/AppBar';
@@ -27,6 +27,9 @@ const useStyles = makeStyles(theme => ({
       width: `calc(100% - ${theme.drawerWidth})`,
       marginLeft: theme.drawerWidth,
     },
+  },
+  searchBar: {
+    backgroundColor: theme.palette.primary.dark,
   },
   menuButton: {
     [theme.breakpoints.up('sm')]: {
@@ -68,6 +71,8 @@ HideOnScroll.propTypes = {
 function TopBar({ intl, drawerOpen, handleDrawerToggle, ...props }) {
 
   const classes = mergeClasses(props, useStyles());
+  const [searchBarOpen, setSearchBarOpen] = React.useState(false);
+  const handleSearchBarToggle = () => { setSearchBarOpen(!searchBarOpen); }
 
   return (
     <HideOnScroll {...props}>
@@ -81,9 +86,7 @@ function TopBar({ intl, drawerOpen, handleDrawerToggle, ...props }) {
             aria-label="open drawer"
             onClick={handleDrawerToggle}
             edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: drawerOpen,
-            })}
+            className={clsx(classes.menuButton, { [classes.hide]: drawerOpen })}
           >
             <MenuIcon />
           </IconButton>
@@ -94,12 +97,17 @@ function TopBar({ intl, drawerOpen, handleDrawerToggle, ...props }) {
             <SearchBox {...{ intl }} />
           </Hidden>
           <Hidden implementation="css" mdUp>
-            <IconButton aria-label="search" color="inherit" onClick={() => navigate(`/search/`)}>
+            <IconButton aria-label="search" color="inherit" onClick={handleSearchBarToggle}>
               <SearchIcon />
             </IconButton>
           </Hidden>
           <SelectLanguage {...{ intl }} />
         </Toolbar>
+        {searchBarOpen &&
+          <Toolbar className={classes.searchBar}>
+            <SearchBox {...{ intl }} />
+          </Toolbar>
+        }
       </AppBar>
     </HideOnScroll>
   );
