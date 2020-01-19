@@ -1,7 +1,7 @@
 /* === CSS variables === */
 
 article img {
-  max-width: 100%;  
+  max-width: 100%;
 }
 
 article figcaption {
@@ -18,13 +18,22 @@ article blockquote {
   border-left: 1px solid;
 }
 
-@media (max-width: 960px){
+article .gatsby-highlight {
+  display: grid;
+}
+
+article .responsive-wrapper {
+  display: grid;
+  grid-template-columns: 200px;
+  overflow-x: auto;  
+}
+
+@media (max-width: 960px) {
   .gatsby-resp-image-figure {
     margin-left: 0;
     margin-right: 0;
   }
 }
-
 
 /* === Accidental styles used in some markdown files === */
 
@@ -41,4 +50,3 @@ article blockquote {
 .reddie {
   color: red;
 }
-
