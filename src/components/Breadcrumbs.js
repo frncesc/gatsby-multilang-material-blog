@@ -1,5 +1,7 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import { makeStyles } from '@material-ui/core/styles';
+import { mergeClasses } from '../utils/misc';
 import MUIBreadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'gatsby-plugin-intl';
@@ -7,8 +9,16 @@ import { siteMetadata } from '../../gatsby-config';
 
 const { specialPages } = siteMetadata;
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    marginTop: '0.5rem',
+    marginBottom: '1.5rem',
+  },
+}));
+
 export default function Breadcrumbs({ slug, intl, ...props }) {
 
+  const classes = mergeClasses(props, useStyles());
   const { messages, locale, defaultLocale } = intl;
   const siteTitle = messages['site-title'];
   const allSlugs = useStaticQuery(graphql`
@@ -41,7 +51,7 @@ export default function Breadcrumbs({ slug, intl, ...props }) {
   }
 
   return (
-    <MUIBreadcrumbs {...props} aria-label="breadcrumb">
+    <MUIBreadcrumbs className={classes.root} {...props} aria-label="breadcrumb">
       <Link to="/">{siteTitle}</Link>
       {getFragments(slug).map((_fragment, n, cmp) => {
         const subSlug = `/${cmp.slice(0, n + 1).join('/')}/`;
