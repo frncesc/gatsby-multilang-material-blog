@@ -15,41 +15,53 @@ const ANALYTICS_UA = process.env.ANALYTICS_UA || '';
 const OFFLINE_PWA = 'true' === process.env.OFFLINE_PWA;
 
 // Main metadata settings
+const siteUrl = BASE_URL;
+const themeColor = '#663399';
+const themeBackground = '#ffffff';
+
 const supportedLanguages = ['en', 'ca', 'es'];
 const defaultLanguage = 'en';
+
 const localizedTitles = {
   ca: 'Plantilla de lloc amb blog',
   es: 'Plantilla de sitio con blog',
   en: 'Template of site with blog',
 };
 const title = localizedTitles[defaultLanguage];
+
+const localizedAuthors = {
+  ca: 'En Gatsby',
+  es: 'Sr. Gatsby',
+  en: 'Mr. Gatsby',
+};
+const author = localizedAuthors[defaultLanguage];
+
 const localizedShortTitles = {
   ca: 'Gatsby Blog',
   es: 'Gatsby Blog',
   en: 'Gatsby Blog',
 };
 const shortTitle = localizedShortTitles[defaultLanguage];
+
 const localizedDescriptions = {
   ca: 'Plantilla de lloc web Gatsby multi-idioma fet amb Material Design',
   es: 'Plantilla de sitio web multi-idioma construido con Material Design',
   en: 'Gatsby multi-language blog template made with Material Design',
 };
 const description = localizedDescriptions[defaultLanguage];
+
 const langNames = {
   ca: 'Català',
   es: 'Español',
   en: 'English',
 }
-const siteUrl = BASE_URL;
-const themeColor = '#663399';
-const themeBackground = '#ffffff';
 
 // Gatsby config options
 const config = {
   pathPrefix: PATH_PREFIX,
   siteMetadata: {
     title,
-    author: 'Mr. Gatsby',
+    author,
     description,
     siteUrl,
     version,
@@ -59,6 +71,10 @@ const config = {
     defaultLanguage,
     supportedLanguages,
     langNames,
+    localizedTitles,
+    localizedShortTitles,
+    localizedDescriptions,
+    localizedAuthors,
     specialPages: ['/search/', '/blog/'],
   },
   plugins: [
@@ -131,6 +147,21 @@ const config = {
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
+          {
+            resolve: require.resolve('./plugins/gatsby-remark-multilang-twitter-cards'),
+            options: {
+              localizedTitles, // website titles
+              localizedAuthors, // website author names
+              defaultLanguage, // default language
+              separator: '|', // default
+              background: require.resolve('./content/assets/base.png'), // path to 1200x630px file or hex code, defaults to black (#000000)
+              fontColor: '#228B22', // defaults to white (#ffffff)
+              titleFontSize: 46, // defaults to 96
+              subtitleFontSize: 32, // defaults to 60
+              fontStyle: 'monospace', // default
+              //fontFile: require.resolve('./content/assets/ostrich-sans-bold.ttf') // will override fontStyle - path to custom TTF font
+            },
+          },
         ],
       },
     },

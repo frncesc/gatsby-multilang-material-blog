@@ -17,15 +17,64 @@ const query = graphql`
         title
         description
         author
+        siteUrl
       }
     }
   }
 `;
 
-function SEO({ description, lang, meta, title, alt = [], ...props }) {
-  
+function SEO({ description, lang, meta, title, slug, alt = [], ...props }) {
+
   const { site } = useStaticQuery(query);
   const metaDescription = description || site.siteMetadata.description;
+  const metaTags = [
+    {
+      name: 'description',
+      content: metaDescription,
+    },
+    {
+      property: 'og:title',
+      content: title,
+    },
+    {
+      property: 'og:description',
+      content: metaDescription,
+    },
+    {
+      property: 'og:type',
+      content: 'website',
+    },
+    {
+      name: 'twitter:card',
+      content: slug ? 'summary' : 'summary_large_image',
+    },
+    {
+      name: 'twitter:creator',
+      content: site.siteMetadata.author,
+    },
+    {
+      name: 'twitter:title',
+      content: title,
+    },
+    {
+      name: 'twitter:description',
+      content: metaDescription,
+    },
+  ].concat(meta);
+
+  if (slug) {
+    const cardUrl = `${site.siteMetadata.siteUrl}/${lang}${slug}twitter-card.jpg`;
+    metaTags.push(
+      {
+        name: 'twitter:image',
+        content: cardUrl,
+      },
+      {
+        property: 'og:image',
+        content: cardUrl,
+      },
+    );
+  }
 
   return (
     <Helmet
@@ -35,40 +84,7 @@ function SEO({ description, lang, meta, title, alt = [], ...props }) {
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: 'description',
-          content: metaDescription,
-        },
-        {
-          property: 'og:title',
-          content: title,
-        },
-        {
-          property: 'og:description',
-          content: metaDescription,
-        },
-        {
-          property: 'og:type',
-          content: 'website',
-        },
-        {
-          name: 'twitter:card',
-          content: 'summary',
-        },
-        {
-          name: 'twitter:creator',
-          content: site.siteMetadata.author,
-        },
-        {
-          name: 'twitter:title',
-          content: title,
-        },
-        {
-          name: 'twitter:description',
-          content: metaDescription,
-        },
-      ].concat(meta)}
+      meta={metaTags}
       link={alt.map(({ lang, href }) => ({
         rel: 'alternate',
         hreflang: lang,
@@ -82,11 +98,13 @@ SEO.defaultProps = {
   lang: 'en',
   meta: [],
   description: '',
+  slug: null,
 };
 
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
+  slug: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
 };

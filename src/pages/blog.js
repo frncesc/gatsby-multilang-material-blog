@@ -18,7 +18,7 @@ export default function Blog({ data, location }) {
   return (
     <Layout {...{ intl }}>
       <SEO
-        title={title}
+        {...{ title }}
         alt={getAllVariants(SLUG, location, intl.locale)}
       />
       <h2>{title}</h2>

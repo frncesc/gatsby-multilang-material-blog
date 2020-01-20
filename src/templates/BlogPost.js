@@ -39,7 +39,7 @@ export default function BlogPostTemplate({ data, pageContext, location }) {
   return (
     <Layout {...{ intl }}>
       <SEO
-        title={title}
+        {...{ title, slug }}
         description={description || excerpt}
         alt={getAllVersions(data, location, intl.locale)}
       />

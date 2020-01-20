@@ -36,7 +36,7 @@ export default function StaticPageTemplate({ data, location }) {
   return (
     <Layout {...{ intl }}>
       <SEO
-        title={title}
+        {...{ title, slug }}
         description={description || excerpt}
         alt={getAllVersions(data, location, intl.locale)}
       />

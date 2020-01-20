@@ -67,8 +67,10 @@
     "eslint-config-react-app": "^5.1.0",
     "fs-extra": "^8.1.0",
     "gh-pages": "^2.2.0",
+    "jimp": "^0.9.3",
     "node-fetch": "^2.6.0",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "wasm-twitter-card": "^0.3.0"
   },
   "scripts": {
     "build": "npm run clean && gatsby build --prefix-paths",
