@@ -154,12 +154,13 @@ const config = {
               localizedAuthors, // website author names
               defaultLanguage, // default language
               separator: '|', // default
-              background: require.resolve('./content/assets/base.png'), // path to 1200x630px file or hex code, defaults to black (#000000)
-              fontColor: '#228B22', // defaults to white (#ffffff)
-              titleFontSize: 46, // defaults to 96
-              subtitleFontSize: 32, // defaults to 60
+              // Free image from: https://pxhere.com/en/photo/1367344
+              background: require.resolve('./content/assets/base.jpg'), // path to 1200x630px file or hex code, defaults to black (#000000)
+              fontColor: '#900AA0', // defaults to white (#ffffff)
+              titleFontSize: 136, // defaults to 96
+              subtitleFontSize: 48, // defaults to 60
               fontStyle: 'monospace', // default
-              //fontFile: require.resolve('./content/assets/ostrich-sans-bold.ttf') // will override fontStyle - path to custom TTF font
+              fontFile: require.resolve('./content/assets/oswald-v29-latin-500.ttf') // will override fontStyle - path to custom TTF font
             },
           },
         ],

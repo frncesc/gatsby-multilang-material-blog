@@ -46,7 +46,7 @@ function SEO({ description, lang, meta, title, slug, alt = [], ...props }) {
     },
     {
       name: 'twitter:card',
-      content: slug ? 'summary' : 'summary_large_image',
+      content: slug ? 'summary_large_image' : 'summary',
     },
     {
       name: 'twitter:creator',
