@@ -11,8 +11,7 @@ const { specialPages } = siteMetadata;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: '0.5rem',
-    marginBottom: '1.5rem',
+    fontFamily: 'monospace',
   },
 }));
 
@@ -51,7 +50,7 @@ export default function Breadcrumbs({ slug, intl, ...props }) {
   }
 
   return (
-    <MUIBreadcrumbs className={classes.root} {...props} aria-label="breadcrumb">
+    <MUIBreadcrumbs {...props} className={classes.root} aria-label="breadcrumb">
       <Link to="/">{siteTitle}</Link>
       {getFragments(slug).map((_fragment, n, cmp) => {
         const subSlug = `/${cmp.slice(0, n + 1).join('/')}/`;
@@ -62,7 +61,7 @@ export default function Breadcrumbs({ slug, intl, ...props }) {
         }
         else
           // Current page
-          return <Typography color="textPrimary" key={n}>{title}</Typography>
+          return <span key={n}>{title}</span>
       })}
     </MUIBreadcrumbs>
   );

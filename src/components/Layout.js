@@ -9,7 +9,6 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import TopBar from './TopBar';
 import DrawerPanel from './DrawerPanel';
 import Footer from './Footer';
-import { mergeClasses } from '../utils/misc';
 
 const useStyles = makeStyles(theme => ({
   root: {

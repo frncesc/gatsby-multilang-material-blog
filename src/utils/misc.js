@@ -1,4 +1,5 @@
 
+
 /**
  * Combines a potential `className` field passed in `props` with the element
  * class name specified in `classes.root`
@@ -8,6 +9,6 @@
  */
 export const mergeClasses = (props, classes, root = 'root') => {
   if (props && props.className && classes && classes[root])
-    classes[root] = `${props.className} ${classes[root]}`;
+    classes[root] = `${classes[root]} ${props.className}`;
   return classes;
 }
