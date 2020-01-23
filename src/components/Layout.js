@@ -93,9 +93,7 @@ export default function Layout({ intl, children }) {
         <Container className={classes.content} maxWidth="md">
           <main>{children}</main>
         </Container>
-        <footer>
-          <Footer className={classes.footer} {...{ intl }} />
-        </footer>
+        <Footer className={classes.footer} {...{ intl }} />
       </div>
     </div>
   );

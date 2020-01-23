@@ -78,37 +78,38 @@ function Footer({ intl: { messages }, ...props }) {
   const classes = mergeClasses(props, useStyles());
 
   return (
-    <Container {...props} component="footer" className={classes.root}>
-      <Grid container spacing={4} justify="space-evenly">
-        {footers.map((footer, n) => (
-          <Grid item xs={6} sm={3} key={n}>
-            <Typography variant="h6" color="textPrimary" gutterBottom>
-              {footer.title}
-            </Typography>
-            <ul>
-              {footer.description.map(item => (
-                <li key={item}>
-                  <Link href="#" variant="subtitle1" color="textSecondary">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </Grid>
-        ))}
-      </Grid>
-      <Box mt={5} display="flex" flexDirection="row" justifyContent="space-around">
-        <Image
-          fixed={data.logo.childImageSharp.fixed}
-          alt="Dmitri Mendeleev"
-          title="Dmitri Mendeleev"
-        />
-        <Typography variant="body2" color="textSecondary" align="center">
-          {messages['site-description']}<br />{`v. ${data.site.siteMetadata.version}`}
-        </Typography>
-        <img src={withPrefix('/img/lavoisier.jpg')} alt="Antoine de Lavoisier" title="Antoine de Lavoisier" />
-      </Box>
-
+    <Container {...props} component="footer" className={classes.root} maxWidth={false}>
+      <Container maxWidth="lg">
+        <Grid container spacing={4} justify="space-evenly">
+          {footers.map((footer, n) => (
+            <Grid item xs={6} md={3} key={n}>
+              <Typography variant="h6" color="textPrimary" gutterBottom>
+                {footer.title}
+              </Typography>
+              <ul>
+                {footer.description.map(item => (
+                  <li key={item}>
+                    <Link href="#" variant="subtitle1" color="textSecondary">
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Grid>
+          ))}
+        </Grid>
+        <Box mt={5} display="flex" flexDirection="row" justifyContent="space-around">
+          <Image
+            fixed={data.logo.childImageSharp.fixed}
+            alt="Dmitri Mendeleev"
+            title="Dmitri Mendeleev"
+          />
+          <Typography variant="body2" color="textSecondary" align="center">
+            {messages['site-description']}<br />{`v. ${data.site.siteMetadata.version}`}
+          </Typography>
+          <img src={withPrefix('/img/lavoisier.jpg')} alt="Antoine de Lavoisier" title="Antoine de Lavoisier" />
+        </Box>
+      </Container>
     </Container>
   );
 }
