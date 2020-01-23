@@ -87,7 +87,7 @@ module.exports = (
   }
 
   const fontToUint8Array = fontFile
-    ? fs.readFileSync(require.resolve(fontFile), null)
+    ? fs.readFileSync(fontFile, null)
     : new Uint8Array();
 
   if (fontFile) {
