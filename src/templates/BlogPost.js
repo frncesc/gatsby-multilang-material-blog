@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Link, useIntl } from "gatsby-plugin-intl"
-import Breadcrumbs from '../components/Breadcrumbs';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { dateFormat } from '../utils/defaults';
@@ -22,9 +21,6 @@ const useStyles = makeStyles(theme => ({
       fontSize: '0.9em',
     }
   },
-  breadcrumbs: {
-    marginBottom: theme.spacing(4),
-  }
 }));
 
 export default function BlogPostTemplate({ data, pageContext, location }) {
@@ -37,7 +33,7 @@ export default function BlogPostTemplate({ data, pageContext, location }) {
   const { previous, next } = pageContext;
 
   return (
-    <Layout {...{ intl }}>
+    <Layout {...{ intl, slug }}>
       <SEO
         {...{ title, slug }}
         description={description || excerpt}
@@ -45,7 +41,6 @@ export default function BlogPostTemplate({ data, pageContext, location }) {
       />
       <article className={classes.article}>
         <header>
-          <Breadcrumbs className={classes.breadcrumbs} {...{ slug, intl }} />
           <h1>{title}</h1>
           <p>{formatDate(date, dateFormat)}</p>
         </header>

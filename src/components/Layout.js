@@ -8,6 +8,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 // import Fade from '@material-ui/core/Fade';
 import TopBar from './TopBar';
 import DrawerPanel from './DrawerPanel';
+import Breadcrumbs from './Breadcrumbs';
 import Footer from './Footer';
 
 const useStyles = makeStyles(theme => ({
@@ -38,6 +39,9 @@ const useStyles = makeStyles(theme => ({
       marginLeft: theme.drawerWidth,
     }
   },
+  breadcrumbs: {
+    marginBottom: theme.spacing(4),
+  },
   footer: {
     marginTop: theme.spacing(8),
   },
@@ -46,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Layout({ intl, children }) {
+export default function Layout({ intl, slug, children }) {
 
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -91,6 +95,7 @@ export default function Layout({ intl, children }) {
       </header>
       <div className={classes.wrapper}>
         <Container className={classes.content} maxWidth="md">
+          {slug && <Breadcrumbs className={classes.breadcrumbs} {...{ slug, intl }} />}
           <main>{children}</main>
         </Container>
         <Footer className={classes.footer} {...{ intl }} />

@@ -4,7 +4,6 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { useIntl } from "gatsby-plugin-intl"
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
-import Breadcrumbs from '../components/Breadcrumbs';
 import { getResolvedVersionForLanguage, getAllVersions } from '../utils/node';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -21,9 +20,6 @@ const useStyles = makeStyles(theme => ({
       fontSize: '0.9em',
     }
   },
-  breadcrumbs: {
-    marginBottom: theme.spacing(4),
-  }
 }));
 
 export default function StaticPageTemplate({ data, location }) {
@@ -34,13 +30,12 @@ export default function StaticPageTemplate({ data, location }) {
   const { title, description } = frontmatter;
 
   return (
-    <Layout {...{ intl }}>
+    <Layout {...{ intl, slug }}>
       <SEO
         {...{ title, slug }}
         description={description || excerpt}
         alt={getAllVersions(data, location, intl.locale)}
       />
-      <Breadcrumbs className={classes.breadcrumbs} {...{ slug, intl }} />
       <article className={classes.article} >
         <header>
           <h1>{title}</h1>

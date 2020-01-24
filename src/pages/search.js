@@ -3,7 +3,6 @@ import { graphql } from 'gatsby';
 import Fuse from 'fuse.js';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
-import Breadcrumbs from '../components/Breadcrumbs';
 import { useIntl, navigate } from 'gatsby-plugin-intl';
 import { getAllVariants } from '../utils/node';
 import queryString from 'query-string';
@@ -11,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-//import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -79,14 +77,13 @@ export default function Search({ location, data }) {
   useEffect(() => setQuery(queryString.parse(location.search)['query'] || ''), [location.search]);
 
   return (
-    <Layout {...{ intl }}>
+    <Layout {...{ intl, slug: SLUG }}>
       <SEO
         title={title}
         alt={getAllVariants(SLUG, location, intl.locale)}
       />
       <article>
         <header>
-          <Breadcrumbs {...{ slug: SLUG, intl }} />
           <Typography variant="h2" gutterBottom>{title}</Typography>
         </header>
         <hr />

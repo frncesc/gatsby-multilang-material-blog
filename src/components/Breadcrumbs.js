@@ -3,7 +3,6 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { makeStyles } from '@material-ui/core/styles';
 import { mergeClasses } from '../utils/misc';
 import MUIBreadcrumbs from '@material-ui/core/Breadcrumbs';
-import Typography from '@material-ui/core/Typography';
 import { Link } from 'gatsby-plugin-intl';
 import { siteMetadata } from '../../gatsby-config';
 
