@@ -5,7 +5,6 @@ import Hidden from '@material-ui/core/Hidden';
 import Container from '@material-ui/core/Container';
 import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-// import Fade from '@material-ui/core/Fade';
 import TopBar from './TopBar';
 import DrawerPanel from './DrawerPanel';
 import Breadcrumbs from './Breadcrumbs';

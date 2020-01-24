@@ -1,5 +1,3 @@
-/* === CSS variables === */
-
 article img {
   max-width: 100%;
 }
@@ -25,7 +23,7 @@ article .gatsby-highlight {
 article .responsive-wrapper {
   display: grid;
   grid-template-columns: 200px;
-  overflow-x: auto;  
+  overflow-x: auto;
 }
 
 @media (max-width: 960px) {
@@ -33,6 +31,12 @@ article .responsive-wrapper {
     margin-left: 0;
     margin-right: 0;
   }
+}
+
+.text-with-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* === Accidental styles used in some markdown files === */

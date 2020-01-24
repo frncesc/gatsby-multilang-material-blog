@@ -1,12 +1,15 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { Link, useIntl } from "gatsby-plugin-intl"
+import { navigate, useIntl } from "gatsby-plugin-intl"
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { dateFormat } from '../utils/defaults';
 import { getResolvedVersionForLanguage, getAllVersions } from '../utils/node';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import ArrowBackIcon from '@material-ui/icons/ChevronLeft';
+import ArrowForwardIcon from '@material-ui/icons/ChevronRight';
 
 const useStyles = makeStyles(theme => ({
   article: {
@@ -20,6 +23,14 @@ const useStyles = makeStyles(theme => ({
     '& code[class*="language-"], pre[class*="language-"]': {
       fontSize: '0.9em',
     }
+  },
+  blogNav: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gridGap: theme.spacing(2),
+    marginTop: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    borderTop: `1px solid ${theme.palette.common.black}`,
   },
 }));
 
@@ -46,26 +57,19 @@ export default function BlogPostTemplate({ data, pageContext, location }) {
         </header>
         <MDXRenderer {...{ frontmatter, intl }}>{body}</MDXRenderer>
       </article>
-
-      <hr />
-
-      <nav>
-        <ul>
-          {previous && (
-            <li>
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            </li>
-          )}
-          {next && (
-            <li>
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-                </Link>
-            </li>
-          )}
-        </ul>
+      <nav className={classes.blogNav}>
+        {previous ? (
+          <Button size="small" variant="outlined" onClick={() => navigate(previous.fields.slug)}>
+            <ArrowBackIcon />
+            <div className="text-with-ellipsis">{previous.frontmatter.title}</div>
+          </Button>
+        ) : <div />}
+        {next ? (
+          <Button size="small" variant="outlined" onClick={() => navigate(next.fields.slug)}>
+            <div className="text-with-ellipsis">{next.frontmatter.title}</div>
+            <ArrowForwardIcon />
+          </Button>
+        ) : <div />}
       </nav>
     </Layout>
   );
