@@ -14,5 +14,5 @@
   "search-results": "Resultados de la búsqueda \"{query}\"",
   "no-results": "No se encontró ningún resultado",
   "404-not-found": "Página no encontrada",
-  "not-found": "La página solicitada no se ha podido encontrar. Compruebe que la dirección sea correcta."
+  "not-found": "La página \"{path}\" no existe. Compruebe que la dirección sea correcta o utilice nuestro buscador."
 }

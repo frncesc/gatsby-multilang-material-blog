@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { mergeClasses } from '../utils/misc';
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
+import footerData from "../../content/footer.json";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,6 +21,10 @@ const useStyles = makeStyles(theme => ({
       paddingBottom: theme.spacing(6),
     },
   },
+  blockList: {
+    listStyleType: 'none',
+    paddingInlineStart: 'inherit',
+  }
 }));
 
 const query = graphql`
@@ -36,62 +41,36 @@ const query = graphql`
         author
         description
         version
+        defaultLanguage
       }
     }
   }
 `;
 
-const footers = [
-  {
-    title: `Company`,
-    description: [`Team`, `History`, `Contact us`, `Locations`],
-  },
-  {
-    title: `Features`,
-    description: [
-      `Cool stuff`,
-      `Random feature`,
-      `Team feature`,
-      `Developer stuff`,
-      `Another one`,
-    ],
-  },
-  {
-    title: `Resources`,
-    description: [
-      `Resource`,
-      `Resource name`,
-      `Another resource`,
-      `Final resource`,
-    ],
-  },
-  {
-    title: `Legal`,
-    description: [`Privacy policy`, `Terms of use`],
-  },
-];
 
-
-function Footer({ intl: { messages }, ...props }) {
+function Footer({ intl: { locale, messages }, ...props }) {
 
   const data = useStaticQuery(query);
+  const blocks = footerData[locale] || footerData[data.site.siteMetadata.defaultLanguage];
   const classes = mergeClasses(props, useStyles());
 
   return (
     <Container {...props} component="footer" className={classes.root} maxWidth={false}>
       <Container maxWidth="lg">
         <Grid container spacing={4} justify="space-evenly">
-          {footers.map((footer, n) => (
+          {blocks.map((block, n) => (
             <Grid item xs={6} md={3} key={n}>
               <Typography variant="h6" color="textPrimary" gutterBottom>
-                {footer.title}
+                {block.title}
               </Typography>
-              <ul>
-                {footer.description.map(item => (
-                  <li key={item}>
-                    <Link href="#" variant="subtitle1" color="textSecondary">
-                      {item}
-                    </Link>
+              <ul className={classes.blockList}>
+                {block.items.map(({ name, link }, k) => (
+                  <li key={k}>
+                    {
+                      /^https?:\/\//.test(link) ?
+                        <a href={link} target="_blank" rel="noopener noreferrer">{name}</a> :
+                        <Link to={link}>{name}</Link>
+                    }
                   </li>
                 ))}
               </ul>

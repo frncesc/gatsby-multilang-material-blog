@@ -1,0 +1,236 @@
+{
+  "en": [
+    {
+      "title": "Company",
+      "items": [
+        {
+          "name": "Team",
+          "link": "/team/"
+        },
+        {
+          "name": "History",
+          "link": "/history/"
+        },
+        {
+          "name": "Contact us",
+          "link": "/contact/"
+        },
+        {
+          "name": "Locations",
+          "link": "https://nationalgeographic.com"
+        }
+      ]
+    },
+    {
+      "title": "Features",
+      "items": [
+        {
+          "name": "Cool stuff",
+          "link": "/cool/"
+        },
+        {
+          "name": "Random feature",
+          "link": "/random/"
+        },
+        {
+          "name": "Team feature",
+          "link": "/teamfeat/"
+        },
+        {
+          "name": "Developer stuff",
+          "link": "/developer/"
+        },
+        {
+          "name": "Another one",
+          "link": "/another/"
+        }
+      ]
+    },
+    {
+      "title": "Resources",
+      "items": [
+        {
+          "name": "Blog",
+          "link": "/blog/"
+        },
+        {
+          "name": "One resource",
+          "link": "/random/"
+        },
+        {
+          "name": "Another resource",
+          "link": "/random/"
+        }
+      ]
+    },
+    {
+      "title": "Legal",
+      "items": [
+        {
+          "name": "Privacy policy",
+          "link": "/legal/privacy/"
+        },
+        {
+          "name": "Terms of use",
+          "link": "/legal/terms/"
+        }
+      ]
+    }
+  ],
+  "es": [
+    {
+      "title": "Compañía",
+      "items": [
+        {
+          "name": "Equipo",
+          "link": "/team/"
+        },
+        {
+          "name": "Historia",
+          "link": "/history/"
+        },
+        {
+          "name": "Contacto",
+          "link": "/contact/"
+        },
+        {
+          "name": "Ubicaciones",
+          "link": "https://nationalgeographic.com"
+        }
+      ]
+    },
+    {
+      "title": "Funcionalidades",
+      "items": [
+        {
+          "name": "Cosas interesantes",
+          "link": "/cool/"
+        },
+        {
+          "name": "Funcionalidad al azar",
+          "link": "/random/"
+        },
+        {
+          "name": "Funcionalidad de equipo",
+          "link": "/teamfeat/"
+        },
+        {
+          "name": "Para desarrolladores",
+          "link": "/developer/"
+        },
+        {
+          "name": "Otra cosa",
+          "link": "/another/"
+        }
+      ]
+    },
+    {
+      "title": "Recursos",
+      "items": [
+        {
+          "name": "Blog",
+          "link": "/blog/"
+        },
+        {
+          "name": "Un recurso",
+          "link": "/random/"
+        },
+        {
+          "name": "Otro recurso",
+          "link": "/random/"
+        }
+      ]
+    },
+    {
+      "title": "Legal",
+      "items": [
+        {
+          "name": "Política de privacidad",
+          "link": "/legal/privacy/"
+        },
+        {
+          "name": "Condiciones de uso",
+          "link": "/legal/terms/"
+        }
+      ]
+    }
+  ],
+  "ca": [
+    {
+      "title": "Companyia",
+      "items": [
+        {
+          "name": "Equip",
+          "link": "/team/"
+        },
+        {
+          "name": "Història",
+          "link": "/history/"
+        },
+        {
+          "name": "Contacte",
+          "link": "/contact/"
+        },
+        {
+          "name": "Ubicacions",
+          "link": "https://nationalgeographic.com"
+        }
+      ]
+    },
+    {
+      "title": "Productes",
+      "items": [
+        {
+          "name": "Coses interessants",
+          "link": "/cool/"
+        },
+        {
+          "name": "Producte a l'atzar",
+          "link": "/random/"
+        },
+        {
+          "name": "Per a equips",
+          "link": "/teamfeat/"
+        },
+        {
+          "name": "Per a desenvolupadors",
+          "link": "/developer/"
+        },
+        {
+          "name": "Altres coses",
+          "link": "/another/"
+        }
+      ]
+    },
+    {
+      "title": "Recursos",
+      "items": [
+        {
+          "name": "Blog",
+          "link": "/blog/"
+        },
+        {
+          "name": "Un recurs",
+          "link": "/random/"
+        },
+        {
+          "name": "Un altre recurs",
+          "link": "/random/"
+        }
+      ]
+    },
+    {
+      "title": "Legal",
+      "items": [
+        {
+          "name": "Política de privacitat",
+          "link": "/legal/privacy/"
+        },
+        {
+          "name": "Condicions d'ús",
+          "link": "/legal/terms/"
+        }
+      ]
+    }
+  ]
+}

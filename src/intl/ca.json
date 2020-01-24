@@ -14,5 +14,5 @@
   "search-results": "Resultats de la cerca \"{query}\"",
   "no-results": "No s'ha trobat cap resultat",
   "404-not-found": "Pàgina no trobada",
-  "not-found": "La pàgina que demaneu nos'ha pogut trobar. Comproveu que l'adreça sigui correcta."
+  "not-found": "La pàgina \"{path}\" no existeix. Comproveu que l'adreça sigui correcta o utilitzeu el nostre cercador per trobar allò que busqueu."
 }
