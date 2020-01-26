@@ -36,12 +36,13 @@ const FUSE_OPTIONS = {
 export default function Search({ location, data }) {
 
   const intl = useIntl();
-  const { messages } = intl;
+  const { locale: lang, messages, formatMessage } = intl;
+  const alt = getAllVariants(SLUG, location, lang);
+
   const [results, setResults] = useState([]);
   const [waiting, setWaiting] = useState(true);
   const [title, setTitle] = useState('');
   const [query, setQuery] = useState(queryString.parse(location.search)['query'] || '');
-  const { formatMessage, locale } = intl;
 
   const fuseEngine = {};
 
@@ -65,9 +66,9 @@ export default function Search({ location, data }) {
   function performQuery() {
     setTitle(formatMessage({ id: 'search-results' }, { query }));
     setWaiting(true);
-    // Delay the search operation, so allowing the first page to be fully rendered
+    // Delay the search operation, so allowing page to be fully rendered
     window.setTimeout(() => {
-      const fuse = getFuseEngine(locale);
+      const fuse = getFuseEngine(lang);
       setResults(fuse.search(query));
       setWaiting(false);
     }, 0);
@@ -78,10 +79,7 @@ export default function Search({ location, data }) {
 
   return (
     <Layout {...{ intl, slug: SLUG }}>
-      <SEO
-        title={title}
-        alt={getAllVariants(SLUG, location, intl.locale)}
-      />
+      <SEO {...{ lang, title, alt }} />
       <article>
         <header>
           <Typography variant="h2" gutterBottom>{title}</Typography>

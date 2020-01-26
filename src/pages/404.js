@@ -13,12 +13,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function NotFoundPage() {
   const intl = useIntl();
-  const { formatMessage } = intl;
+  const { locale: lang, formatMessage } = intl;
   const classes = useStyles();
 
   return (
     <Layout {...{ intl }}>
-      <SEO title="404: Not Found" />
+      <SEO title="404: Not Found" {...{ lang }} />
       <article className={classes.root}>
         <h1>{intl.messages['404-not-found']}</h1>
         <p>{formatMessage({ id: 'not-found' }, { path: window.location.pathname })}</p>

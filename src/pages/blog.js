@@ -11,13 +11,14 @@ const SLUG = '/blog/';
 export default function Blog({ data, location }) {
 
   const intl = useIntl();
-  const title = intl.messages['blog-index-title'];
+  const { locale: lang, messages } = intl;
+  const title = messages['blog-index-title'];
   const posts = getAllResolvedVersionsForLanguage(data, intl);
 
   return (
     <Layout {...{ intl, slug: SLUG }}>
       <SEO
-        {...{ title }}
+        {...{ lang, title }}
         alt={getAllVariants(SLUG, location, intl.locale)}
       />
       <h2>{title}</h2>

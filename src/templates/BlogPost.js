@@ -38,18 +38,15 @@ export default function BlogPostTemplate({ data, pageContext, location }) {
 
   const classes = useStyles();
   const intl = useIntl();
-  const { formatDate } = intl;
+  const { locale: lang, formatDate } = intl;
   const { frontmatter, excerpt, body, fields: { slug } } = getResolvedVersionForLanguage(data, intl);
-  const { title, description, date } = frontmatter;
+  const { title, description = excerpt, date } = frontmatter;
   const { previous, next } = pageContext;
+  const alt = getAllVersions(data, location, lang);
 
   return (
     <Layout {...{ intl, slug }}>
-      <SEO
-        {...{ title, slug }}
-        description={description || excerpt}
-        alt={getAllVersions(data, location, intl.locale)}
-      />
+      <SEO {...{ lang, title, slug, alt, description }} />
       <article className={classes.article}>
         <header>
           <h1>{title}</h1>

@@ -11,16 +11,15 @@ const SLUG = '/';
 export default function Index({ data, location }) {
 
   const intl = useIntl();
-  const { messages } = intl;
+  const { locale: lang, messages } = intl;
+  const title = messages['site-title'];
+  const description = messages['site-description'];
+  const alt = getAllVariants(SLUG, location, lang);
   const pages = getAllResolvedVersionsForLanguage(data, intl);
 
   return (
     <Layout {...{ intl }}>
-      <SEO
-        title={messages['site-title']}
-        description={messages['site-description']}
-        alt={getAllVariants(SLUG, location, intl.locale)}
-      />
+      <SEO {...{ lang, title, description, alt }} />
       <h2>{messages['pages']}</h2>
       {pages.map(node => (
         <FrontItem node={node} key={node.fields.slug} />

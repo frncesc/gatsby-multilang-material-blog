@@ -79,9 +79,7 @@ function SEO({ description, lang, meta, title, slug, alt = [], ...props }) {
   return (
     <Helmet
       {...props}
-      htmlAttributes={{
-        lang,
-      }}
+      htmlAttributes={{ lang }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={metaTags}

@@ -26,16 +26,14 @@ export default function StaticPageTemplate({ data, location }) {
 
   const classes = useStyles();
   const intl = useIntl();
+  const { locale: lang } = intl;
+  const alt = getAllVersions(data, location, lang);
   const { frontmatter, fields: { slug }, excerpt, body } = getResolvedVersionForLanguage(data, intl);
-  const { title, description } = frontmatter;
+  const { title, description = excerpt } = frontmatter;
 
   return (
     <Layout {...{ intl, slug }}>
-      <SEO
-        {...{ title, slug }}
-        description={description || excerpt}
-        alt={getAllVersions(data, location, intl.locale)}
-      />
+      <SEO {...{ lang, title, slug, description, alt }} />
       <article className={classes.article} >
         <header>
           <h1>{title}</h1>
