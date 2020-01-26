@@ -148,6 +148,7 @@ const config = {
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
+          /*
           {
             resolve: require.resolve('./plugins/gatsby-remark-multilang-twitter-cards'),
             options: {
@@ -164,6 +165,7 @@ const config = {
               fontFile: require.resolve('./content/assets/oswald-v29-latin-500.ttf') // will override fontStyle - path to custom TTF font
             },
           },
+          */
         ],
       },
     },
@@ -191,6 +193,26 @@ const config = {
         })),
       },
     },
+
+    {
+      resolve: 'gatsby-plugin-multilang-twitter-cards',
+      options: {
+        localizedTitles, // website titles
+        localizedAuthors, // website author names
+        defaultLanguage, // default language
+        separator: '|', // default
+        // Free image from: https://pxhere.com/en/photo/1367344
+        background: require.resolve('./content/assets/base.jpg'), // path to 1200x630px file or hex code, defaults to black (#000000)
+        fontColor: '#900AA0', // defaults to white (#ffffff)
+        titleFontSize: 136, // defaults to 96
+        subtitleFontSize: 48, // defaults to 60
+        fontStyle: 'monospace', // default
+        fontFile: require.resolve('./content/assets/oswald-v29-latin-500.ttf') // will override fontStyle - path to custom TTF font
+      },
+    },
+
+
+
     // Generate feeds
     {
       resolve: 'gatsby-plugin-feed-mdx',

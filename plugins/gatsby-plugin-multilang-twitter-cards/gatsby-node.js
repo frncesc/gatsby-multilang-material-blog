@@ -8,6 +8,7 @@ const fs = require("fs");
 const path = require("path");
 const Jimp = require("jimp");
 const twitterCard = require("wasm-twitter-card");
+const { graphql } = require("gatsby/graphql");
 
 const WIDTH = 1200;
 const HEIGHT = 630;
@@ -42,9 +43,10 @@ function hexToRgb(hex) {
   return [r, g, b];
 }
 
-module.exports = (
-  { markdownNode },
-  {
+
+async function createCard(node, pluginOptions) {
+
+  const {
     localizedTitles,
     localizedAuthors,
     defaultLanguage = 'en',
@@ -55,27 +57,28 @@ module.exports = (
     fontStyle = 'monospace',
     separator = '|',
     fontFile,
-  }
-) => {
-  const post = markdownNode.frontmatter;
-  if (!markdownNode.fields)
+  } = pluginOptions;
+  const post = node.frontmatter;
+  if (!node.fields || node.fields.slug) {
+    console.log('Markdown node without slug field!');
     return;
+  }
 
-  const lang = markdownNode.fields.lang || defaultLanguage;
+  const lang = node.fields.lang || defaultLanguage;
 
   const output = path.join(
     "./public",
     lang,
-    markdownNode.fields.slug,
+    node.fields.slug,
     "twitter-card.jpg"
   );
 
   // Avoid repetitive calls
-  if (fs.existsSync(output))
+  if (fs.existsSync(output)) {
+    console.log(`File already exists: ${output}`)
     return;
+  }
 
-  validateFontSize(titleFontSize, "titleFontSize");
-  validateFontSize(subtitleFontSize, "subtitleFontSize");
 
   const title = localizedTitles[lang] || localizedTitles[defaultLanguage] || '';
   const author = localizedAuthors[lang] || localizedAuthors[defaultLanguage] || '';
@@ -90,17 +93,13 @@ module.exports = (
     ? fs.readFileSync(fontFile, null)
     : new Uint8Array();
 
-  if (fontFile) {
-    fontStyle = "custom";
-  }
-
   const buffer = twitterCard.generate_text(
     post.title,
     formattedDetails,
     titleFontSize,
     subtitleFontSize,
     hexToRgb(fontColor),
-    fontStyle,
+    fontFile ? 'custom' : fontStyle,
     fontToUint8Array
   );
 
@@ -113,4 +112,45 @@ module.exports = (
         .catch(err => err)
     )
     .catch(console.error);
-};
+}
+
+async function onPostBootstrap(_, pluginOptions) {
+
+  console.log('XXXXXXXXXX')
+
+  const {
+    titleFontSize = 96,
+    subtitleFontSize = 60,
+  } = pluginOptions;
+
+  validateFontSize(titleFontSize, "titleFontSize");
+  validateFontSize(subtitleFontSize, "subtitleFontSize");
+
+  const result = await graphql`
+    query {
+      allMdx {
+        edges {
+          node {
+            fields {
+              lang
+              slug
+            }
+            frontmatter {
+              title
+            }
+          }
+        }
+      }
+    }`;
+
+  if (result.errors) {
+    throw result.errors;
+  }
+
+  return Promise.all(result.data.allMdx.edges.map(({ node }) => createCard(node, pluginOptions)))
+    .then(cards => console.log(`${cards.length} twitter cards created`));
+
+}
+
+//exports.onCreateNode = onCreateNode;
+exports.onPostBootstrap = onPostBootstrap;

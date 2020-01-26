@@ -139,10 +139,10 @@ exports.onCreateWebpackConfig = ({ actions: { setWebpackConfig } }) => {
       net: 'empty',
     }
   })
-}
+};
 
 // Move build files into the prefixed path, if defined
-exports.onPostBuild = async function onPostBuild() {
+function moveBuildToPathPrefix() {
   if (PATH_PREFIX && PATH_PREFIX.startsWith('/')) {
     const buildDirName = 'public';
     const buildDir = path.resolve(__dirname, buildDirName);
@@ -158,3 +158,7 @@ exports.onPostBuild = async function onPostBuild() {
     console.log(`${ch.bold.green('info:')} Build files moved to "${destDir}"`);
   }
 }
+
+exports.onPostBuild = async function onPostBuild() {
+  moveBuildToPathPrefix();
+};

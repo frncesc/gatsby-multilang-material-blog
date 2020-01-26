@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../components/Layout';
@@ -17,10 +17,10 @@ export default function NotFoundPage() {
   const classes = useStyles();
   const [path, setPath] = useState('');
 
-  useEffect(()=>{
-    if(window)
+  useEffect(() => {
+    if (window)
       setPath(window.location.pathname);
-  });
+  }, []);
 
   return (
     <Layout {...{ intl }}>
