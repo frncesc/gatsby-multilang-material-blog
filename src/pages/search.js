@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import Fuse from 'fuse.js';
+import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { useIntl, navigate } from 'gatsby-plugin-intl';
@@ -13,9 +14,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemText from '@material-ui/core/ListItemText';
+import TablePagination from '@material-ui/core/TablePagination';
 import { FontAwIcon } from '../utils/FontAwIcon';
 
 const SLUG = '/search/';
+const DEFAULT_ITEMS_PER_PAGE = 10;
 
 // Fuse.js options
 // See: https://fusejs.io/
@@ -33,8 +36,19 @@ const FUSE_OPTIONS = {
   minMatchCharLength: 2,
 };
 
+const useStyles = makeStyles(theme => ({
+  spacer: {
+    display: 'none',
+  },
+  toolbar: {
+    flexFlow: 'wrap',
+  },
+}));
+
+
 export default function Search({ location, data }) {
 
+  const classes = useStyles();
   const intl = useIntl();
   const { locale: lang, messages, formatMessage } = intl;
   const alt = getAllVariants(SLUG, location, lang);
@@ -43,6 +57,8 @@ export default function Search({ location, data }) {
   const [waiting, setWaiting] = useState(true);
   const [title, setTitle] = useState('');
   const [query, setQuery] = useState(queryString.parse(location.search)['query'] || '');
+  const [page, setPage] = React.useState(0);
+  const [itemsPerPage, setItemsPerPage] = React.useState(DEFAULT_ITEMS_PER_PAGE);
 
   const fuseEngine = {};
 
@@ -88,18 +104,32 @@ export default function Search({ location, data }) {
         {
           (waiting && <CircularProgress />) ||
           (results.length === 0 && <h2>{messages['no-results']}</h2>) ||
-          <List>
-            {results.map(({ slug, title, description, icon }) => (
-              <ListItem button key={slug} onClick={() => navigate(slug)}>
-                <ListItemAvatar>
-                  <Avatar>
-                    <FontAwIcon icon={icon} size="lg" />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={title} secondary={description} />
-              </ListItem>
-            ))}
-          </List>
+          <div>
+            <List>
+              {results.slice(page * itemsPerPage, (page + 1) * itemsPerPage).map(({ slug, title, description, icon }, n) => (
+                <ListItem button key={n} onClick={() => navigate(slug)}>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <FontAwIcon icon={icon} size="lg" />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={title} secondary={description} />
+                </ListItem>
+              ))}
+            </List>
+            <hr />
+            <TablePagination
+              classes={{ spacer: classes.spacer, toolbar: classes.toolbar }}
+              component="nav"
+              page={page}
+              rowsPerPage={itemsPerPage}
+              onChangeRowsPerPage={ev => setItemsPerPage(ev.target.value)}
+              count={results.length}
+              onChangePage={(_ev, p) => setPage(p)}
+              labelDisplayedRows={({ from, to, count }) => formatMessage({ id: 'search-results-count' }, { from, to, count })}
+              labelRowsPerPage={messages['search-results-per-page']}
+            />
+          </div>
         }
       </article>
     </Layout>
