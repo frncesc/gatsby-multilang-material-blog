@@ -8,7 +8,6 @@ const fs = require("fs");
 const path = require("path");
 const Jimp = require("jimp");
 const twitterCard = require("wasm-twitter-card");
-const { graphql } = require("gatsby/graphql");
 
 const WIDTH = 1200;
 const HEIGHT = 630;
@@ -34,6 +33,11 @@ function validateFontSize(fontSize, fieldName) {
   }
 }
 
+function validateLocalizedObject(obj, fieldName) {
+  if (typeof obj !== 'object' || Object.keys(obj).length < 1 || typeof obj[Object.keys(obj)[0]] !== 'string')
+    throw new Error(`Please pass an object with strings defined for each language as ${fieldName}`);
+}
+
 function hexToRgb(hex) {
   const hexCode = hex.replace(/^#/, "");
   const bigint = parseInt(hexCode, 16);
@@ -43,50 +47,56 @@ function hexToRgb(hex) {
   return [r, g, b];
 }
 
-
-async function createCard(node, pluginOptions) {
-
-  const {
+async function createCard(
+  node,
+  reporter,
+  {
     localizedTitles,
     localizedAuthors,
-    defaultLanguage = 'en',
-    background = '#000000',
-    fontColor = '#ffffff',
-    titleFontSize = 96,
-    subtitleFontSize = 60,
-    fontStyle = 'monospace',
-    separator = '|',
+    defaultLanguage,
+    background,
+    fontColor,
+    titleFontSize,
+    subtitleFontSize,
+    fontStyle,
+    separator,
     fontFile,
-  } = pluginOptions;
-  const post = node.frontmatter;
-  if (!node.fields || node.fields.slug) {
-    console.log('Markdown node without slug field!');
+    cardFileName,
+  }) {
+
+  const lang = (node.fields && node.fields.lang) || defaultLanguage;
+
+  const slug = node.fields && node.fields.slug;
+  if (!slug) {
+    reporter.warn('Markdown node without slug field');
     return;
   }
 
-  const lang = node.fields.lang || defaultLanguage;
+  const title = node.frontmatter && node.frontmatter.title;
+  if (!title) {
+    reporter.warn(`Markdown node without title: ${slug} (${lang})`);
+    return;
+  }
 
   const output = path.join(
     "./public",
     lang,
-    node.fields.slug,
-    "twitter-card.jpg"
+    slug,
+    cardFileName
   );
 
-  // Avoid repetitive calls
   if (fs.existsSync(output)) {
-    console.log(`File already exists: ${output}`)
+    reporter.verbose(`File ${output} already exists and will be reused.`)
     return;
   }
 
-
-  const title = localizedTitles[lang] || localizedTitles[defaultLanguage] || '';
-  const author = localizedAuthors[lang] || localizedAuthors[defaultLanguage] || '';
+  const localizedTitle = localizedTitles[lang] || localizedTitles[defaultLanguage] || '';
+  const localizedAuthor = localizedAuthors[lang] || localizedAuthors[defaultLanguage] || '';
 
   let formattedDetails = "";
-  if (title || author) {
+  if (localizedTitle || localizedAuthor) {
     formattedDetails =
-      title && author ? `${title} ${separator} ${author}` : title || author;
+      localizedTitle && localizedAuthor ? `${localizedTitle} ${separator} ${localizedAuthor}` : localizedTitle || localizedAuthor;
   }
 
   const fontToUint8Array = fontFile
@@ -94,7 +104,7 @@ async function createCard(node, pluginOptions) {
     : new Uint8Array();
 
   const buffer = twitterCard.generate_text(
-    post.title,
+    title,
     formattedDetails,
     titleFontSize,
     subtitleFontSize,
@@ -105,52 +115,40 @@ async function createCard(node, pluginOptions) {
 
   return Promise.all([generateBackground(background), writeTextToCard(buffer)])
     .then(([base, text]) => base.composite(text, 0, 0))
-    .then(image =>
-      image
-        .writeAsync(output)
-        .then(() => console.log("Generated Twitter Card: ", output))
-        .catch(err => err)
-    )
-    .catch(console.error);
+    .then(image => image.writeAsync(output))
+    .then(() => reporter.info(`Created social card for ${lang}${slug}`));
 }
 
-async function onPostBootstrap(_, pluginOptions) {
+const defaultPluginOptions = {
+  localizedTitles: null,
+  localizedAuthors: [],
+  defaultLanguage: 'en',
+  background: '#000000',
+  fontColor: '#ffffff',
+  titleFontSize: 96,
+  subtitleFontSize: 60,
+  fontStyle: 'monospace',
+  separator: '|',
+  fontFile: null,
+  cardFileName: 'twitter-card.jpg',
+};
 
-  console.log('XXXXXXXXXX')
+async function onPostBootstrap({ getNodesByType, reporter }, pluginOptions) {
 
-  const {
-    titleFontSize = 96,
-    subtitleFontSize = 60,
-  } = pluginOptions;
+  pluginOptions = { ...defaultPluginOptions, ...pluginOptions };
 
-  validateFontSize(titleFontSize, "titleFontSize");
-  validateFontSize(subtitleFontSize, "subtitleFontSize");
+  validateFontSize(pluginOptions.titleFontSize, 'titleFontSize');
+  validateFontSize(pluginOptions.subtitleFontSize, 'subtitleFontSize');
+  validateLocalizedObject(pluginOptions.localizedTitles, 'localizedTitles');
+  // Author not required:
+  // validateLocalizedObject(pluginOptions.localizedAuthors, 'localizedAuthors');
 
-  const result = await graphql`
-    query {
-      allMdx {
-        edges {
-          node {
-            fields {
-              lang
-              slug
-            }
-            frontmatter {
-              title
-            }
-          }
-        }
-      }
-    }`;
+  const nodes = getNodesByType('Mdx').concat(getNodesByType('MarkdownRemark'));
+  reporter.verbose(`Generating social cards for ${nodes.length} markdown nodes`);
 
-  if (result.errors) {
-    throw result.errors;
-  }
-
-  return Promise.all(result.data.allMdx.edges.map(({ node }) => createCard(node, pluginOptions)))
-    .then(cards => console.log(`${cards.length} twitter cards created`));
-
+  return Promise.all(nodes.map(node => createCard(node, reporter, pluginOptions)))
+    .then(cards => reporter.info(`${cards.length} social cards created`))
+    .catch(err => reporter.error(`Error creating social cards`, err));
 }
 
-//exports.onCreateNode = onCreateNode;
 exports.onPostBootstrap = onPostBootstrap;
