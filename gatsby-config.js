@@ -177,7 +177,7 @@ const config = {
     },
     // Generate social cards
     {
-      resolve: 'gatsby-plugin-multilang-twitter-cards',
+      resolve: '@francesc/gatsby-plugin-multilang-twitter-cards',
       options: {
         localizedTitles, // website titles
         localizedAuthors, // website author names
