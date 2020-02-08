@@ -2,6 +2,7 @@
 title: Heli
 date: '2020-01-08T10:23+01:00'
 description: Element químic de nombre atòmic 2 i representat pel símbol He
+thumbnail: './goodyear-blimp.jpg'
 keywords: química, física, energia
 ---
 

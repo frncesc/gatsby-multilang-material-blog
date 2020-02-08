@@ -2,6 +2,7 @@
 title: Helium
 date: '2020-01-08T10:23+01:00'
 description: Helium (from Greek ἥλιος, romanized Helios, lit. 'Sun') is a chemical element with the symbol He and atomic number 2
+thumbnail: './goodyear-blimp.jpg'
 keywords: chemistry, physics, energy
 ---
 

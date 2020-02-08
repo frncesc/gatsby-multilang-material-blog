@@ -23,7 +23,7 @@ const query = graphql`
   }
 `;
 
-function SEO({ description, lang, meta, title, slug, alt = [], ...props }) {
+function SEO({ description, lang, meta, title, slug, alt = [], thumbnail, ...props }) {
 
   const { site } = useStaticQuery(query);
   const metaDescription = description || site.siteMetadata.description;
@@ -63,7 +63,9 @@ function SEO({ description, lang, meta, title, slug, alt = [], ...props }) {
   ].concat(meta);
 
   if (slug) {
-    const cardUrl = `${site.siteMetadata.siteUrl}/${lang}${slug}twitter-card.jpg`;
+    const cardUrl = thumbnail && thumbnail?.childImageSharp?.sizes?.src
+      ? `${site.siteMetadata.siteUrl}${thumbnail.childImageSharp.sizes.src}`
+      : `${site.siteMetadata.siteUrl}/${lang}${slug}twitter-card.jpg`;
     metaTags.push(
       {
         name: 'twitter:image',

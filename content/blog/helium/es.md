@@ -2,6 +2,7 @@
 title: Helio
 date: '2020-01-08T10:23+01:00'
 description: Elemento químico de número atómico 2, símbolo He y peso atómico estándar de 4,0026
+thumbnail: './goodyear-blimp.jpg'
 keywords: química, física, energía
 ---
 
