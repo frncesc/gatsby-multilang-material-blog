@@ -18,6 +18,7 @@ const query = graphql`
         description
         author
         siteUrl
+        siteRoot
       }
     }
   }
@@ -64,7 +65,7 @@ function SEO({ description, lang, meta, title, slug, alt = [], thumbnail, ...pro
 
   if (slug) {
     const cardUrl = thumbnail && thumbnail?.childImageSharp?.sizes?.src
-      ? `${site.siteMetadata.siteUrl}${thumbnail.childImageSharp.sizes.src}`
+      ? `${site.siteMetadata.siteRoot}${thumbnail.childImageSharp.sizes.src}`
       : `${site.siteMetadata.siteUrl}/${lang}${slug}twitter-card.jpg`;
     metaTags.push(
       {
