@@ -20,6 +20,9 @@ const siteRoot = BASE_URL.substr(0, BASE_URL.length - PATH_PREFIX.length - 1);
 const themeColor = '#663399';
 const themeBackground = '#ffffff';
 
+const shareOn = { twitter: true, facebook: true, telegram: true, whatsapp: true, pinterest: true, email: true, classroom: true, moodle: true };
+const shareMeta = { 'hash': 'chemical,blog', via: 'mr-gatsby' };
+
 const supportedLanguages = ['en', 'ca', 'es'];
 const defaultLanguage = 'en';
 
@@ -78,6 +81,8 @@ const config = {
     localizedDescriptions,
     localizedAuthors,
     specialPages: ['/search/', '/blog/'],
+    shareOn,
+    shareMeta,
   },
   plugins: [
     // Static pages

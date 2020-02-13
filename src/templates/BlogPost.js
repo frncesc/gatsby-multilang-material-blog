@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { navigate, useIntl } from "gatsby-plugin-intl"
+import { siteMetadata } from '../../gatsby-config';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { dateFormat } from '../utils/defaults';
@@ -10,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowBackIcon from '@material-ui/icons/ChevronLeft';
 import ArrowForwardIcon from '@material-ui/icons/ChevronRight';
+import ShareButtons from '../components/ShareButtons';
 
 const useStyles = makeStyles(theme => ({
   article: {
@@ -43,6 +45,7 @@ export default function BlogPostTemplate({ data, pageContext, location }) {
   const { title, description = excerpt, date, thumbnail } = frontmatter;
   const { previous, next } = pageContext;
   const alt = getAllVersions(data, location, lang);
+  const { shareOn, shareMeta } = siteMetadata;
 
   return (
     <Layout {...{ intl, slug }}>
@@ -51,6 +54,7 @@ export default function BlogPostTemplate({ data, pageContext, location }) {
         <header>
           <h1>{title}</h1>
           <p>{formatDate(date, dateFormat)}</p>
+          <ShareButtons {...{ intl, link: location?.href, title, shareOn, ...shareMeta }} />
         </header>
         <MDXRenderer {...{ frontmatter, intl }}>{body}</MDXRenderer>
       </article>
