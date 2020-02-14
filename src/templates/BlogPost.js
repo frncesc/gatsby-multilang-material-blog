@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { navigate, useIntl } from "gatsby-plugin-intl"
 import { siteMetadata } from '../../gatsby-config';
+import { getImgUrl } from '../utils/misc';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { dateFormat } from '../utils/defaults';
@@ -46,6 +47,7 @@ export default function BlogPostTemplate({ data, pageContext, location }) {
   const { previous, next } = pageContext;
   const alt = getAllVersions(data, location, lang);
   const { shareOn, shareMeta } = siteMetadata;
+  const img = getImgUrl(slug, lang, thumbnail);
 
   return (
     <Layout {...{ intl, slug }}>
@@ -54,7 +56,7 @@ export default function BlogPostTemplate({ data, pageContext, location }) {
         <header>
           <h1>{title}</h1>
           <p>{formatDate(date, dateFormat)}</p>
-          <ShareButtons {...{ intl, link: location?.href, title, shareOn, ...shareMeta }} />
+          <ShareButtons {...{ intl, link: location?.href, title, description, img, shareOn, ...shareMeta }} />
         </header>
         <MDXRenderer {...{ frontmatter, intl }}>{body}</MDXRenderer>
       </article>

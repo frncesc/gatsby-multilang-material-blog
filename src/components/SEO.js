@@ -9,6 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
+import { getImgUrl } from '../utils/misc';
 
 const query = graphql`
   query {
@@ -63,10 +64,8 @@ function SEO({ description, lang, meta, title, slug, alt = [], thumbnail, ...pro
     },
   ].concat(meta);
 
-  if (slug) {
-    const cardUrl = thumbnail && thumbnail?.childImageSharp?.sizes?.src
-      ? `${site.siteMetadata.siteRoot}${thumbnail.childImageSharp.sizes.src}`
-      : `${site.siteMetadata.siteUrl}/${lang}${slug}twitter-card.jpg`;
+  const cardUrl = getImgUrl(slug, lang, thumbnail);
+  if (cardUrl) {
     metaTags.push(
       {
         name: 'twitter:image',

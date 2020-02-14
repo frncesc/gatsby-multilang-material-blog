@@ -1,4 +1,5 @@
 import React from 'react';
+import { siteMetadata } from '../../gatsby-config';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import { mergeClasses } from '../utils/misc';
@@ -38,18 +39,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-
-export const GMailIcon = () =>
-  <SvgIcon viewBox="0 0 48 48">
-    <path d="M5.5 40.5h37A3.5 3.5 0 0046 37V11a3.5 3.5 0 00-3.5-3.5h-37A3.5 3.5 0 002 11v26a3.5 3.5 0 003.5 3.5z" fill="#e0e0e0" />
-    <path d="M26 40.5h16.5A3.5 3.5 0 0046 37V11a3.5 3.5 0 00-3.5-3.5h-37A3.5 3.5 0 002 11l24 29.5z" fill="#d9d9d9" />
-    <path d="M6.745 40.5H42.5A3.5 3.5 0 0046 37V11.5l-39.255 29z" fill="#eee" />
-    <path d="M25.745 40.5H42.5A3.5 3.5 0 0046 37V11.5L18.771 31.616l6.974 8.884z" fill="#e0e0e0" />
-    <path d="M42.5 9.5h-37C3.567 9.5 2 9.067 2 11v26a3.5 3.5 0 003.5 3.5H7V12h34v28.5h1.5A3.5 3.5 0 0046 37V11c0-1.933-1.567-1.5-3.5-1.5z" fill="#ca3737" />
-    <path d="M42.5 7.5h-37A3.48 3.48 0 002 11c0 1.206 1.518 2.258 1.518 2.258L24 27.756l20.482-14.497S46 12.206 46 11.001A3.48 3.48 0 0042.5 7.5z" fill="#f5f5f5" />
-    <path d="M43.246 7.582L24 21 4.754 7.582A3.474 3.474 0 002 11c0 1.206 1.518 2.258 1.518 2.258L24 27.756l20.482-14.497S46 12.206 46 11.001a3.474 3.474 0 00-2.754-3.419z" fill="#e84f4b" />
-  </SvgIcon>;
-
+// Google Classroom icon
 export const GClassRoomIcon = () =>
   <SvgIcon viewBox="0 0 48 48">
     <path d="M41 42H7c-2.207 0-4-1.793-4-4V10c0-2.207 1.793-4 4-4h34c2.207 0 4 1.793 4 4v28c0 2.207-1.793 4-4 4z" fill="#FFC107" />
@@ -60,6 +50,7 @@ export const GClassRoomIcon = () =>
     <path d="M30 27.742c0-.535-.195-1.047-.563-1.437C28.605 25.418 26.837 24 24 24c-2.836 0-4.605 1.418-5.438 2.305A2.08 2.08 0 0018 27.742V30h12z" fill="#FFF" />
   </SvgIcon>;
 
+// Moodle icon
 export const MoodleIcon = () =>
   <SvgIcon viewBox="0 0 48 48">
     <path fill="#ffab40" d="M33.5 16c-2.5 0-4.8 1-6.5 2.6-1.7-1.6-4-2.6-6.5-2.6-5.2 0-9.5 4.3-9.5 9.5V37h6V24.5c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5V37h6V24.5c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5V37h6V25.5c0-5.2-4.3-9.5-9.5-9.5z" />
@@ -70,26 +61,34 @@ export const MoodleIcon = () =>
   </SvgIcon>;
 
 
-export default function ShareButtons({ intl, link, title, hash = '', via = '', shareOn = {}, ...props }) {
+export default function ShareButtons({ intl, link, title, description, hash, via, img, shareOn, ...props }) {
 
-  const { twitter, facebook, telegram, whatsapp, pinterest, email, classroom, moodle } = shareOn;
+  const { twitter, facebook, telegram, whatsapp, pinterest, email, classroom, moodle } = shareOn || {};
   const classes = mergeClasses(props, useStyles());
   const { messages } = intl;
-  const twitterLink = `https://twitter.com/intent/tweet?text=${title}&url=${link}${hash ? `&hashtags=${hash}` : ''}${via ? `&via=${via}` : ''}`;
 
   return (
     <div className={classes.root}>
       {twitter &&
-        <a href={twitterLink} target="_blank" rel="noopener noreferrer">
+        <a
+          href={`https://twitter.com/intent/tweet?text=${title}&url=${link}${hash ? `&hashtags=${hash}` : ''}${via ? `&via=${via}` : ''}`}
+          target="_blank"
+          rel="noopener noreferrer">
           <IconButton className={classes.twitter} aria-label="Twitter" title={messages['share-twitter']} >
             <TwitterIcon />
           </IconButton>
         </a>
       }
       {facebook &&
-        <IconButton className={classes.facebook} aria-label="Facebook" title={messages['share-facebook']}>
-          <FacebookIcon />
-        </IconButton>}
+        <a
+          href={`https://www.facebook.com/dialog/feed?app_id=${siteMetadata.facebookId}&link=${link}${img ? `&picture=${img}` : ''}&name=${title}${description ? `&description=${description}` : ''}&redirect_uri=facebook.com`}
+          target="_blank"
+          rel="noopener noreferrer">
+          <IconButton className={classes.facebook} aria-label="Facebook" title={messages['share-facebook']}>
+            <FacebookIcon />
+          </IconButton>
+        </a>
+      }
       {telegram &&
         <IconButton className={classes.telegram} aria-label="Telegram" title={messages['share-telegram']}>
           <TelegramIcon />

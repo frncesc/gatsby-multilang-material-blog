@@ -13,6 +13,7 @@ const PATH_PREFIX = process.env.PATH_PREFIX || '';
 const BASE_URL = process.env.BASE_URL || 'https://localhost:9000/';
 const ANALYTICS_UA = process.env.ANALYTICS_UA || '';
 const OFFLINE_PWA = 'true' === process.env.OFFLINE_PWA;
+const FACEBOOK_ID = process.env.FACEBOOK_ID || '';
 
 // Main metadata settings
 const siteUrl = BASE_URL;
@@ -83,6 +84,7 @@ const config = {
     specialPages: ['/search/', '/blog/'],
     shareOn,
     shareMeta,
+    facebookId: FACEBOOK_ID,
   },
   plugins: [
     // Static pages
