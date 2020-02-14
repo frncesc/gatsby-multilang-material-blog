@@ -1,5 +1,6 @@
 import React from 'react';
-import { siteMetadata } from '../../gatsby-config';
+import { useStaticQuery, graphql } from 'gatsby';
+import { getImgUrl } from '../utils/misc';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import { mergeClasses } from '../utils/misc';
@@ -10,6 +11,33 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import PinterestIcon from '@material-ui/icons/Pinterest';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+
+const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        siteUrl
+        siteRoot
+        cardFileName
+        shareOn {
+          twitter
+          facebook
+          telegram
+          whatsapp
+          pinterest
+          email
+          classroom
+          moodle
+        }
+        shareMeta {
+          hash
+          via
+        }
+        facebookId
+      }
+    }
+  }
+`;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,19 +87,22 @@ export const MoodleIcon = () =>
     <path fill="#424242" d="M7.5 30c0-2.2-.7-4-1.5-4s-1.5 1.8-1.5 4 .7 4 1.5 4 1.5-1.8 1.5-4z" />
   </SvgIcon>;
 
+const E = encodeURIComponent;
 
-export default function ShareButtons({ intl, link, moodleLink, title, description, hash, via, emailBody, img, shareOn, ...props }) {
+export default function ShareButtons({ intl, slug, thumbnail, link, moodleLink, title, description, emailBody, ...props }) {
 
-  const { twitter, facebook, telegram, whatsapp, pinterest, email, classroom, moodle } = shareOn || {};
+  const { site: { siteMetadata } } = useStaticQuery(query);
+  const { shareOn: { twitter, facebook, telegram, whatsapp, pinterest, email, classroom, moodle } } = siteMetadata;
+  const { shareMeta: { hash, via } } = siteMetadata;
   const classes = mergeClasses(props, useStyles());
-  const { messages } = intl;
-  const e = encodeURIComponent;
+  const { messages, locale: lang } = intl;
+  const img = getImgUrl({ siteMetadata, slug, lang, thumbnail });
 
   return (
     <div className={classes.root}>
       {twitter && title && link &&
         <a
-          href={`https://twitter.com/intent/tweet?text=${e(title)}&url=${e(link)}${hash ? `&hashtags=${e(hash)}` : ''}${via ? `&via=${e(via)}` : ''}`}
+          href={`https://twitter.com/intent/tweet?text=${E(title)}&url=${E(link)}${hash ? `&hashtags=${E(hash)}` : ''}${via ? `&via=${E(via)}` : ''}`}
           target="_blank"
           rel="noopener noreferrer">
           <IconButton className={classes.twitter} aria-label="Twitter" title={messages['share-twitter']} >
@@ -81,7 +112,7 @@ export default function ShareButtons({ intl, link, moodleLink, title, descriptio
       }
       {facebook && title && link &&
         <a
-          href={`https://www.facebook.com/dialog/feed?app_id=${siteMetadata.facebookId}&link=${e(link)}${img ? `&picture=${e(img)}` : ''}&name=${e(title)}${description ? `&description=${e(description)}` : ''}&redirect_uri=facebook.com`}
+          href={`https://www.facebook.com/dialog/feed?app_id=${siteMetadata.facebookId}&link=${E(link)}${img ? `&picture=${E(img)}` : ''}&name=${E(title)}${description ? `&description=${E(description)}` : ''}&redirect_uri=facebook.com`}
           target="_blank"
           rel="noopener noreferrer">
           <IconButton className={classes.facebook} aria-label="Facebook" title={messages['share-facebook']}>
@@ -91,7 +122,7 @@ export default function ShareButtons({ intl, link, moodleLink, title, descriptio
       }
       {telegram && title && link &&
         <a
-          href={`https://telegram.me/share/url?url=${e(link)}&text=${e(`${title}\n${description || ''}`)}`}
+          href={`https://telegram.me/share/url?url=${E(link)}&text=${E(`${title}\n${description || ''}`)}`}
           target="_blank"
           rel="noopener noreferrer">
           <IconButton className={classes.telegram} aria-label="Telegram" title={messages['share-telegram']}>
@@ -100,7 +131,7 @@ export default function ShareButtons({ intl, link, moodleLink, title, descriptio
         </a>}
       {whatsapp && title && link &&
         <a
-          href={`https://api.whatsapp.com/send?text=${e(`${title}\n${link}`)}`}
+          href={`https://api.whatsapp.com/send?text=${E(`${title}\n${link}`)}`}
           target="_blank"
           rel="noopener noreferrer">
           <IconButton className={classes.whatsapp} aria-label="WhatsApp" title={messages['share-whatsapp']}>
@@ -120,7 +151,7 @@ export default function ShareButtons({ intl, link, moodleLink, title, descriptio
       }
       {email && title &&
         <a
-          href={`mailto:?subject=${e(title)}&body=${e(emailBody || `${title}\n\n${description || ''}\n${link}`)}`}
+          href={`mailto:?subject=${E(title)}&body=${E(emailBody || `${title}\n\n${description || ''}\n${link}`)}`}
           target="_blank"
           rel="noopener noreferrer">
           <IconButton className={classes.email} aria-label="E-mail" title={messages['share-email']} >
@@ -130,7 +161,7 @@ export default function ShareButtons({ intl, link, moodleLink, title, descriptio
       }
       {classroom && link &&
         <a
-          href={`https://classroom.google.com/u/0/share?url=${e(link)}`}
+          href={`https://classroom.google.com/u/0/share?url=${E(link)}`}
           target="_blank"
           rel="noopener noreferrer">
           <IconButton aria-label="Google Classroom" title={messages['share-classroom']} >

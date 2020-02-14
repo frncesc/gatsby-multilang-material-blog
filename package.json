@@ -1,7 +1,7 @@
 {
   "name": "gatsby-multilang-material-blog",
   "title": "Gatsby site template",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Multi-language blog template made with Gatsby and Material UI",
   "author": "Francesc Busquets <francesc@gmail.com>",
   "private": true,
@@ -42,7 +42,7 @@
     "gatsby-plugin-google-analytics": "^2.1.35",
     "gatsby-plugin-intl": "^0.3.2",
     "gatsby-plugin-manifest": "^2.2.41",
-    "gatsby-plugin-mdx": "^1.0.72",
+    "gatsby-plugin-mdx": "^1.0.73",
     "gatsby-plugin-offline": "^3.0.34",
     "gatsby-plugin-react-helmet": "^3.1.22",
     "gatsby-plugin-sharp": "^2.4.5",

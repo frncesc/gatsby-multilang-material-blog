@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { getImgUrl } from '../utils/misc';
+import { getAllVariants } from '../utils/node';
 
 const query = graphql`
   query {
@@ -20,15 +21,19 @@ const query = graphql`
         author
         siteUrl
         siteRoot
+        cardFileName
+        supportedLanguages
       }
     }
   }
 `;
 
-function SEO({ description, lang, meta, title, slug, alt = [], thumbnail, ...props }) {
+function SEO({ location, description, lang, meta, title, slug, thumbnail, ...props }) {
 
-  const { site } = useStaticQuery(query);
-  const metaDescription = description || site.siteMetadata.description;
+  const { site: { siteMetadata } } = useStaticQuery(query);
+  const metaDescription = description || siteMetadata.description;
+  const alt = (slug && location && lang && getAllVariants(siteMetadata.supportedLanguages, slug, location, lang)) || [];
+
   const metaTags = [
     {
       name: 'description',
@@ -52,7 +57,7 @@ function SEO({ description, lang, meta, title, slug, alt = [], thumbnail, ...pro
     },
     {
       name: 'twitter:creator',
-      content: site.siteMetadata.author,
+      content: siteMetadata.author,
     },
     {
       name: 'twitter:title',
@@ -64,7 +69,7 @@ function SEO({ description, lang, meta, title, slug, alt = [], thumbnail, ...pro
     },
   ].concat(meta);
 
-  const cardUrl = getImgUrl(slug, lang, thumbnail);
+  const cardUrl = getImgUrl({ siteMetadata, slug, lang, thumbnail });
   if (cardUrl) {
     metaTags.push(
       {
@@ -83,7 +88,7 @@ function SEO({ description, lang, meta, title, slug, alt = [], thumbnail, ...pro
       {...props}
       htmlAttributes={{ lang }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${siteMetadata.title}`}
       meta={metaTags}
       link={alt.map(({ lang, href }) => ({
         rel: 'alternate',

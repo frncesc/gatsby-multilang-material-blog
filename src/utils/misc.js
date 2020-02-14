@@ -1,5 +1,3 @@
-import { siteMetadata } from '../../gatsby-config';
-
 /**
  * Combines a potential `className` field passed in `props` with the element
  * class name specified in `classes.root`
@@ -14,10 +12,10 @@ export const mergeClasses = (props, classes, root = 'root') => {
 }
 
 
-export const getImgUrl = (slug, lang, thumbnail) => {
+export const getImgUrl = ({ siteMetadata: { siteRoot, siteUrl, cardFileName }, slug, lang, thumbnail }) => {
   return thumbnail && thumbnail?.childImageSharp?.sizes?.src
-    ? `${siteMetadata.siteRoot}${thumbnail.childImageSharp.sizes.src}`
+    ? `${siteRoot}${thumbnail.childImageSharp.sizes.src}`
     : slug
-      ? `${siteMetadata.siteUrl}${lang}${slug}twitter-card.jpg`
+      ? `${siteUrl}${lang}${slug}${cardFileName}`
       : null;
 }
