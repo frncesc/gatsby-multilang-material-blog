@@ -6,6 +6,9 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { getResolvedVersionForLanguage, getAllVersions } from '../utils/node';
 import { makeStyles } from '@material-ui/core/styles';
+import { getImgUrl } from '../utils/misc';
+import { siteMetadata } from '../../gatsby-config';
+import ShareButtons from '../components/ShareButtons';
 
 const useStyles = makeStyles(theme => ({
   article: {
@@ -30,6 +33,8 @@ export default function StaticPageTemplate({ data, location }) {
   const alt = getAllVersions(data, location, lang);
   const { frontmatter, fields: { slug }, excerpt, body } = getResolvedVersionForLanguage(data, intl);
   const { title, description = excerpt, thumbnail } = frontmatter;
+  const { shareOn, shareMeta } = siteMetadata;
+  const img = getImgUrl(slug, lang, thumbnail);
 
   return (
     <Layout {...{ intl, slug }}>
@@ -37,6 +42,7 @@ export default function StaticPageTemplate({ data, location }) {
       <article className={classes.article} >
         <header>
           <h1>{title}</h1>
+          <ShareButtons {...{ intl, link: location?.href, title, description, img, shareOn, ...shareMeta }} />
         </header>
         <MDXRenderer {...{ frontmatter, intl }}>{body}</MDXRenderer>
       </article>
