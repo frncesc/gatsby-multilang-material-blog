@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { getImgUrl } from '../utils/misc';
@@ -28,7 +27,7 @@ const query = graphql`
   }
 `;
 
-function SEO({ location, description, lang, meta, title, slug, thumbnail, ...props }) {
+function SEO({ location, title, description = '', lang = 'en', meta = [], slug = null, thumbnail = null, ...props }) {
 
   const { site: { siteMetadata } } = useStaticQuery(query);
   const metaDescription = description || siteMetadata.description;
@@ -98,20 +97,5 @@ function SEO({ location, description, lang, meta, title, slug, thumbnail, ...pro
     />
   );
 }
-
-SEO.defaultProps = {
-  lang: 'en',
-  meta: [],
-  description: '',
-  slug: null,
-};
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  slug: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
-};
 
 export default SEO;

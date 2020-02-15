@@ -112,7 +112,7 @@ export default function ShareButtons({ intl, slug, thumbnail, link, moodleLink, 
       }
       {facebook && title && link &&
         <a
-          href={`https://www.facebook.com/dialog/feed?app_id=${siteMetadata.facebookId}&link=${E(link)}${img ? `&picture=${E(img)}` : ''}&name=${E(title)}${description ? `&description=${E(description)}` : ''}&redirect_uri=facebook.com`}
+          href={`https://www.facebook.com/dialog/feed?app_id=${siteMetadata.facebookId}&link=${E(link)}${img ? `&picture=${E(img)}` : ''}&name=${E(title)}${description ? `&description=${E(description)}` : ''}&redirect_uri=${E('https://facebook.com')}`}
           target="_blank"
           rel="noopener noreferrer">
           <IconButton className={classes.facebook} aria-label="Facebook" title={messages['share-facebook']}>

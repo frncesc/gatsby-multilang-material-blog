@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
-import PropTypes from 'prop-types';
 import { Link } from 'gatsby-plugin-intl';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
@@ -63,10 +62,6 @@ function HideOnScroll({ children }) {
     </Slide>
   );
 }
-
-HideOnScroll.propTypes = {
-  children: PropTypes.element.isRequired,
-};
 
 function TopBar({ intl, drawerOpen, handleDrawerToggle, ...props }) {
 
