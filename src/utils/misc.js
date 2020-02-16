@@ -12,10 +12,10 @@ export const mergeClasses = (props, classes, root = 'root') => {
 }
 
 
-export const getImgUrl = ({ siteMetadata: { siteRoot, siteUrl, cardFileName }, slug, lang, thumbnail }) => {
-  return thumbnail && thumbnail?.childImageSharp?.sizes?.src
-    ? `${siteRoot}${thumbnail.childImageSharp.sizes.src}`
+export const getImgUrl = ({ siteMetadata: { baseUrl, pathPrefix, cardFileName }, slug, lang, thumbnail }) => {
+  return thumbnail && thumbnail?.childImageSharp?.fluid?.src
+    ? `${baseUrl}${thumbnail.childImageSharp.fluid.src}`
     : slug
-      ? `${siteUrl}${lang}${slug}${cardFileName}`
+      ? `${baseUrl}${pathPrefix}/${lang}${slug}${cardFileName}`
       : null;
 }

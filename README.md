@@ -29,5 +29,8 @@ This is just a template for a [Gatsby](https://gatsbyjs.org) blog integrating so
   - [gatsby-remark-prismjs](https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/)
   - [gatsby-remark-responsive-iframe](https://www.gatsbyjs.org/packages/gatsby-remark-responsive-iframe/)
 
-- Automatic deployment to GitHub pages
+- Automatic creation of graphic cards for blog posts and static pages, using [gatsby-plugin-multilang-twitter-cards](https://github.com/frncesc/gatsby-plugin-multilang-twitter-cards), based on:
+  - [gatsby-remark-twitter-cards](https://github.com/alessbell/gatsby-remark-twitter-cards)
+  - [gatsby-remark-social-cards](https://github.com/syntra/gatsby-remark-social-cards)
 
+- Custom social networks sharing buttons

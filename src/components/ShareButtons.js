@@ -16,8 +16,8 @@ const query = graphql`
   query {
     site {
       siteMetadata {
-        siteUrl
-        siteRoot
+        baseUrl
+        pathPrefix
         cardFileName
         shareOn {
           twitter
@@ -39,7 +39,7 @@ const query = graphql`
   }
 `;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(_theme => ({
   root: {
     display: 'flex',
     "& button": {
