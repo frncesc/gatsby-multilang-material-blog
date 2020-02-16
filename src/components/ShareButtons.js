@@ -19,13 +19,13 @@ const query = graphql`
         baseUrl
         pathPrefix
         cardFileName
-        shareOn {
+        shareSites {
           twitter
           facebook
           telegram
           whatsapp
-          pinterest
           email
+          pinterest
           classroom
           moodle
         }
@@ -89,12 +89,12 @@ export const MoodleIcon = () =>
 
 const E = encodeURIComponent;
 
-export default function ShareButtons({ intl, slug, thumbnail, link, moodleLink, title, description, emailBody, ...props }) {
+export default function ShareButtons({ shareSites = {}, shareMeta = {}, intl, slug, thumbnail, link, moodleLink, title, description, emailBody, ...props }) {
 
-  const { site: { siteMetadata } } = useStaticQuery(query);
-  const { shareOn: { twitter, facebook, telegram, whatsapp, pinterest, email, classroom, moodle } } = siteMetadata;
-  const { shareMeta: { hash, via } } = siteMetadata;
   const classes = mergeClasses(props, useStyles());
+  const { site: { siteMetadata } } = useStaticQuery(query);
+  const { twitter, facebook, telegram, whatsapp, pinterest, email, classroom, moodle } = { ...siteMetadata.shareSites, ...shareSites };
+  const { hash, via } = { ...siteMetadata.shareMeta, ...shareMeta };
   const { messages, locale: lang } = intl;
   const img = getImgUrl({ siteMetadata, slug, lang, thumbnail });
 

@@ -22,7 +22,7 @@ const cardFileName = 'card.jpg';
 const themeColor = '#663399';
 const themeBackground = '#ffffff';
 
-const shareOn = { twitter: true, facebook: true, telegram: true, whatsapp: true, pinterest: true, email: true, classroom: true, moodle: true };
+const shareSites = { twitter: true, facebook: true, telegram: true, whatsapp: true, email: true, pinterest: false, classroom: false, moodle: false };
 const shareMeta = { hash: 'chemical,blog', via: 'mr-gatsby' };
 
 const supportedLanguages = ['en', 'ca', 'es'];
@@ -76,7 +76,7 @@ const config = {
     supportedLanguages,
     langNames,
     specialPages,
-    shareOn,
+    shareSites,
     shareMeta,
     cardFileName,
     facebookId: FACEBOOK_ID,

@@ -11,11 +11,16 @@ export const mergeClasses = (props, classes, root = 'root') => {
   return classes;
 }
 
+/**
+ * Checks if the given expression is an absolute URL
+ * (implemented with a very simple test, not RFC 3987 compliant!)
+ * @param {string} text 
+ */
+export const isAbsoluteUrl = (text) => text && /^https?:\/\//.test(text);
 
-export const getImgUrl = ({ siteMetadata: { baseUrl, pathPrefix, cardFileName }, slug, lang, thumbnail }) => {
-  return thumbnail && thumbnail?.childImageSharp?.fluid?.src
-    ? `${baseUrl}${thumbnail.childImageSharp.fluid.src}`
-    : slug
-      ? `${baseUrl}${pathPrefix}/${lang}${slug}${cardFileName}`
-      : null;
+export const getImgUrl = ({ siteMetadata: { baseUrl, pathPrefix, cardFileName }, slug, lang, thumbnail = null }) => {
+  return isAbsoluteUrl(thumbnail) ? thumbnail
+    : thumbnail?.childImageSharp?.fluid?.src ? `${baseUrl}${thumbnail.childImageSharp.fluid.src}`
+      : slug ? `${baseUrl}${pathPrefix}/${lang}${slug}${cardFileName}`
+        : null;
 }
