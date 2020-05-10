@@ -10,7 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { getAllResolvedVersionsForLanguage } from '../utils/node';
-import { FontAwIcon } from '../utils/FontAwIcon';
+import { ReactIcon } from '../utils/ReactIcon';
 import { mergeClasses } from '../utils/misc';
 
 const useStyles = makeStyles(theme => ({
@@ -77,14 +77,14 @@ export default function DrawerPanel({ intl, ...props }) {
       <List>
         {pages.map(node => (
           <ListItem button key={node.fields.slug} onClick={() => navigate(node.fields.slug)}>
-            <ListItemIcon className={classes.listItemIcon}><FontAwIcon icon={node.frontmatter.icon} size="lg" /></ListItemIcon>
+            <ListItemIcon className={classes.listItemIcon}><ReactIcon icon={node.frontmatter.icon} size="lg" /></ListItemIcon>
             <ListItemText primary={node.frontmatter.title} />
           </ListItem>
         ))}
       </List>
       <Divider />
       <ListItem button onClick={() => navigate('/blog/')}>
-        <ListItemIcon className={classes.listItemIcon}><FontAwIcon icon="rss-square" size="lg" /></ListItemIcon>
+        <ListItemIcon className={classes.listItemIcon}><ReactIcon icon="rss-square" size="lg" /></ListItemIcon>
         <ListItemText primary="Blog" />
       </ListItem>
     </div>

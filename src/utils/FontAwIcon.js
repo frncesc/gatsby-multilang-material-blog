@@ -9,13 +9,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faApple } from '@fortawesome/free-brands-svg-icons';
 
 // Regular icons:
-import { faBlog, faStickyNote, faFlask, faRadiationAlt, faUserTie, faTh, faRssSquare } from '@fortawesome/free-solid-svg-icons';
+// import { faBlog, faStickyNote, faFlask, faRadiationAlt, faUserTie, faTh, faRssSquare } from '@fortawesome/free-solid-svg-icons';
 
 // Build the icon library
 import { library } from '@fortawesome/fontawesome-svg-core';
 library.add(
   faApple,
-  faBlog, faStickyNote, faFlask, faRadiationAlt, faUserTie, faTh, faRssSquare
+//  faBlog, faStickyNote, faFlask, faRadiationAlt, faUserTie, faTh, faRssSquare,
 );
 
 /**
