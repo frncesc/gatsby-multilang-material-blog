@@ -22,7 +22,7 @@ This is just a template for a [Gatsby](https://gatsbyjs.org) blog integrating so
 
 - Full text search with [Fuse.js](https://fusejs.io/)
 
-- Use of [Font Awesome](https://fontawesome.com/) SVG icons (custom icon library built in `gatsby-browser.js`)
+- Easy use of [React Icons](https://react-icons.github.io/react-icons/)
 
 - Integration of useful Gatsby remark add-ons like:
   - [gatsby-remark-attr](https://www.gatsbyjs.org/packages/gatsby-remark-attr/)
