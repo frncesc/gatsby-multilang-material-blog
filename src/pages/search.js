@@ -22,17 +22,21 @@ const DEFAULT_ITEMS_PER_PAGE = 10;
 // Fuse.js options
 // See: https://fusejs.io/
 const FUSE_OPTIONS = {
-  caseSensitive: false,
-  shouldSort: true,
-  tokenize: true,
-  matchAllTokens: true,
+  isCaseSensitive: false,
   includeScore: false,
   includeMatches: false,
-  threshold: 0.2,
-  location: 0,
-  distance: 4,
-  maxPatternLength: 32,
   minMatchCharLength: 2,
+  shouldSort: true,
+  findAllMatches: false,
+  location: 0,
+  threshold: 0.2,
+  // Provide a big distance to avoid null matches!
+  // distance: 4,
+  distance: 100000,
+  useExtendedSearch: false,
+  tokenize: true,
+  matchAllTokens: true,
+  maxPatternLength: 32,
 };
 
 const useStyles = makeStyles(_theme => ({
@@ -44,6 +48,7 @@ const useStyles = makeStyles(_theme => ({
   },
 }));
 
+const fuseEngine = {};
 
 export default function Search({ location, data }) {
 
@@ -58,22 +63,19 @@ export default function Search({ location, data }) {
   const [page, setPage] = React.useState(0);
   const [itemsPerPage, setItemsPerPage] = React.useState(DEFAULT_ITEMS_PER_PAGE);
 
-  const fuseEngine = {};
-
   function getFuseEngine(locale) {
-    if (!fuseEngine[locale])
-      fuseEngine[locale] = new Fuse(
-        data.allMdx.nodes
-          .filter(({ fields: { lang } }) => lang === locale)
-          .map(({ fields: { slug, tokens }, frontmatter: { title, description, icon } }) => ({
-            title,
-            description,
-            slug,
-            icon,
-            tokens,
-          })),
-        { ...FUSE_OPTIONS, keys: ['tokens'] }
-      );
+    if (!fuseEngine[locale]) {
+      const nodes = data.allMdx.nodes
+        .filter(({ fields: { lang } }) => lang === locale)
+        .map(({ fields: { slug, tokens }, frontmatter: { title, description, icon } }) => ({
+          title,
+          description,
+          slug,
+          icon,
+          tokens,
+        }));
+      fuseEngine[locale] = new Fuse(nodes, { ...FUSE_OPTIONS, keys: ['tokens'] });
+    }
     return fuseEngine[locale];
   }
 
@@ -83,7 +85,8 @@ export default function Search({ location, data }) {
     // Delay the search operation, so allowing page to be fully rendered
     window.setTimeout(() => {
       const fuse = getFuseEngine(lang);
-      setResults(fuse.search(query));
+      const matches = fuse.search(query);
+      setResults(matches.map(m => m.item));
       setWaiting(false);
     }, 0);
   }
