@@ -1,7 +1,7 @@
 {
   "name": "gatsby-multilang-material-blog",
   "title": "Gatsby site template",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Multi-language blog template made with Gatsby and Material UI",
   "author": "Francesc Busquets <francesc@gmail.com>",
   "private": true,
