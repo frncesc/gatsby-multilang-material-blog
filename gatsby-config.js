@@ -234,7 +234,7 @@ const config = {
               }
             }`,
             serialize: ({ query: { site: { siteMetadata: { baseUrl, pathPrefix } }, allMdx } }) => {
-              return allMdx.edges.map(({ node: { fields: { slug }, frontmatter, excerpt, body } }) => {
+              return allMdx.edges.map(({ node: { fields: { slug }, frontmatter, excerpt /*, body*/ } }) => {
                 const url = `${baseUrl}${pathPrefix}/${lang}${slug}`;
                 return Object.assign(
                   {},

@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const ch = require('chalk');
 const { createFilePath } = require('gatsby-source-filesystem');
-const { siteMetadata: { defaultLanguage, supportedLanguages } } = require('./gatsby-config')
+const { siteMetadata: { title, version, defaultLanguage, supportedLanguages } } = require('./gatsby-config')
 
 const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
 require('dotenv').config({
@@ -10,6 +10,7 @@ require('dotenv').config({
 });
 const PATH_PREFIX = process.env.PATH_PREFIX || '';
 // const PATH_PREFIX = `${__PATH_PREFIX__}/`;
+const CREATE_ROOT_INDEX = 'true' === process.env.CREATE_ROOT_INDEX;
 
 const STOP_WORDS = {};
 supportedLanguages.forEach(lang => {
@@ -158,6 +159,13 @@ function moveBuildToPathPrefix() {
     // Create a symlink for 404
     fs.symlinkSync(`${prefix}/404.html`, `${buildDir}/404.html`);
     console.log(`${ch.bold.green('info:')} Build files moved to "${destDir}"`);
+
+    if (CREATE_ROOT_INDEX) {
+      const rootIndexFile = path.resolve(buildDir, 'index.html');
+      const rootIndexContent = `<!doctype html><html lang="${defaultLanguage}"><head><title>${title}</title></head><body><a href=".${PATH_PREFIX}/index.html">${title} v${version}</a></body></html>`
+      fs.writeFileSync(rootIndexFile, rootIndexContent);
+      console.log(`${ch.bold.green('info:')} Created file "${rootIndexFile}"`);
+    }
   }
 }
 
