@@ -5,6 +5,8 @@ date: '2020-01-07T12:27+01:00'
 description: Tabular arrangement of the chemical elements ordered by atomic number
 icon: th
 keywords: chemistry, physics
+author: Wikipedia
+schema: '{"assesses":"chemistry"}'
 ---
 
 > From [Wikipedia](https://en.wikipedia.org/wiki/Periodic_table)

@@ -5,6 +5,7 @@ require('dotenv').config({
   path: `.env.${activeEnv}`,
 });
 
+const { keyword } = require('chalk');
 // Read package.json settings
 const { version } = require('./package.json');
 
@@ -14,6 +15,12 @@ const BASE_URL = process.env.BASE_URL || 'https://localhost:9000';
 const ANALYTICS_UA = process.env.ANALYTICS_UA || '';
 const OFFLINE_PWA = 'true' === process.env.OFFLINE_PWA;
 const FACEBOOK_ID = process.env.FACEBOOK_ID || '';
+
+// Utility function: converts an object with lang keys into an array of {lang, name} objects
+function objectToLangArray(obj) {
+  return Object.entries(obj).map(([lang, name]) => ({ lang, name }));
+}
+
 
 // Main metadata settings
 const pathPrefix = PATH_PREFIX;
@@ -43,6 +50,7 @@ const localizedAuthors = {
 };
 const author = localizedAuthors[defaultLanguage];
 
+
 const localizedShortTitles = {
   ca: 'Gatsby Blog',
   es: 'Gatsby Blog',
@@ -64,8 +72,13 @@ const config = {
   pathPrefix: PATH_PREFIX,
   siteMetadata: {
     title,
+    localizedTitles: objectToLangArray(localizedTitles),
+    shortTitle,
+    localizedShortTitles: objectToLangArray(localizedShortTitles),
     author,
+    localizedAuthors: objectToLangArray(localizedAuthors),
     description,
+    localizedDescriptions: objectToLangArray(localizedDescriptions),
     pathPrefix,
     baseUrl,
     version,
@@ -170,6 +183,7 @@ const config = {
         theme_color: themeColor,
         display: 'standalone',
         icon: 'content/assets/icons/logo.svg',
+        lang: defaultLanguage,
         localize: supportedLanguages.map(lang => ({
           lang,
           start_url: `/${lang}/`,

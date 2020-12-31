@@ -29,11 +29,29 @@ export default function StaticPageTemplate({ data, location }) {
   const intl = useIntl();
   const { locale: lang } = intl;
   const { frontmatter, fields: { slug }, excerpt, body } = getResolvedVersionForLanguage(data, intl);
-  const { title, description = excerpt, thumbnail } = frontmatter;
+  const { title, description = excerpt, thumbnail, keywords, author, schema } = frontmatter;
+  const { site: { siteMetadata } } = data;
+
+  /**
+   * See: https://schema.org/Article
+   * Additional fields can be added with a 'schema' entry in frontmatter.
+   * Valid JSON strings should be used, like in this example:
+   * 
+   * schema: '{"assesses":"chemistry"}'
+   */
+  const sd = {
+    '@context': 'https://schema.org/',
+    '@type': 'Article',
+    name: title,
+    abstract: description || '',
+    author: author || siteMetadata.localizedAuthors.find(node => node.lang === lang)?.name || siteMetadata.author,
+    keywords: keywords || '',
+    ...JSON.parse(schema || '{}')
+  }
 
   return (
     <Layout {...{ intl, slug }}>
-      <SEO {...{ lang, title, slug, description, thumbnail, location }} />
+      <SEO {...{ lang, title, slug, description, thumbnail, location, sd }} />
       <article className={classes.article} >
         <header>
           <h1>{title}</h1>
@@ -66,8 +84,20 @@ export const pageQuery = graphql`
                 }
               }
             }
+            keywords
+            author
+            schema
           }
           excerpt(pruneLength: 160)
+        }
+      }
+    }
+    site {
+      siteMetadata {
+        author
+        localizedAuthors {
+          lang
+          name
         }
       }
     }

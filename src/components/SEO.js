@@ -98,9 +98,9 @@ function SEO({ location, title, description = '', lang = 'en', meta = [], slug =
     >
       <html lang={lang} />
       <title>{title}</title>
-      {metaTags.map(m => <meta {...m} />)}
+      {metaTags.map((m, n) => <meta key={n} {...m} />)}
       {sd && <script type="application/ld+json" className="structured-data-list">{JSON.stringify(sd)}</script>}
-      {links.map(l => <link {...l} />)}
+      {links.map((l, n) => <link key={n} {...l} />)}
     </Helmet>
   );
 }
