@@ -5,7 +5,6 @@ require('dotenv').config({
   path: `.env.${activeEnv}`,
 });
 
-const { keyword } = require('chalk');
 // Read package.json settings
 const { version } = require('./package.json');
 
@@ -16,11 +15,14 @@ const ANALYTICS_UA = process.env.ANALYTICS_UA || '';
 const OFFLINE_PWA = 'true' === process.env.OFFLINE_PWA;
 const FACEBOOK_ID = process.env.FACEBOOK_ID || '';
 
-// Utility function: converts an object with lang keys into an array of {lang, name} objects
-function objectToLangArray(obj) {
-  return Object.entries(obj).map(([lang, name]) => ({ lang, name }));
+/**
+ * Converts the entries collection of the provided object into an array of objects with just two entries: 'key' and 'value'.
+ * For example: {en: 'house', fr: 'maison'} => [{lang: 'en', value: 'house'}, {lang: 'fr', value: 'maison'}]
+ * This is useful for serializing dictionaries in GraphQL, where objects with variable field names cannot be used in queries.
+ */
+function objectToObjectArray(obj, valueName = 'value', keyName = 'lang' ) {
+  return Object.entries(obj).map(([k, v]) => ({ [keyName]: k, [valueName]: v }));
 }
-
 
 // Main metadata settings
 const pathPrefix = PATH_PREFIX;
@@ -72,13 +74,13 @@ const config = {
   pathPrefix: PATH_PREFIX,
   siteMetadata: {
     title,
-    localizedTitles: objectToLangArray(localizedTitles),
+    localizedTitles: objectToObjectArray(localizedTitles, 'title'),
     shortTitle,
-    localizedShortTitles: objectToLangArray(localizedShortTitles),
+    localizedShortTitles: objectToObjectArray(localizedShortTitles, 'shortTitle'),
     author,
-    localizedAuthors: objectToLangArray(localizedAuthors),
+    localizedAuthors: objectToObjectArray(localizedAuthors, 'author'),
     description,
-    localizedDescriptions: objectToLangArray(localizedDescriptions),
+    localizedDescriptions: objectToObjectArray(localizedDescriptions, 'desc'),
     pathPrefix,
     baseUrl,
     version,

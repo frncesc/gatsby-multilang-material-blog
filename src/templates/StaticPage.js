@@ -44,7 +44,7 @@ export default function StaticPageTemplate({ data, location }) {
     '@type': 'Article',
     name: title,
     abstract: description || '',
-    author: author || siteMetadata.localizedAuthors.find(node => node.lang === lang)?.name || siteMetadata.author,
+    author: author || siteMetadata.localizedAuthors.find(node => node.lang === lang)?.author || siteMetadata.author,
     keywords: keywords || '',
     ...JSON.parse(schema || '{}')
   }
@@ -97,7 +97,7 @@ export const pageQuery = graphql`
         author
         localizedAuthors {
           lang
-          name
+          author
         }
       }
     }
