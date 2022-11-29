@@ -34,3 +34,8 @@ This is just a template for a [Gatsby](https://gatsbyjs.org) blog integrating so
   - [gatsby-remark-social-cards](https://github.com/syntra/gatsby-remark-social-cards)
 
 - Custom social networks sharing buttons
+
+
+### Running on NodeJS 18
+
+See: https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported
